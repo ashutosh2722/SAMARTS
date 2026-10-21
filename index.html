@@ -2,272 +2,806 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f5efe6">
-<title>Samarts — Keepsakes for Every Chapter</title>
-<style>
-:root{
-  --ivory:#f7f3ec;--paper:#fffdf8;--ink:#28251f;--muted:#777066;
-  --wine:#653d3b;--gold:#b99a68;--line:#e6ded2;--sage:#dfe4d8;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--ivory);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-.announcement{padding:10px 16px;text-align:center;background:var(--wine);color:#fff9f0;font-size:10px;letter-spacing:2px;text-transform:uppercase}
-header{max-width:1240px;margin:auto;padding:23px 5%;display:flex;justify-content:space-between;align-items:center;gap:22px}
-.brand{display:inline-flex;align-items:baseline;white-space:nowrap;letter-spacing:-1.8px;font-size:33px;color:var(--wine)}
-.brand .sam{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-style:italic;letter-spacing:-2.5px}
-.brand .arts{font-family:Arial,Helvetica,sans-serif;font-weight:300;letter-spacing:1.5px;font-size:.82em}
-nav{display:flex;gap:25px;font-size:12px;letter-spacing:.5px;color:#4d4942}
-nav a:hover{color:var(--wine)}
-.header-cta{border:1px solid var(--gold);padding:11px 16px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
-.hero{padding:62px 5% 70px;background:linear-gradient(120deg,#f5efe6,#e8ded0)}
-.hero-inner{max-width:1120px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px}
-.kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--wine)}
-h1,h2,h3,p{margin-top:0}
-h1{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:clamp(43px,6vw,76px);line-height:1.04;letter-spacing:-2px;margin:20px 0}
-h1 em{font-weight:normal;color:var(--wine)}
-.hero-copy{max-width:490px;color:#6f685e;line-height:1.85;font-size:15px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.button{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;background:var(--wine);color:white;border:1px solid var(--wine);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;cursor:pointer;transition:.2s}
-.button:hover{background:#4c2d2c}
-.button.secondary{background:transparent;color:var(--wine)}
-.button.secondary:hover{background:#fff8ef}
-.hero-art{min-height:390px;display:flex;align-items:center;justify-content:center;position:relative}
-.art-frame{width:min(100%,390px);aspect-ratio:4/5;background:var(--paper);border:1px solid #d1b994;padding:12px;box-shadow:0 25px 60px #49372c12;transform:rotate(1deg)}
-.art-inner{height:100%;border:1px solid #e4d5be;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;background:radial-gradient(ellipse at center,#fffdf8 0%,#f8f0e4 100%)}
-.art-small{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
-.art-title{font:italic 48px/1.1 Georgia,serif;color:var(--wine);margin:20px 0 12px}
-.art-sub{font:italic 14px/1.8 Georgia,serif;color:#786d5e;max-width:230px}
-.art-flower{font-size:35px;color:var(--gold);margin:14px 0}
-.art-bottom{font-size:9px;letter-spacing:2px;color:#8c7c68;text-transform:uppercase;margin-top:20px}
-.floating-note{position:absolute;right:0;bottom:23px;background:var(--paper);padding:14px 18px;box-shadow:0 10px 30px #49372c12;font:italic 14px Georgia,serif;color:var(--wine)}
-.trust-row{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;padding:18px 5%;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#756d62}
-main section.content-section{padding:78px 5%}
-.container{max-width:1120px;margin:auto}
-.section-head{text-align:center;max-width:650px;margin:0 auto 38px}
-.section-head h2,.story h2,.contact h2{font:normal clamp(32px,4vw,46px)/1.15 Georgia,serif;letter-spacing:-.8px;margin:13px 0}
-.section-head p,.story p{color:var(--muted);font-size:14px;line-height:1.85}
-.audience{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.audience-card{padding:24px 18px;background:var(--paper);border:1px solid var(--line);min-height:165px}
-.audience-card .symbol{font:28px Georgia,serif;color:var(--gold);margin-bottom:18px}
-.audience-card h3{font:normal 20px Georgia,serif;margin-bottom:9px}
-.audience-card p{font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:0}
-.catalog{background:#eee7dc}
-.tier{margin:0 0 46px}
-.tier:last-child{margin-bottom:0}
-.tier-head{display:flex;justify-content:space-between;align-items:end;gap:20px;border-bottom:1px solid #d8cdbd;padding-bottom:16px;margin-bottom:20px}
-.tier-head h3{font:normal 28px Georgia,serif;margin:6px 0 0}
-.tier-head p{font-size:12px;color:var(--muted);margin:0;text-align:right}
-.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.product{background:var(--paper);border:1px solid #e4d9ca;display:flex;flex-direction:column;min-width:0}
-.product-visual{height:170px;background:#e7d9c8;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden}
-.print{width:118px;height:135px;background:#fffaf2;border:1px solid #c5a77b;box-shadow:0 9px 20px #49372c18;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:12px;position:relative}
-.print:before{content:"";position:absolute;inset:5px;border:1px solid #e6d5ba;pointer-events:none}
-.print .print-kicker{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:#9c8057}
-.print strong{font:italic 23px/1.1 Georgia,serif;font-weight:normal;color:var(--wine);margin:10px 0}
-.print small{font:italic 10px/1.5 Georgia,serif;color:#776d60}
-.product-body{padding:18px;display:flex;flex-direction:column;flex:1}
-.product-tag{font-size:9px;letter-spacing:1.7px;text-transform:uppercase;color:#92774f;margin-bottom:8px}
-.product h4{font:normal 21px Georgia,serif;margin:0 0 8px}
-.product p{font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:14px;flex:1}
-.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #eee6db;padding-top:13px}
-.price{font:22px Georgia,serif}
-.select-btn{border:1px solid var(--wine);background:transparent;color:var(--wine);padding:10px 12px;font-size:9px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer}
-.select-btn:hover,.select-btn.selected{background:var(--wine);color:white}
-.custom-card{border:1px dashed #b99a68;background:#f9f4eb}
-.custom-card .product-visual{background:#e2e3d9}
-.custom-card .print{border-radius:50%;width:125px;height:125px}
-.custom-card .print:before{border-radius:50%}
-.custom-card .print strong{font-size:25px}
-.order-panel{background:var(--paper);border:1px solid var(--line);padding:28px;margin-top:35px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
-.order-panel h3{font:normal 28px Georgia,serif;margin:10px 0}
-.order-panel p{font-size:13px;line-height:1.8;color:var(--muted)}
-.selected-summary{padding:16px;background:var(--ivory);margin:18px 0}
-.selected-summary strong{font:normal 18px Georgia,serif;display:block;margin-bottom:6px}
-.order-total{font:30px Georgia,serif;color:var(--wine)}
-.order-actions{display:flex;gap:10px;flex-wrap:wrap}
-.small-note{font-size:11px!important;line-height:1.7!important}
-.story-section{background:var(--paper)}
-.story{max-width:750px;margin:auto;text-align:center}
-.story-mark{font:38px Georgia,serif;color:var(--gold);margin-bottom:15px}
-.contact{background:#e8ded0;text-align:center}
-.contact-inner{max-width:690px;margin:auto}
-.contact p{color:#71695e;font-size:14px;line-height:1.8}
-.contact .button{margin:8px}
-footer{background:var(--wine);color:#f8efe4;padding:35px 5%;text-align:center}
-footer .brand{color:#fff8ef;justify-content:center}
-footer p{font-size:11px;line-height:1.8;color:#e2d2c2;margin:13px 0 0}
-@media(max-width:800px){
-  header{flex-wrap:wrap;padding:20px 5%}
-  nav{order:3;width:100%;justify-content:space-between;gap:10px;font-size:11px}
-  .header-cta{margin-left:auto}
-  .hero{padding:45px 5%}
-  .hero-inner{grid-template-columns:1fr;gap:30px}
-  .hero-art{min-height:330px}
-  .art-frame{max-width:300px}
-  .floating-note{right:2%;bottom:8px}
-  .audience{grid-template-columns:repeat(2,1fr)}
-  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .order-panel{grid-template-columns:1fr;gap:12px}
-}
-@media(max-width:500px){
-  .brand{font-size:29px}
-  .header-cta{font-size:9px;padding:10px}
-  main section.content-section{padding:55px 5%}
-  .trust-row{gap:12px 20px;font-size:9px}
-  .audience{gap:9px}
-  .audience-card{padding:18px 13px;min-height:150px}
-  .product-grid{grid-template-columns:1fr}
-  .product-visual{height:190px}
-  .tier-head{align-items:start;flex-direction:column}
-  .tier-head p{text-align:left}
-  .order-panel{padding:20px}
-  .order-actions .button{width:100%}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f4ed">
+  <meta name="description" content="SamArts creates personalised keepsakes, meaningful gifts and timeless memories.">
+  <title>SamArts | Keepsakes for Every Chapter</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f8f4ed;
+      --paper: #fffdf9;
+      --burgundy: #642e3b;
+      --burgundy-dark: #42202a;
+      --gold: #b69a65;
+      --ink: #292522;
+      --muted: #77716b;
+      --line: #e8dfd2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .announcement {
+      padding: 10px 16px;
+      text-align: center;
+      background: var(--burgundy-dark);
+      color: #fff8ef;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header {
+      padding: 20px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      color: var(--burgundy);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 12px;
+    }
+
+    nav a:hover { color: var(--burgundy); }
+
+    .nav-cta {
+      padding: 11px 16px;
+      border: 1px solid var(--burgundy);
+      color: var(--burgundy);
+    }
+
+    .hero {
+      padding: 74px 6% 66px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 48px;
+      align-items: center;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin: 20px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 6.5vw, 83px);
+      line-height: .98;
+      font-weight: 500;
+      letter-spacing: -2px;
+    }
+
+    h1 em {
+      color: var(--burgundy);
+      font-weight: 400;
+    }
+
+    .hero-copy {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .primary-btn, .secondary-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 22px;
+      border: 1px solid var(--burgundy);
+      cursor: pointer;
+      transition: .2s;
+      font-size: 12px;
+    }
+
+    .primary-btn {
+      background: var(--burgundy);
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background: var(--burgundy-dark);
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: var(--burgundy);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 27px;
+    }
+
+    .hero-note {
+      margin-top: 26px;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 390px;
+      background: #e9dfd0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      width: 290px;
+      height: 290px;
+      border-radius: 50%;
+      background: #d9c8ae;
+      top: 40px;
+      right: -35px;
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: #d5b5a8;
+      bottom: -85px;
+      left: -35px;
+    }
+
+    .hero-frame {
+      position: relative;
+      z-index: 1;
+      width: 57%;
+      max-width: 270px;
+      aspect-ratio: 3 / 4;
+      padding: 12px;
+      background: #c5a66d;
+      box-shadow: 0 22px 55px #55433330;
+      transform: rotate(-3deg);
+    }
+
+    .hero-frame-inner {
+      height: 100%;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #fbf5e9;
+      border: 1px solid #ddc99e;
+    }
+
+    .hero-frame-inner .mini {
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: var(--gold);
+    }
+
+    .hero-frame-inner strong {
+      margin: 18px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+      color: var(--burgundy);
+      font-weight: 500;
+    }
+
+    .hero-frame-inner .rule {
+      width: 42px;
+      height: 1px;
+      background: var(--gold);
+      margin: 5px;
+    }
+
+    .hero-frame-inner small {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: #75614e;
+    }
+
+    .floating-note {
+      position: absolute;
+      z-index: 2;
+      right: 5%;
+      bottom: 12%;
+      padding: 16px;
+      background: #fffdf9;
+      box-shadow: 0 8px 25px #0000000b;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fcf9f3;
+      padding: 22px 6%;
+      text-align: center;
+    }
+
+    .trust-strip div {
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      padding: 4px;
+    }
+
+    .trust-strip strong {
+      display: block;
+      color: var(--burgundy);
+      font-size: 12px;
+      margin-bottom: 5px;
+      letter-spacing: .5px;
+    }
+
+    section.catalog {
+      padding: 75px 6%;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .section-head h2, .story h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(38px, 5vw, 57px);
+      line-height: 1;
+      font-weight: 500;
+      margin: 13px 0 0;
+    }
+
+    .section-head p {
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .filter {
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 10px 14px;
+      color: #5c544e;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .filter.active, .filter:hover {
+      background: var(--burgundy);
+      color: white;
+      border-color: var(--burgundy);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px 20px;
+    }
+
+    .product-card { min-width: 0; }
+
+    .product-art {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 4 / 4.5;
+      overflow: hidden;
+      background: var(--art-bg, #e7dccc);
+      padding: 22px;
+    }
+
+    .product-art::before {
+      content: "";
+      position: absolute;
+      width: 72%;
+      height: 72%;
+      border-radius: 50%;
+      background: #ffffff35;
+      top: -12%;
+      right: -15%;
+    }
+
+    .art-card {
+      z-index: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 70%;
+      height: 82%;
+      padding: 15px;
+      background: var(--art-paper, #fffaf0);
+      border: 7px solid var(--art-frame, #b59a68);
+      box-shadow: 0 12px 30px #3c2d201a;
+      color: var(--art-ink, #60323a);
+      transform: rotate(var(--tilt, -2deg));
+    }
+
+    .art-card .art-kicker {
+      font-size: 7px;
+      letter-spacing: 2px;
+      margin-bottom: 13px;
+      text-transform: uppercase;
+      color: var(--art-accent, #b69a65);
+    }
+
+    .art-card .art-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(24px, 3.2vw, 42px);
+      line-height: .98;
+      font-weight: 500;
+    }
+
+    .art-card .art-sub {
+      font-family: "Playfair Display", serif;
+      font-size: 10px;
+      font-style: italic;
+      margin-top: 14px;
+    }
+
+    .art-card .art-divider {
+      height: 1px;
+      width: 35px;
+      background: var(--art-accent, #b69a65);
+      margin-top: 12px;
+    }
+
+    .art-badge {
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      left: 12px;
+      background: #fffdf0e8;
+      padding: 7px 9px;
+      color: var(--burgundy);
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .product-info { padding: 16px 1px 0; }
+
+    .product-category {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 9px;
+      letter-spacing: 1.6px;
+      margin-bottom: 8px;
+    }
+
+    .product-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .product-description {
+      min-height: 36px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+      margin-bottom: 13px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .price {
+      font-size: 15px;
+      color: var(--burgundy);
+      font-weight: 600;
+    }
+
+    .add-btn {
+      border: 1px solid var(--burgundy);
+      background: transparent;
+      color: var(--burgundy);
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 10px;
+    }
+
+    .add-btn:hover, .add-btn.selected {
+      background: var(--burgundy);
+      color: white;
+    }
+
+    .story {
+      background: #eee5d8;
+      padding: 65px 8%;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .story-mark {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--burgundy);
+      font-size: 100px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .story-copy {
+      max-width: 570px;
+      color: #6f655c;
+      font-size: 13px;
+      line-height: 1.9;
+      margin-top: 20px;
+    }
+
+    .checkout {
+      max-width: 850px;
+      margin: 75px auto;
+      padding: 0 6%;
+    }
+
+    .checkout-panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: clamp(22px, 5vw, 45px);
+    }
+
+    .checkout h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 44px;
+      font-weight: 500;
+      margin: 10px 0;
+    }
+
+    .checkout-intro {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .field { margin: 17px 0; }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: #5c514a;
+      font-size: 11px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 13px;
+      outline: none;
+      border-radius: 0;
+      color: var(--ink);
+    }
+
+    .field input:focus, .field select:focus {
+      border-color: var(--gold);
+    }
+
+    .order-box {
+      background: #f7f1e7;
+      padding: 18px;
+      margin: 22px 0;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 8px 0;
+      font-size: 12px;
+      border-bottom: 1px solid #e8ddcc;
+    }
+
+    .order-row:last-child { border-bottom: 0; }
+
+    .order-total {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--burgundy);
+      padding-top: 14px;
+    }
+
+    .checkout-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .checkout-buttons button { width: 100%; }
+
+    .small-print {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 35px 6%;
+      background: var(--burgundy-dark);
+      color: #f6eee2;
+      text-align: center;
+    }
+
+    footer .logo { color: #f6eee2; }
+
+    footer p {
+      margin: 10px 0 0;
+      color: #d8c8bc;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      background: var(--burgundy-dark);
+      color: white;
+      padding: 13px 18px;
+      font-size: 12px;
+      z-index: 10;
+      display: none;
+      width: max-content;
+      max-width: 90%;
+      box-shadow: 0 8px 25px #0002;
+    }
+
+    @media (max-width: 760px) {
+      header { padding: 16px 5%; }
+      .logo { font-size: 31px; }
+      nav { gap: 12px; font-size: 10px; }
+      nav .nav-optional { display: none; }
+
+      .hero {
+        padding: 48px 5%;
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero-art { min-height: 350px; }
+      .hero-frame { width: 55%; }
+
+      .trust-strip { padding: 18px 3%; }
+      .trust-strip div { font-size: 8px; }
+      .trust-strip strong { font-size: 10px; }
+
+      section.catalog { padding: 55px 5%; }
+      .section-head { align-items: start; flex-direction: column; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px 13px; }
+      .product-art { padding: 12px; }
+      .art-card { width: 78%; height: 82%; border-width: 5px; padding: 8px; }
+      .art-card .art-title { font-size: clamp(23px, 6vw, 34px); }
+      .art-card .art-kicker { font-size: 6px; letter-spacing: 1px; }
+      .art-card .art-sub { font-size: 9px; }
+      .product-title { font-size: 22px; }
+      .product-description { font-size: 10px; }
+      .product-bottom { align-items: start; flex-direction: column; }
+      .add-btn { width: 100%; }
+
+      .story {
+        padding: 45px 7%;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .story-mark { font-size: 70px; }
+      .checkout { margin: 50px auto; }
+      .checkout-buttons { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 360px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .product-bottom { flex-direction: row; align-items: center; }
+      .add-btn { width: auto; }
+      nav { gap: 8px; }
+    }
+  </style>
 </head>
+
 <body>
-<div class="announcement">Thoughtful keepsakes · Made for every chapter of life</div>
+  <div class="announcement">Thoughtfully made keepsakes · Made personal, made meaningful</div>
 
-<header>
-  <a class="brand" href="#home" aria-label="Samarts home"><span class="sam">Sam</span><span class="arts">arts</span></a>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#collections">Collections</a>
-    <a href="#our-story">Our philosophy</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a class="header-cta" href="#collections">Find a keepsake ↗</a>
-</header>
+  <header>
+    <a class="logo" href="#" aria-label="SamArts home">Sam<span>Arts</span></a>
+    <nav>
+      <a href="#collection">Collection</a>
+      <a class="nav-optional" href="#story">Our story</a>
+      <a class="nav-cta" href="#checkout">Create yours</a>
+    </nav>
+  </header>
 
-<main>
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <div>
-      <div class="kicker">Small things. Deep meaning.</div>
-      <h1>For every age.<br>For every <em>feeling.</em></h1>
-      <p class="hero-copy">A thoughtful little corner for keepsakes that say what matters. From a child’s first big dream to a family milestone, a friendship, a celebration or a love that has grown over time.</p>
-      <div class="actions">
-        <a class="button" href="#collections">Explore the collections</a>
-        <a class="button secondary" href="#our-story">Our philosophy</a>
-      </div>
-    </div>
-    <div class="hero-art" aria-label="Decorative keepsake preview">
-      <div class="art-frame"><div class="art-inner">
-        <div class="art-small">A little piece of your story</div>
-        <div class="art-title">The things<br>we keep</div>
-        <div class="art-flower">✳</div>
-        <div class="art-sub">A memory, a feeling, a person — made into something you can hold close.</div>
-        <div class="art-bottom">Samarts · Digital keepsakes</div>
-      </div></div>
-      <div class="floating-note">Made with meaning ♡</div>
-    </div>
-  </div>
-</section>
-
-<div class="trust-row">
-  <span>✳ Thoughtfully designed</span><span>✳ Personalised options</span><span>✳ Digital delivery</span><span>✳ Made for gifting</span>
-</div>
-
-<section class="content-section" id="audiences">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">A keepsake for your kind of story</div>
-      <h2>Every chapter deserves<br>a little something special.</h2>
-      <p>For the little ones discovering the world, the young ones finding their way, and the grown-ups collecting memories along the way.</p>
-    </div>
-    <div class="audience">
-      <article class="audience-card"><div class="symbol">✳</div><h3>Little wonders</h3><p>Playful affirmations, name prints and gentle encouragement for ages 5–12.</p></article>
-      <article class="audience-card"><div class="symbol">♡</div><h3>Growing up</h3><p>Friendship, school memories, birthdays and first big milestones.</p></article>
-      <article class="audience-card"><div class="symbol">∞</div><h3>Love & belonging</h3><p>Couples, family, home, anniversaries and the people who feel like home.</p></article>
-      <article class="audience-card"><div class="symbol">❋</div><h3>A life well lived</h3><p>Meaningful milestones, thoughtful gifts and memories worth keeping at any age.</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="content-section catalog" id="collections">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">The Samarts collections</div>
-      <h2>Find the feeling.<br>We’ll help with the rest.</h2>
-      <p>Choose a ready-made digital keepsake or make it personal. Select a product to see your order total and continue through UPI or WhatsApp.</p>
-    </div>
-
-    <div class="tier">
-      <div class="tier-head"><div><div class="kicker">01 · Little gestures</div><h3>Under ₹399</h3></div><p>Small, thoughtful gifts for everyday moments.</p></div>
-      <div class="product-grid">
-        <article class="product">
-          <div class="product-visual"><div class="print"><span class="print-kicker">A little reminder</span><strong>You are<br>magic.</strong><small>Keep being you</small></div></div>
-          <div class="product-body"><div class="product-tag">Kids · Encouragement</div><h4>Little Wonder Print</h4><p>A cheerful digital art print to celebrate a child’s curiosity, courage and imagination.</p><div class="product-bottom"><span class="price">₹199</span><button class="select-btn" onclick="chooseProduct('Little Wonder Print',199,this)">Choose</button></div></div>
-        </article>
-        <article class="product">
-          <div class="product-visual"><div class="print"><span class="print-kicker">A note to self</span><strong>Grow<br>gently.</strong><small>One day at a time</small></div></div>
-          <div class="product-body"><div class="product-tag">Teens · Adults</div><h4>Grow Gently Print</h4><p>A calm, minimal affirmation print for a bedroom, study corner or personal space.</p><div class="product-bottom"><span class="price">₹299</span><button class="select-btn" onclick="chooseProduct('Grow Gently Print',299,this)">Choose</button></div></div>
-        </article>
-        <article class="product custom-card">
-          <div class="product-visual"><div class="print"><span class="print-kicker">Made for you</span><strong>Your<br>name ♡</strong><small>A personal touch</small></div></div>
-          <div class="product-body"><div class="product-tag">Custom creation</div><h4>Your Little Keepsake</h4><p>Request a name, short message or simple personal detail in a ready-made style.</p><div class="product-bottom"><span class="price">₹399</span><button class="select-btn" onclick="chooseProduct('Your Little Keepsake — customised',399,this)">Customise</button></div></div>
-        </article>
-      </div>
-    </div>
-
-    <div class="tier">
-      <div class="tier-head"><div><div class="kicker">02 · Meaningful moments</div><h3>₹400–₹699</h3></div><p>For the people, places and memories you hold close.</p></div>
-      <div class="product-grid">
-        <article class="product">
-          <div class="product-visual"><div class="print"><span class="print-kicker">Our little world</span><strong>A–Z<br>of Us</strong><small>Twenty-six letters · one story</small></div></div>
-          <div class="product-body"><div class="product-tag">Couples · Friendship</div><h4>A–Z of Us</h4><p>Twenty-six thoughtful prompts celebrating a relationship, friendship or family bond.</p><div class="product-bottom"><span class="price">₹499</span><button class="select-btn" onclick="chooseProduct('A–Z of Us',499,this)">Choose</button></div></div>
-        </article>
-        <article class="product">
-          <div class="product-visual"><div class="print"><span class="print-kicker">A place to belong</span><strong>Our<br>Home</strong><small>Love lives here</small></div></div>
-          <div class="product-body"><div class="product-tag">Family · Home</div><h4>Our Home Print</h4><p>A timeless home-themed print to celebrate your family, space or new beginning.</p><div class="product-bottom"><span class="price">₹599</span><button class="select-btn" onclick="chooseProduct('Our Home Print',599,this)">Choose</button></div></div>
-        </article>
-        <article class="product custom-card">
-          <div class="product-visual"><div class="print"><span class="print-kicker">Your story</span><strong>Made<br>personal</strong><small>Names · date · words</small></div></div>
-          <div class="product-body"><div class="product-tag">Custom creation</div><h4>Personalised Keepsake</h4><p>Add names, a special date and a short message to a design from this collection.</p><div class="product-bottom"><span class="price">₹699</span><button class="select-btn" onclick="chooseProduct('Personalised Keepsake',699,this)">Customise</button></div></div>
-        </article>
-      </div>
-    </div>
-
-    <div class="tier">
-      <div class="tier-head"><div><div class="kicker">03 · Signature keepsakes</div><h3>₹700–₹999</h3></div><p>A little more detail for a once-in-a-while feeling.</p></div>
-      <div class="product-grid">
-        <article class="product">
-          <div class="product-visual"><div class="print"><span class="print-kicker">The things that matter</span><strong>Little<br>Things</strong><small>Three prints · one collection</small></div></div>
-          <div class="product-body"><div class="product-tag">Gift set · Three prints</div><h4>The Little Things Bundle</h4><p>Three coordinated prints designed to sit beautifully together or be gifted separately.</p><div class="product-bottom"><span class="price">₹899</span><button class="select-btn" onclick="chooseProduct('The Little Things Bundle',899,this)">Choose</button></div></div>
-        </article>
-        <article class="product">
-          <div class="product-visual"><div class="print"><span class="print-kicker">A life in moments</span><strong>Your<br>Timeline</strong><small>Then · now · always</small></div></div>
-          <div class="product-body"><div class="product-tag">Milestones · Memories</div><h4>Our Story Timeline</h4><p>A polished milestone print for an anniversary, birthday, family or personal journey.</p><div class="product-bottom"><span class="price">₹799</span><button class="select-btn" onclick="chooseProduct('Our Story Timeline',799,this)">Choose</button></div></div>
-        </article>
-        <article class="product custom-card">
-          <div class="product-visual"><div class="print"><span class="print-kicker">One of a kind</span><strong>Your<br>Story ♡</strong><small>Designed together</small></div></div>
-          <div class="product-body"><div class="product-tag">Custom creation</div><h4>Signature Custom Set</h4><p>Discuss a coordinated set with your preferred names, message, occasion and visual style.</p><div class="product-bottom"><span class="price">₹999</span><button class="select-btn" onclick="chooseProduct('Signature Custom Set',999,this)">Customise</button></div></div>
-        </article>
-      </div>
-    </div>
-
-    <div class="order-panel" id="order">
+  <main>
+    <section class="hero">
       <div>
-        <div class="kicker">Your order</div>
-        <h3>A keepsake, chosen by you.</h3>
-        <p>Select any design above. The chosen item and amount will appear here, ready for UPI payment or a WhatsApp conversation if you’d like to discuss custom details.</p>
-        <div class="selected-summary">
-          <strong id="selectedName">Nothing selected just yet</strong>
-          <span class="small-note" id="selectedDescription">Choose a product above to begin.</span>
-          <div class="order-total" id="selectedPrice">—</div>
+        <div class="eyebrow">Art that holds a memory</div>
+        <h1>Some things<br>are too precious<br>to <em>forget.</em></h1>
+        <p class="hero-copy">
+          Thoughtful, personalised keepsakes made to celebrate your people,
+          your little rituals and the chapters that make life yours.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#collection">Explore the collection ↗</a>
+          <a class="secondary-btn" href="#story">Discover SamArts</a>
         </div>
+        <div class="hero-note">PERSONALISED DETAILS · MEANINGFUL DESIGN · MADE FOR YOU</div>
       </div>
-      <div>
-        <div class="kicker">Simple checkout</div>
-        <p><strong>UPI ID</strong><br><span id="upiText">7382549588@ybl</span></p>
-        <div class="order-actions">
-          <button class="button" id="payButton" type="button" onclick="payByUpi()">Pay by UPI</button>
-          <button class="button secondary" type="button" onclick="messageOnWhatsApp()">Ask / order on WhatsApp</button>
+
+      <div class="hero-art" aria-label="Illustration of a personalised keepsake">
+        <div class="hero-frame">
+          <div class="hero-frame-inner">
+            <div class="mini">OUR LITTLE UNIVERSE</div>
+            <strong>A–Z<br>of Us</strong>
+            <div class="rule"></div>
+            <small>the story only we know</small>
+          </div>
         </div>
-        <p class="small-note">Your UPI app should open with the selected amount. Please check the recipient and amount before paying. Custom requests may need confirmation before payment.</p>
-        <p class="small-note">Digital delivery happens after payment is verified. A payment screenshot alone is not confirmation; we check 
+        <div class="floating-note">A little piece of forever.</div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div><strong>Made personal</strong> Your story, your details</div>
+      <div><strong>Thoughtfully designed</strong> A considered aesthetic</div>
+      <div><strong>Made to gift</strong> For your favourite people</div>
+    </div>
+
+    <section class="catalog" id="collection">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">The SamArts collection</div>
+          <h2>Little things.<br>Lasting meaning.</h2>
+        </div>
+        <p>Find the keepsake that feels like you.</p>
+      </div>
+
+      <div class="filters" aria-label="Filter products">
+        <button class="filter active" data-filter="all">All pieces</button>
+        <button class="filter" data-filter="399">Under ₹399</button>
+        <button class="filter" data-filter="699">₹400–₹699</button>
+        <button class="filter" data-filter="999">₹700–₹999</button>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-mark">S<span style="color:#b69a65;font-style:italic">.</span>A</div>
+      <div>
+        <div class="eyebrow">A little about us</div>
+        <h2>Not just a gift.<br>A feeling, kept.</h2>
+        <p class="story-copy">
+          SamArts is built around a simple idea: the most meaningful gifts
+          are the ones that feel unmistakably personal. We turn shared jokes,
+          little traditions, favourite words and everyday moments into
+          keepsakes worth holding on to.
+        </p>
+        <p class="story-copy">
+          Choose a piece, share the details that matter to you, and let us
+          help you create something that feels like your story.
+        </p>
+      </div>
+    </section>
+
+    <section class="checkout" id="checkout">
+      <div class="checkout-panel">
+        <div class="eyebrow">Your order, your story</div>
+        <h2>Let's make it yours.</h2>
+        <p class="checkout-intro">
+          Select your keepsakes above, then share your details below.
+          We'll confirm your personalisation and order on WhatsApp.
+        </p>
+
+        <form id="orderForm">
+          <div class="field">
+            <label for="customerName">Your name *</label>
+            <input id="customerName" name="customerName" required maxlength="80" placeholder="Enter your full name">
+          </div>
+
+          <div class="field">
+            <label for="customerPhone">WhatsApp number *</label>
+            <input id="customerPhone" name="customerPhone" required type="tel" inputmode="tel" maxlength="16" placeholder="Your contact number">
+          </div>
+
+          <div class="field">
+            <label for="personalisation">Personalisation details *</label>
+            <input id="personalisation" name="personalisation" required maxlength="500" placeholder="Names, dates, memories or a short note">
+          </div>
+
+          <div class="field">
+            <label for="giftNote">Gift message (optional)</label>
+            <input id="giftNote" name="giftNote" maxlength="300" placeholder="Add a little message">
+          </div>
+
+          <div class="order-box">
+            <div class="eyebrow">Your selection</div>
+            <div id="orderItems" style="margin-top:10px">
+              <div class="order-row"><span>No items selected yet</span><span>₹0</span></div>
+            </div>
+            <div class="order-row order-total">
+              <span>Tota
