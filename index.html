@@ -10,7 +10,7 @@
 :root{--cream:#f8f5ef;--paper:#fffdf9;--wine:#702b3a;--gold:#bb9962;--ink:#302824;--muted:#796f68;--line:#e8ded4}
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
-button,input,select{font:inherit}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 .announcement{background:var(--ink);color:white;text-align:center;padding:8px;font-size:11px;letter-spacing:1.5px}
@@ -34,11 +34,12 @@ h1{font-family:Georgia,serif;font-weight:normal;font-size:clamp(38px,6vw,68px);l
 h2{font-family:Georgia,serif;font-weight:normal;font-size:32px;margin:0}
 .sub{color:var(--muted);font-size:13px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.product{background:var(--paper);border:1px solid var(--line);min-width:0}
+.product{background:var(--paper);border:1px solid var(--line);min-width:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.product:hover{transform:translateY(-3px);box-shadow:0 10px 28px #30282412}
 .photo{aspect-ratio:4/4.4;background:#eee5d9;position:relative;overflow:hidden}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .fallback{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--wine);font-family:Georgia,serif;font-size:24px}
-.heart{position:absolute;right:10px;top:10px;border:0;border-radius:50%;width:36px;height:36px;background:#fffdf9eF;font-size:20px}
+.heart{position:absolute;right:10px;top:10px;border:0;border-radius:50%;width:36px;height:36px;background:#fffdf9ef;font-size:20px}
 .details{padding:15px}
 .details h3{font-family:Georgia,serif;font-weight:normal;font-size:19px;margin:0 0 5px}
 .description{font-size:12px;color:var(--muted);min-height:36px}
@@ -68,7 +69,49 @@ footer button{background:var(--gold);border:0;padding:12px 18px;color:#241c18;ma
 .checkout{width:100%;padding:14px;border:0;background:var(--wine);color:white;margin-bottom:10px}
 .note{font-size:11px;color:var(--muted)}
 .field{width:100%;padding:12px;border:1px solid var(--line);margin:7px 0;background:white}
-@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:35px;gap:22px}.hero-art{min-height:150px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.details{padding:10px}.details h3{font-size:16px}.description{font-size:11px}.actions{flex-direction:column}.actions button{padding:9px}.benefits{grid-template-columns:1fr}.top{padding:13px 4%}.brand{font-size:23px}.section{padding-left:4%;padding-right:4%}}
+
+/* Full-page product view */
+#productPage{display:none;min-height:70vh}
+.product-page-inner{max-width:1100px;margin:auto;padding:25px 5% 65px}
+.back-link{display:inline-block;border:0;background:transparent;color:var(--wine);padding:10px 0;margin-bottom:20px;font-size:14px}
+.product-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(25px,5vw,65px);align-items:start}
+.detail-photo{background:#eee5d9;aspect-ratio:4/5;overflow:hidden}
+.detail-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.detail-photo .fallback{font-size:34px}
+.detail-info{padding:12px 0}
+.detail-info h1{font-size:clamp(34px,5vw,52px);margin:12px 0}
+.detail-info .price{font-size:24px;margin:18px 0}
+.detail-description{color:var(--muted);font-size:15px;line-height:1.9;margin:18px 0 24px}
+.detail-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:22px 0 10px}
+.quantity-picker{display:flex;align-items:center;gap:0;border:1px solid var(--line);width:max-content}
+.quantity-picker button{background:var(--paper);border:0;padding:12px 18px;font-size:19px}
+.quantity-picker span{min-width:40px;text-align:center}
+.detail-actions{display:grid;gap:10px;margin-top:24px}
+.detail-actions button{padding:15px;border:1px solid var(--wine);font-size:13px;letter-spacing:.4px}
+.detail-meta{border-top:1px solid var(--line);margin-top:26px;padding-top:20px;font-size:12px;color:var(--muted)}
+.detail-meta p{margin:9px 0}
+.product-page-heading{font-size:23px;font-family:Georgia,serif;font-weight:normal;margin:35px 0 18px}
+.hidden{display:none!important}
+@media(max-width:700px){
+ .hero{grid-template-columns:1fr;padding-top:35px;gap:22px}
+ .hero-art{min-height:150px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .details{padding:10px}
+ .details h3{font-size:16px}
+ .description{font-size:11px}
+ .actions{flex-direction:column}
+ .actions button{padding:9px}
+ .benefits{grid-template-columns:1fr}
+ .top{padding:13px 4%}
+ .brand{font-size:23px}
+ .section{padding-left:4%;padding-right:4%}
+ .product-layout{grid-template-columns:1fr;gap:22px}
+ .product-page-inner{padding:15px 4% 45px}
+ .detail-photo{aspect-ratio:1/1}
+ .detail-info{padding-top:0}
+ .detail-info h1{font-size:38px}
+ .product-page-heading{margin-top:28px}
+}
 @media(max-width:360px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -76,13 +119,13 @@ footer button{background:var(--gold);border:0;padding:12px 18px;color:#241c18;ma
 <div class="announcement">THOUGHTFUL GIFTS · BEAUTIFULLY MADE</div>
 <header>
   <div class="top">
-    <a class="brand" href="#">Sam<span>Arts</span></a>
-    <button onclick="showCart()">♡ Wishlist <span id="wishCount">0</span></button>
+    <a class="brand" href="#" onclick="goHome();return false">Sam<span>Arts</span></a>
+    <button onclick="showWishlist()">♡ Wishlist <span id="wishCount">0</span></button>
     <button onclick="showCart()">Bag (<span id="bagCount">0</span>)</button>
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" id="hero">
   <div>
     <div class="eyebrow">Little things. Lasting feelings.</div>
     <h1>Some feelings deserve to be kept.</h1>
@@ -112,7 +155,6 @@ footer button{background:var(--gold);border:0;padding:12px 18px;color:#241c18;ma
     <button onclick="setCategory('Bundles',this)">Bundles</button>
   </div>
   <div class="grid" id="products"></div>
-
   <div class="benefits">
     <div class="benefit"><strong>Made personal</strong>Little details that mean everything.</div>
     <div class="benefit"><strong>Thoughtfully designed</strong>Beautiful keepsakes for real memories.</div>
@@ -120,7 +162,40 @@ footer button{background:var(--gold);border:0;padding:12px 18px;color:#241c18;ma
   </div>
 </main>
 
-<footer>
+<section id="productPage">
+  <div class="product-page-inner">
+    <button class="back-link" onclick="backToShop()">← Back to the collection</button>
+    <div class="product-layout">
+      <div class="detail-photo" id="detailPhoto"></div>
+      <div class="detail-info">
+        <div class="eyebrow" id="detailCategory">THE SAMARTS COLLECTION</div>
+        <h1 id="detailName">Product name</h1>
+        <div class="price" id="detailPrice">₹0</div>
+        <p class="detail-description" id="detailDescription"></p>
+        <div class="detail-label">Quantity</div>
+        <div class="quantity-picker">
+          <button aria-label="Decrease quantity" onclick="changeDetailQty(-1)">−</button>
+          <span id="detailQty">1</span>
+          <button aria-label="Increase quantity" onclick="changeDetailQty(1)">+</button>
+        </div>
+        <div class="detail-actions">
+          <button class="primary" onclick="addDetailToCart()">ADD TO BAG</button>
+          <button class="secondary" onclick="orderDetailWhatsApp()">ORDER VIA WHATSAPP</button>
+          <button class="secondary" onclick="payDetailUPI()">PAY VIA UPI</button>
+        </div>
+        <div class="detail-meta">
+          <p>♡ Thoughtfully designed keepsake</p>
+          <p>✧ Personalisation details can be shared on WhatsApp</p>
+          <p>✧ Need help? Contact us before placing your order</p>
+        </div>
+      </div>
+    </div>
+    <h2 class="product-page-heading">You might also love</h2>
+    <div class="grid" id="relatedProducts"></div>
+  </div>
+</section>
+
+<footer id="footer">
   <div class="brand" style="color:#e5cba0">Sam<span style="color:#f8f5ef">Arts</span></div>
   <p>Thoughtful gifts. Meaningful memories.</p>
   <p>Have something special in mind?</p>
@@ -131,7 +206,7 @@ footer button{background:var(--gold);border:0;padding:12px 18px;color:#241c18;ma
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()">
   <div class="drawer">
     <div class="drawer-head">
-      <h2>Your shopping bag</h2>
+      <h2 id="drawerTitle">Your shopping bag</h2>
       <button class="close" onclick="closeCart()">×</button>
     </div>
     <div id="cartItems"></div>
@@ -152,20 +227,23 @@ const WHATSAPP = "917382549588";
 const UPI_ID = "7382549588@ybl";
 
 const products = [
- {id:1,name:"A Little Note",price:199,image:"a-little-note.jpg",category:"Keepsakes",desc:"A small note for a big feeling."},
- {id:2,name:"Our Date",price:299,image:"our-date.jpg",category:"Keepsakes",desc:"Keep a date worth remembering."},
- {id:3,name:"Tiny Reminder",price:399,image:"tiny-reminder.jpg",category:"Keepsakes",desc:"A little reminder of your person."},
- {id:4,name:"A–Z of Us",price:399,image:"a-z-of-us.jpg",category:"Keepsakes",desc:"The little things that make you, us."},
- {id:5,name:"Personalised A–Z of Us",price:699,image:"personalised-a-z-of-us.jpg",category:"Personalised",desc:"Your story, told your way."},
- {id:6,name:"The Little Things",price:599,image:"the-little-things.jpg",category:"Personalised",desc:"Celebrate the details only you know."},
- {id:7,name:"Our Memory Map",price:799,image:"our-memory-map.jpg",category:"Personalised",desc:"A place that means everything."},
- {id:8,name:"The Little Things Bundle",price:899,image:"the-little-things-bundle.jpg",category:"Bundles",desc:"More little things, all in one."},
- {id:9,name:"Forever, Us",price:999,image:"forever-us.jpg",category:"Bundles",desc:"A keepsake for your forever person."}
+ {id:1,name:"A Little Note",price:199,image:"a-little-note.jpg",category:"Keepsakes",desc:"A small note for a big feeling.",long:"Some feelings are best kept close. A Little Note is a thoughtful little keepsake for a message, memory or sentiment you never want to forget."},
+ {id:2,name:"Our Date",price:299,image:"our-date.jpg",category:"Keepsakes",desc:"Keep a date worth remembering.",long:"A date can hold a whole story. Celebrate the day you met, your first date, an anniversary or another moment that means the world to you."},
+ {id:3,name:"Tiny Reminder",price:399,image:"tiny-reminder.jpg",category:"Keepsakes",desc:"A little reminder of your person.",long:"A small reminder of someone who matters. Give it to a partner, friend or loved one as a thoughtful way to say, 'I'm thinking of you.'"},
+ {id:4,name:"A–Z of Us",price:399,image:"a-z-of-us.jpg",category:"Keepsakes",desc:"The little things that make you, us.",long:"From A to Z, celebrate the details that make your relationship uniquely yours. A thoughtful keepsake for the little things, the inside jokes and the memories you share."},
+ {id:5,name:"Personalised A–Z of Us",price:699,image:"personalised-a-z-of-us.jpg",category:"Personalised",desc:"Your story, told your way.",long:"Make the A–Z of Us personal to your own story. Share your favourite memories, little habits, inside jokes and meaningful details with us on WhatsApp."},
+ {id:6,name:"The Little Things",price:599,image:"the-little-things.jpg",category:"Personalised",desc:"Celebrate the details only you know.",long:"The smallest details often mean the most. Celebrate the gestures, memories and quirks that make your connection special."},
+ {id:7,name:"Our Memory Map",price:799,image:"our-memory-map.jpg",category:"Personalised",desc:"A place that means everything.",long:"Some places stay with us long after we leave them. Turn a meaningful location into a keepsake of the place where your story began or a memory you hold dear."},
+ {id:8,name:"The Little Things Bundle",price:899,image:"the-little-things-bundle.jpg",category:"Bundles",desc:"More little things, all in one.",long:"A thoughtfully put-together bundle for celebrating a special person. A beautiful option for anniversaries, birthdays and just-because surprises."},
+ {id:9,name:"Forever, Us",price:999,image:"forever-us.jpg",category:"Bundles",desc:"A keepsake for your forever person.",long:"For a love you want to celebrate and keep close. Forever, Us is a meaningful gift for anniversaries, milestones and moments that deserve something special."}
 ];
 
 let cart = {};
 let wishlist = new Set();
 let activeCategory = "All";
+let currentProductId = null;
+let detailQty = 1;
+let lastView = "shop";
 
 function money(n){return "₹"+Number(n).toLocaleString("en-IN");}
 
@@ -174,6 +252,66 @@ function setCategory(category,button){
  document.querySelectorAll("#categories button").forEach(b=>b.classList.remove("active"));
  button.classList.add("active");
  renderProducts();
+}
+
+function makeProductCard(p){
+ const card=document.createElement("article");
+ card.className="product";
+ card.tabIndex=0;
+ card.setAttribute("role","link");
+ card.setAttribute("aria-label","View "+p.name);
+ card.onclick=()=>showProduct(p.id);
+ card.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();showProduct(p.id);}};
+
+ const photo=document.createElement("div");
+ photo.className="photo";
+ const img=document.createElement("img");
+ img.src=p.image;
+ img.alt=p.name;
+ img.loading="lazy";
+ img.onerror=function(){
+  this.remove();
+  const fallback=document.createElement("div");
+  fallback.className="fallback";
+  fallback.textContent=p.name;
+  photo.prepend(fallback);
+ };
+
+ const heart=document.createElement("button");
+ heart.className="heart";
+ heart.setAttribute("aria-label","Toggle wishlist");
+ heart.textContent=wishlist.has(p.id)?"♥":"♡";
+ heart.onclick=e=>{e.stopPropagation();toggleWishlist(p.id);};
+
+ photo.append(img,heart);
+
+ const details=document.createElement("div");
+ details.className="details";
+ const title=document.createElement("h3");
+ title.textContent=p.name;
+ const desc=document.createElement("div");
+ desc.className="description";
+ desc.textContent=p.desc;
+ const price=document.createElement("div");
+ price.className="price";
+ price.textContent=money(p.price);
+ const actions=document.createElement("div");
+ actions.className="actions";
+
+ const add=document.createElement("button");
+ add.className="primary";
+ add.textContent="Add to bag";
+ add.onclick=e=>{e.stopPropagation();addToCart(p.id);};
+
+ const view=document.createElement("button");
+ view.className="secondary";
+ view.textContent="View product";
+ view.onclick=e=>{e.stopPropagation();showProduct(p.id);};
+
+ actions.append(add,view);
+ details.append(title,desc,price,actions);
+ card.append(photo,details);
+ return card;
 }
 
 function renderProducts(){
@@ -193,163 +331,47 @@ function renderProducts(){
   host.innerHTML='<div class="empty">No gifts found. Try another search.</div>';
   return;
  }
- list.forEach(p=>{
-  const card=document.createElement("article");
-  card.className="product";
-  const photo=document.createElement("div");
-  photo.className="photo";
-  const fallback=document.createElement("div");
-  fallback.className="fallback";
-  fallback.textContent=p.name;
-  const img=document.createElement("img");
-  img.src=p.image;
-  img.alt=p.name;
-  img.loading="lazy";
-  img.onerror=function(){this.remove();photo.appendChild(fallback);};
-  photo.appendChild(img);
-
-  const heart=document.createElement("button");
-  heart.className="heart";
-  heart.setAttribute("aria-label","Toggle wishlist");
-  heart.textContent=wishlist.has(p.id)?"♥":"♡";
-  heart.onclick=()=>toggleWishlist(p.id);
-
-  const details=document.createElement("div");
-  details.className="details";
-  const title=document.createElement("h3");
-  title.textContent=p.name;
-  const desc=document.createElement("div");
-  desc.className="description";
-  desc.textContent=p.desc;
-  const price=document.createElement("div");
-  price.className="price";
-  price.textContent=money(p.price);
-  const actions=document.createElement("div");
-  actions.className="actions";
-  const add=document.createElement("button");
-  add.className="primary";
-  add.textContent="Add to bag";
-  add.onclick=()=>addToCart(p.id);
-  const order=document.createElement("button");
-  order.className="secondary";
-  order.textContent="Quick order";
-  order.onclick=()=>quickOrder(p.id);
-  actions.append(add,order);
-  details.append(title,desc,price,actions);
-  photo.appendChild(heart);
-  card.append(photo,details);
-  host.appendChild(card);
- });
+ list.forEach(p=>host.appendChild(makeProductCard(p)));
 }
 
 function toggleWishlist(id){
  if(wishlist.has(id))wishlist.delete(id);else wishlist.add(id);
  document.getElementById("wishCount").textContent=wishlist.size;
  renderProducts();
+ if(currentProductId)renderRelatedProducts();
 }
 
-function addToCart(id){
- cart[id]=(cart[id]||0)+1;
- updateBag();
-}
-
-function updateBag(){
- const count=Object.values(cart).reduce((a,b)=>a+b,0);
- document.getElementById("bagCount").textContent=count;
- renderCart();
-}
-
-function renderCart(){
- const host=document.getElementById("cartItems");
+function showWishlist(){
+ const saved=products.filter(p=>wishlist.has(p.id));
+ if(!saved.length){
+  alert("Your wishlist is empty. Tap the heart on a product to save it.");
+  return;
+ }
+ const host=document.getElementById("products");
  host.innerHTML="";
- let total=0;
- const ids=Object.keys(cart).filter(id=>cart[id]>0);
- if(!ids.length)host.innerHTML='<div class="empty">Your bag is empty.<br>Find a gift to get started.</div>';
- ids.forEach(id=>{
-  const p=products.find(x=>x.id===Number(id));
-  if(!p)return;
-  total+=p.price*cart[id];
-  const row=document.createElement("div");
-  row.className="cart-item";
-  const info=document.createElement("div");
-  const name=document.createElement("strong");
-  name.textContent=p.name;
-  const price=document.createElement("small");
-  price.textContent=money(p.price)+" each";
-  const qty=document.createElement("div");
-  qty.className="qty";
-  const minus=document.createElement("button");
-  minus.textContent="−";
-  minus.onclick=()=>changeQty(p.id,-1);
-  const number=document.createElement("span");
-  number.textContent=cart[id];
-  const plus=document.createElement("button");
-  plus.textContent="+";
-  plus.onclick=()=>changeQty(p.id,1);
-  qty.append(minus,number,plus);
-  info.append(name,price,qty);
-  const subtotal=document.createElement("strong");
-  subtotal.textContent=money(p.price*cart[id]);
-  row.append(info,subtotal);
-  host.appendChild(row);
- });
- document.getElementById("cartTotal").textContent=money(total);
+ document.getElementById("hero").classList.add("hidden");
+ document.getElementById("shop").classList.remove("hidden");
+ document.getElementById("productPage").style.display="none";
+ document.getElementById("shop").querySelector("h2").textContent="Your wishlist";
+ document.getElementById("shop").querySelector(".sub").textContent="Your saved SamArts favourites.";
+ saved.forEach(p=>host.appendChild(makeProductCard(p)));
+ document.getElementById("shop").scrollIntoView();
+ lastView="wishlist";
 }
 
-function changeQty(id,amount){
- cart[id]=(cart[id]||0)+amount;
- if(cart[id]<=0)delete cart[id];
- updateBag();
+function restoreCollection(){
+ document.getElementById("hero").classList.remove("hidden");
+ document.getElementById("shop").classList.remove("hidden");
+ document.getElementById("shop").querySelector("h2").textContent="Find your little something.";
+ document.getElementById("shop").querySelector(".sub").textContent="Gifts for the people who make life special.";
+ renderProducts();
 }
 
-function showCart(){
- document.getElementById("overlay").classList.add("open");
- renderCart();
-}
-function closeCart(){document.getElementById("overlay").classList.remove("open");}
-
-function orderMessage(ids){
- const lines=ids.map(id=>{
-  const p=products.find(x=>x.id===Number(id));
-  return p.name+" x "+(cart[id]||1)+" — "+money(p.price*(cart[id]||1));
- });
- const total=ids.reduce((sum,id)=>{
-  const p=products.find(x=>x.id===Number(id));
-  return sum+p.price*(cart[id]||1);
- },0);
- const name=document.getElementById("customerName").value.trim();
- const city=document.getElementById("customerCity").value.trim();
- const note=document.getElementById("customerNote").value.trim();
- return "Hello SamArts! I'd like to place an order:\n\n"+lines.join("\n")+"\n\nTotal: "+money(total)+"\nName: "+(name||"Not provided")+"\nCity: "+(city||"Not provided")+"\nPersonalisation: "+(note||"None provided");
-}
-
-function checkoutWhatsApp(){
- const ids=Object.keys(cart).filter(id=>cart[id]>0);
- if(!ids.length){alert("Your bag is empty. Please add a gift first.");return;}
- window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(orderMessage(ids)),"_blank");
-}
-
-function payUPI(){
- const ids=Object.keys(cart).filter(id=>cart[id]>0);
- if(!ids.length){alert("Your bag is empty. Please add a gift first.");return;}
- const total=ids.reduce((sum,id)=>sum+products.find(p=>p.id===Number(id)).price*cart[id],0);
- const url="upi://pay?pa="+encodeURIComponent(UPI_ID)+"&pn="+encodeURIComponent("SamArts")+"&am="+total.toFixed(2)+"&cu=INR&tn="+encodeURIComponent("SamArts gift order");
- window.location.href=url;
-}
-
-function quickOrder(id){
- cart[id]=(cart[id]||0)+1;
- updateBag();
- showCart();
-}
-
-function contactUs(){
- window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hello SamArts! I'd like to know more about your gifts."),"_blank");
-}
-
-document.getElementById("year").textContent=new Date().getFullYear();
-renderProducts();
-updateBag();
-</script>
-</body>
-</html>
+function showProduct(id){
+ const p=products.find(x=>x.id===id);
+ if(!p)return;
+ currentProductId=id;
+ detailQty=1;
+ document.getElementById("detailQty").textContent=detailQty;
+ document.getElementById("detailCategory").textContent=p.category+" · SAMARTS";
+ document.ge
