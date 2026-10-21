@@ -2,905 +2,354 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f8f5ef">
-  <meta name="description" content="SamArts creates thoughtful personalised gifts, keepsakes and little reminders of love.">
-  <title>SamArts | Thoughtful Gifts, Beautifully Made</title>
-
-  <style>
-    :root {
-      --ivory: #f8f5ef;
-      --paper: #fffdf9;
-      --burgundy: #651d32;
-      --burgundy-dark: #481324;
-      --gold: #b79a62;
-      --ink: #282321;
-      --muted: #827873;
-      --line: #e9e1d8;
-      --green: #466b53;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    button, input, select, textarea { font: inherit; }
-    button { cursor: pointer; }
-    a { color: inherit; text-decoration: none; }
-
-    .announcement {
-      background: var(--burgundy);
-      color: white;
-      text-align: center;
-      padding: 10px 12px;
-      font-size: 11px;
-      letter-spacing: 1.4px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255,253,249,.97);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-    }
-
-    .header-main {
-      max-width: 1440px;
-      margin: auto;
-      padding: 16px 5%;
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 5px;
-      white-space: nowrap;
-      width: fit-content;
-    }
-
-    .brand-sam {
-      color: var(--burgundy);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 34px;
-      font-weight: normal;
-      letter-spacing: -2px;
-    }
-
-    .brand-arts {
-      color: var(--gold);
-      font-family: Arial, sans-serif;
-      font-size: 19px;
-      font-weight: 300;
-      letter-spacing: 3px;
-    }
-
-    .search-wrap { position: relative; }
-
-    .search-wrap input {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 2px;
-      background: var(--ivory);
-      padding: 13px 15px 13px 42px;
-      outline: none;
-      font-size: 13px;
-    }
-
-    .search-wrap input:focus { border-color: var(--gold); }
-
-    .search-icon {
-      position: absolute;
-      left: 14px;
-      top: 12px;
-      color: var(--muted);
-    }
-
-    .header-actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .icon-button {
-      border: 0;
-      background: transparent;
-      color: var(--burgundy);
-      font-size: 13px;
-      padding: 6px 0;
-      white-space: nowrap;
-    }
-
-    .count {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 19px;
-      height: 19px;
-      margin-left: 3px;
-      padding: 0 5px;
-      border-radius: 50px;
-      background: var(--burgundy);
-      color: white;
-      font-size: 10px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 34px;
-      padding: 0 15px 14px;
-      flex-wrap: wrap;
-    }
-
-    .nav a, .nav button {
-      color: #554b47;
-      font-size: 11px;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-      border: 0;
-      background: none;
-    }
-
-    .nav a:hover, .nav button:hover { color: var(--burgundy); }
-
-    .hero {
-      background: var(--ivory);
-      min-height: 470px;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      overflow: hidden;
-    }
-
-    .hero-copy {
-      padding: 72px 9% 70px 12%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin: 0 0 22px;
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-
-    .hero h1 {
-      max-width: 560px;
-      margin-bottom: 20px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(38px, 5vw, 65px);
-      line-height: 1.08;
-      font-weight: normal;
-      color: var(--burgundy-dark);
-    }
-
-    .hero-copy > p:not(.eyebrow) {
-      max-width: 430px;
-      color: #766b65;
-      line-height: 1.9;
-      font-size: 14px;
-    }
-
-    .primary-button {
-      display: inline-block;
-      border: 1px solid var(--burgundy);
-      background: var(--burgundy);
-      color: white;
-      padding: 15px 24px;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: .2s;
-    }
-
-    .primary-button:hover {
-      background: var(--burgundy-dark);
-      border-color: var(--burgundy-dark);
-    }
-
-    .secondary-button {
-      display: inline-block;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--burgundy);
-      padding: 13px 18px;
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .hero-art {
-      min-height: 410px;
-      background:
-        radial-gradient(ellipse at 65% 40%, rgba(183,154,98,.18), transparent 38%),
-        linear-gradient(135deg, #e9ded0, #d8c2ae 55%, #f4e9da);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-    }
-
-    .hero-card {
-      width: min(310px, 100%);
-      aspect-ratio: 4 / 5;
-      background: #f9f4e9;
-      box-shadow: 0 22px 65px rgba(72,19,36,.17);
-      border: 1px solid rgba(183,154,98,.7);
-      padding: 18px;
-      transform: rotate(2deg);
-    }
-
-    .hero-card-inner {
-      height: 100%;
-      border: 1px solid var(--gold);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 25px;
-    }
-
-    .hero-card .small {
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: var(--gold);
-      margin-bottom: 25px;
-    }
-
-    .hero-card .script {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(29px, 3vw, 42px);
-      font-style: italic;
-      line-height: 1.2;
-      color: var(--burgundy);
-    }
-
-    .hero-card .ornament {
-      margin: 24px 0 15px;
-      color: var(--gold);
-      font-size: 25px;
-    }
-
-    .hero-card .bottom {
-      font-size: 9px;
-      letter-spacing: 2px;
-      color: #817064;
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-bottom: 1px solid var(--line);
-      background: var(--paper);
-      padding: 24px 5%;
-      gap: 18px;
-    }
-
-    .benefit {
-      text-align: center;
-      font-size: 11px;
-      color: #766b65;
-      letter-spacing: .6px;
-    }
-
-    .benefit strong {
-      display: block;
-      color: var(--burgundy);
-      font-size: 12px;
-      margin-bottom: 7px;
-      font-weight: 600;
-    }
-
-    .section {
-      max-width: 1440px;
-      margin: auto;
-      padding: 76px 5%;
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 38px;
-    }
-
-    .section-heading .eyebrow { margin-bottom: 12px; }
-
-    .section-heading h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(29px, 4vw, 43px);
-      font-weight: normal;
-      color: var(--burgundy-dark);
-      margin-bottom: 12px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.8;
-      max-width: 560px;
-      margin: auto;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .category-tile {
-      min-height: 155px;
-      padding: 24px 12px;
-      border: 1px solid var(--line);
-      background: var(--ivory);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: .2s;
-      color: var(--burgundy);
-    }
-
-    .category-tile:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
-    }
-
-    .category-symbol {
-      font-family: Georgia, serif;
-      font-size: 29px;
-      color: var(--gold);
-      margin-bottom: 15px;
-    }
-
-    .category-tile strong {
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .category-tile span:last-child {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .story {
-      background: var(--ivory);
-      padding: 65px 8%;
-      text-align: center;
-    }
-
-    .story-inner { max-width: 780px; margin: auto; }
-
-    .story h2 {
-      font-family: Georgia, serif;
-      color: var(--burgundy);
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: normal;
-      line-height: 1.2;
-    }
-
-    .story p {
-      color: #776b64;
-      font-size: 14px;
-      line-height: 2;
-    }
-
-    .shop-layout {
-      display: grid;
-      grid-template-columns: 205px minmax(0, 1fr);
-      gap: 34px;
-      align-items: start;
-    }
-
-    .sidebar {
-      border-right: 1px solid var(--line);
-      padding-right: 22px;
-      position: sticky;
-      top: 150px;
-    }
-
-    .sidebar h3 {
-      font-size: 11px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--burgundy);
-      margin: 0 0 18px;
-    }
-
-    .category-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 30px;
-    }
-
-    .category-filter {
-      text-align: left;
-      border: 0;
-      background: transparent;
-      padding: 11px 10px;
-      color: #756b66;
-      font-size: 12px;
-      border-radius: 2px;
-    }
-
-    .category-filter.active, .category-filter:hover {
-      background: var(--ivory);
-      color: var(--burgundy);
-      font-weight: bold;
-    }
-
-    .sidebar-note {
-      border: 1px solid var(--line);
-      padding: 17px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    .sidebar-note strong {
-      display: block;
-      color: var(--burgundy);
-      margin-bottom: 7px;
-    }
-
-    .shop-main { min-width: 0; }
-
-    .shop-toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 23px;
-      flex-wrap: wrap;
-    }
-
-    .shop-toolbar h2 {
-      font-family: Georgia, serif;
-      color: var(--burgundy);
-      font-size: 28px;
-      font-weight: normal;
-      margin: 0;
-    }
-
-    .toolbar-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .toolbar-right label {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .toolbar-right select {
-      border: 1px solid var(--line);
-      padding: 10px;
-      background: white;
-      color: var(--ink);
-      font-size: 12px;
-      max-width: 180px;
-    }
-
-    .mobile-categories { display: none; }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px 17px;
-    }
-
-    .product-card { min-width: 0; }
-
-    .product-image-wrap {
-      position: relative;
-      overflow: hidden;
-      background: var(--ivory);
-      aspect-ratio: 4 / 5;
-    }
-
-    .product-image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .35s;
-    }
-
-    .product-card:hover .product-image { transform: scale(1.035); }
-
-    .product-label {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 7px 8px;
-      background: rgba(255,253,249,.94);
-      color: var(--burgundy);
-      font-size: 9px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .wishlist-button {
-      position: absolute;
-      top: 9px;
-      right: 9px;
-      border: 0;
-      border-radius: 50%;
-      width: 34px;
-      height: 34px;
-      background: rgba(255,253,249,.95);
-      color: var(--burgundy);
-      font-size: 19px;
-    }
-
-    .wishlist-button.saved { color: #b21f45; }
-
-    .product-info { padding: 14px 2px 0; }
-
-    .product-category {
-      font-size: 9px;
-      color: var(--gold);
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-      margin-bottom: 7px;
-    }
-
-    .product-name {
-      font-family: Georgia, serif;
-      font-size: 17px;
-      line-height: 1.35;
-      font-weight: normal;
-      margin-bottom: 7px;
-      color: var(--ink);
-    }
-
-    .product-description {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.7;
-      min-height: 37px;
-      margin-bottom: 10px;
-    }
-
-    .product-price {
-      font-size: 14px;
-      color: var(--burgundy);
-      font-weight: bold;
-      margin-bottom: 13px;
-    }
-
-    .add-button {
-      width: 100%;
-      border: 1px solid var(--burgundy);
-      color: var(--burgundy);
-      background: transparent;
-      padding: 12px 7px;
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      transition: .2s;
-    }
-
-    .add-button:hover {
-      background: var(--burgundy);
-      color: white;
-    }
-
-    .no-results {
-      display: none;
-      text-align: center;
-      padding: 45px 10px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .personalise {
-      background: var(--burgundy-dark);
-      color: white;
-      padding: 65px 8%;
-      text-align: center;
-    }
-
-    .personalise .eyebrow { color: #d8bd87; }
-
-    .personalise h2 {
-      font-family: Georgia, serif;
-      font-size: clamp(29px, 4vw, 43px);
-      font-weight: normal;
-      margin-bottom: 16px;
-    }
-
-    .personalise p {
-      max-width: 600px;
-      margin: 0 auto 25px;
-      color: #e4d6d3;
-      font-size: 13px;
-      line-height: 1.9;
-    }
-
-    .personalise .primary-button {
-      background: transparent;
-      border-color: #d8bd87;
-      color: white;
-    }
-
-    footer {
-      background: #f2ece3;
-      padding: 45px 5% 20px;
-    }
-
-    .footer-grid {
-      max-width: 1300px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 35px;
-      padding-bottom: 30px;
-    }
-
-    .footer-grid h3 {
-      font-family: Georgia, serif;
-      color: var(--burgundy);
-      font-size: 20px;
-      font-weight: normal;
-      margin-bottom: 14px;
-    }
-
-    .footer-grid p, .footer-grid a {
-      font-size: 12px;
-      color: #776b64;
-      line-height: 1.9;
-    }
-
-    .footer-links { display: flex; flex-direction: column; gap: 6px; }
-
-    .copyright {
-      border-top: 1px solid #ded4c8;
-      text-align: center;
-      padding-top: 18px;
-      font-size: 10px;
-      color: #877b73;
-      letter-spacing: .5px;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      background: rgba(25,16,18,.48);
-    }
-
-    .overlay.open { display: block; }
-
-    .drawer {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: min(440px, 100%);
-      background: var(--paper);
-      display: flex;
-      flex-direction: column;
-      box-shadow: -10px 0 40px rgba(0,0,0,.1);
-    }
-
-    .drawer-header {
-      padding: 22px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .drawer-header h2 {
-      margin: 0;
-      color: var(--burgundy);
-      font-family: Georgia, serif;
-      font-weight: normal;
-      font-size: 25px;
-    }
-
-    .close-button {
-      border: 0;
-      background: transparent;
-      font-size: 25px;
-      color: var(--burgundy);
-      padding: 3px 8px;
-    }
-
-    .drawer-content { padding: 20px; overflow-y: auto; flex: 1; }
-
-    .empty-state {
-      text-align: center;
-      padding: 45px 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .cart-item {
-      display: grid;
-      grid-template-columns: 72px 1fr auto;
-      gap: 13px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--line);
-      align-items: start;
-    }
-
-    .cart-item img {
-      width: 72px;
-      height: 90px;
-      object-fit: cover;
-      background: var(--ivory);
-    }
-
-    .cart-item h3 {
-      font-family: Georgia, serif;
-      font-weight: normal;
-      font-size: 16px;
-      margin: 2px 0 7px;
-    }
-
-    .cart-item p { color: var(--burgundy); font-size: 12px; margin-bottom: 10px; }
-
-    .quantity {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 12px;
-    }
-
-    .quantity button {
-      background: var(--ivory);
-      border: 1px solid var(--line);
-      width: 25px;
-      height: 25px;
-      color: var(--burgundy);
-    }
-
-    .remove-button {
-      background: none;
-      border: 0;
-      color: var(--muted);
-      font-size: 10px;
-      text-decoration: underline;
-      margin-top: 9px;
-      padding: 0;
-    }
-
-    .cart-item-total { font-size: 12px; font-weight: bold; white-space: nowrap; }
-
-    .drawer-footer {
-      padding: 20px;
-      border-top: 1px solid var(--line);
-      background: white;
-    }
-
-    .total-row {
-      display: flex;
-      justify-content: space-between;
-      color: var(--burgundy);
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .checkout-note {
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-
-    .drawer-footer .primary-button {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .drawer-footer .secondary-button {
-      width: 100%;
-      text-align: center;
-    }
-
-    .toast {
-      position: fixed;
-      z-index: 100;
-      bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--burgundy-dark);
-      color: white;
-      padding: 13px 20px;
-      font-size: 12px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.15);
-      display: none;
-      max-width: 90%;
-      text-align: center;
-    }
-
-    .toast.show { display: block; }
-
-    @media (max-width: 900px) {
-      .header-main { grid-template-columns: 1fr auto; gap: 12px; }
-      .search-wrap { grid-column: 1 / -1; grid-row: 2; }
-      .header-actions { grid-column: 2; grid-row: 1; }
-      .brand-sam { font-size: 30px; }
-      .hero-copy { padding: 55px 8%; }
-      .hero-art { min-height: 360px; padding: 25px; }
-      .shop-layout { grid-template-columns: 165px minmax(0,1fr); gap: 22px; }
-      .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .category-grid { grid-template-columns: repeat(2,1fr); }
-    }
-
-    @media (max-width: 600px) {
-      .announcement { font-size: 9px; letter-spacing: 1px; }
-      .header-main { padding: 13px 4%; }
-      .brand-sam { font-size: 27px; }
-      .brand-arts { font-size: 15px; letter-spacing: 2px; }
-      .header-actions { gap: 13px; }
-      .icon-button { font-size: 12px; }
-      .nav { gap: 17px; padding: 0 8px 13px; }
-      .nav a, .nav button { font-size: 9px; letter-spacing: .8px; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-copy { padding: 50px 8% 42px; }
-      .hero h1 { font-size: 43px; }
-      .hero-art { min-height: 300px; }
-      .hero-card { width: 215px; }
-      .benefits { padding: 20px 4%; gap: 8px; }
-      .benefit { font-size: 9px; line-height: 1.5; }
-      .benefit strong { font-size: 10px; }
-      .section { padding: 54px 4%; }
-      .category-tile { min-height: 130px; padding: 17px 8px; }
-      .story { padding: 50px 7%; }
-      .shop-layout { display: block; }
-      .sidebar { display: none; }
-      .mobile-categories {
-        display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        padding: 3px 0 18px;
-        margin-bottom: 6px;
-      }
-      .mobile-categories button {
-        flex: 0 0 auto;
-        padding: 10px 13px;
-        background: var(--ivory);
-        border: 1px solid var(--line);
-        color: #665a54;
-        font-size: 10px;
-        white-space: nowrap;
-      }
-      .mobile-categories button.active {
-        background: var(--burgundy);
-        color: white;
-        border-color: var(--burgundy);
-      }
-      .shop-toolbar h2 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f5ef">
+<title>SamArts — Thoughtful Gifts</title>
+<style>
+:root{--cream:#f8f5ef;--paper:#fffdf9;--wine:#702b3a;--gold:#bb9962;--ink:#302824;--muted:#796f68;--line:#e8ded4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.announcement{background:var(--ink);color:white;text-align:center;padding:8px;font-size:11px;letter-spacing:1.5px}
+header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.top{max-width:1200px;margin:auto;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:27px;letter-spacing:-1px;color:var(--wine);font-family:Georgia,serif;font-weight:bold}
+.brand span{font-family:Arial,sans-serif;font-weight:300;letter-spacing:2px}
+.top button,.outline{background:transparent;border:1px solid var(--line);padding:9px 13px;color:var(--ink)}
+.hero{max-width:1200px;margin:auto;padding:55px 5% 38px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:30px}
+.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--wine)}
+h1{font-family:Georgia,serif;font-weight:normal;font-size:clamp(38px,6vw,68px);line-height:1.08;margin:14px 0}
+.hero p{color:var(--muted);max-width:450px}
+.hero-art{min-height:220px;background:linear-gradient(145deg,#e9ddcd,#d5bda4);display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;color:var(--wine);font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);font-style:italic}
+.section{max-width:1200px;margin:auto;padding:18px 5% 55px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.toolbar input,.toolbar select{background:var(--paper);border:1px solid var(--line);padding:12px;min-width:0}
+.toolbar input{flex:1;min-width:160px}
+.categories{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.categories button{border:1px solid var(--line);background:var(--paper);padding:9px 15px;border-radius:30px;font-size:12px}
+.categories button.active{background:var(--wine);color:white;border-color:var(--wine)}
+h2{font-family:Georgia,serif;font-weight:normal;font-size:32px;margin:0}
+.sub{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.product{background:var(--paper);border:1px solid var(--line);min-width:0}
+.photo{aspect-ratio:4/4.4;background:#eee5d9;position:relative;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.fallback{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--wine);font-family:Georgia,serif;font-size:24px}
+.heart{position:absolute;right:10px;top:10px;border:0;border-radius:50%;width:36px;height:36px;background:#fffdf9eF;font-size:20px}
+.details{padding:15px}
+.details h3{font-family:Georgia,serif;font-weight:normal;font-size:19px;margin:0 0 5px}
+.description{font-size:12px;color:var(--muted);min-height:36px}
+.price{font-weight:bold;color:var(--wine);margin:10px 0}
+.actions{display:flex;gap:8px}
+.actions button{flex:1;padding:10px 6px;font-size:12px;border:1px solid var(--wine)}
+.primary{background:var(--wine);color:white}
+.secondary{background:transparent;color:var(--wine)}
+.empty{padding:35px;text-align:center;color:var(--muted);grid-column:1/-1}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:38px 0}
+.benefit{padding:18px;background:#efe6da;text-align:center;font-size:12px}
+.benefit strong{display:block;font-family:Georgia,serif;font-size:17px;font-weight:normal;margin-bottom:5px}
+footer{background:var(--ink);color:#f8f5ef;padding:35px 5%;text-align:center;font-size:12px}
+footer p{color:#d6c8ba}
+footer button{background:var(--gold);border:0;padding:12px 18px;color:#241c18;margin:8px}
+.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:30}
+.overlay.open{display:block}
+.drawer{position:absolute;right:0;top:0;height:100%;width:min(440px,100%);background:var(--paper);padding:20px;overflow:auto}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:15px}
+.drawer-head h2{font-size:26px}
+.close{border:0;background:transparent;font-size:27px}
+.cart-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:15px 0;border-bottom:1px solid var(--line)}
+.cart-item small{display:block;color:var(--muted)}
+.qty{display:flex;gap:10px;align-items:center;margin-top:8px}
+.qty button{border:1px solid var(--line);background:white;padding:4px 10px}
+.total{display:flex;justify-content:space-between;font-size:20px;padding:20px 0}
+.checkout{width:100%;padding:14px;border:0;background:var(--wine);color:white;margin-bottom:10px}
+.note{font-size:11px;color:var(--muted)}
+.field{width:100%;padding:12px;border:1px solid var(--line);margin:7px 0;background:white}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:35px;gap:22px}.hero-art{min-height:150px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.details{padding:10px}.details h3{font-size:16px}.description{font-size:11px}.actions{flex-direction:column}.actions button{padding:9px}.benefits{grid-template-columns:1fr}.top{padding:13px 4%}.brand{font-size:23px}.section{padding-left:4%;padding-right:4%}}
+@media(max-width:360px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="announcement">THOUGHTFUL GIFTS · BEAUTIFULLY MADE</div>
+<header>
+  <div class="top">
+    <a class="brand" href="#">Sam<span>Arts</span></a>
+    <button onclick="showCart()">♡ Wishlist <span id="wishCount">0</span></button>
+    <button onclick="showCart()">Bag (<span id="bagCount">0</span>)</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">Little things. Lasting feelings.</div>
+    <h1>Some feelings deserve to be kept.</h1>
+    <p>Personalised keepsakes and thoughtful gifts, made to turn your favourite memories into something you can hold.</p>
+    <button class="primary" style="padding:13px 20px;border:0" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore the collection ↘</button>
+  </div>
+  <div class="hero-art">Made with love,<br>kept forever.</div>
+</section>
+
+<main class="section" id="shop">
+  <div class="eyebrow">The SamArts collection</div>
+  <h2>Find your little something.</h2>
+  <p class="sub">Gifts for the people who make life special.</p>
+  <div class="toolbar">
+    <input id="search" placeholder="Search gifts..." oninput="renderProducts()">
+    <select id="sort" onchange="renderProducts()">
+      <option value="featured">Featured</option>
+      <option value="low">Price: low to high</option>
+      <option value="high">Price: high to low</option>
+      <option value="az">Name: A to Z</option>
+    </select>
+  </div>
+  <div class="categories" id="categories">
+    <button class="active" onclick="setCategory('All',this)">All gifts</button>
+    <button onclick="setCategory('Keepsakes',this)">Keepsakes</button>
+    <button onclick="setCategory('Personalised',this)">Personalised</button>
+    <button onclick="setCategory('Bundles',this)">Bundles</button>
+  </div>
+  <div class="grid" id="products"></div>
+
+  <div class="benefits">
+    <div class="benefit"><strong>Made personal</strong>Little details that mean everything.</div>
+    <div class="benefit"><strong>Thoughtfully designed</strong>Beautiful keepsakes for real memories.</div>
+    <div class="benefit"><strong>Easy ordering</strong>Order directly with us on WhatsApp.</div>
+  </div>
+</main>
+
+<footer>
+  <div class="brand" style="color:#e5cba0">Sam<span style="color:#f8f5ef">Arts</span></div>
+  <p>Thoughtful gifts. Meaningful memories.</p>
+  <p>Have something special in mind?</p>
+  <button onclick="contactUs()">Chat with us on WhatsApp</button>
+  <p>© <span id="year"></span> SamArts. Made with care.</p>
+</footer>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()">
+  <div class="drawer">
+    <div class="drawer-head">
+      <h2>Your shopping bag</h2>
+      <button class="close" onclick="closeCart()">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+    <input class="field" id="customerName" placeholder="Your name">
+    <input class="field" id="customerCity" placeholder="Your city">
+    <textarea class="field" id="customerNote" placeholder="Personalisation details or message (optional)" rows="3"></textarea>
+    <button class="checkout" onclick="checkoutWhatsApp()">Order via WhatsApp</button>
+    <button class="checkout" style="background:var(--gold);color:#241c18" onclick="payUPI()">Pay via UPI app</button>
+    <p class="note">UPI opens your payment app if supported. Please confirm payment with us on WhatsApp. Online payment is not automatically verified by this website.</p>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+const WHATSAPP = "917382549588";
+const UPI_ID = "7382549588@ybl";
+
+const products = [
+ {id:1,name:"A Little Note",price:199,image:"a-little-note.jpg",category:"Keepsakes",desc:"A small note for a big feeling."},
+ {id:2,name:"Our Date",price:299,image:"our-date.jpg",category:"Keepsakes",desc:"Keep a date worth remembering."},
+ {id:3,name:"Tiny Reminder",price:399,image:"tiny-reminder.jpg",category:"Keepsakes",desc:"A little reminder of your person."},
+ {id:4,name:"A–Z of Us",price:399,image:"a-z-of-us.jpg",category:"Keepsakes",desc:"The little things that make you, us."},
+ {id:5,name:"Personalised A–Z of Us",price:699,image:"personalised-a-z-of-us.jpg",category:"Personalised",desc:"Your story, told your way."},
+ {id:6,name:"The Little Things",price:599,image:"the-little-things.jpg",category:"Personalised",desc:"Celebrate the details only you know."},
+ {id:7,name:"Our Memory Map",price:799,image:"our-memory-map.jpg",category:"Personalised",desc:"A place that means everything."},
+ {id:8,name:"The Little Things Bundle",price:899,image:"the-little-things-bundle.jpg",category:"Bundles",desc:"More little things, all in one."},
+ {id:9,name:"Forever, Us",price:999,image:"forever-us.jpg",category:"Bundles",desc:"A keepsake for your forever person."}
+];
+
+let cart = {};
+let wishlist = new Set();
+let activeCategory = "All";
+
+function money(n){return "₹"+Number(n).toLocaleString("en-IN");}
+
+function setCategory(category,button){
+ activeCategory=category;
+ document.querySelectorAll("#categories button").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ renderProducts();
+}
+
+function renderProducts(){
+ const query=document.getElementById("search").value.trim().toLowerCase();
+ let list=products.filter(p=>
+  (activeCategory==="All"||p.category===activeCategory)&&
+  (p.name.toLowerCase().includes(query)||p.desc.toLowerCase().includes(query))
+ );
+ const sort=document.getElementById("sort").value;
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);
+ if(sort==="high")list.sort((a,b)=>b.price-a.price);
+ if(sort==="az")list.sort((a,b)=>a.name.localeCompare(b.name));
+
+ const host=document.getElementById("products");
+ host.innerHTML="";
+ if(!list.length){
+  host.innerHTML='<div class="empty">No gifts found. Try another search.</div>';
+  return;
+ }
+ list.forEach(p=>{
+  const card=document.createElement("article");
+  card.className="product";
+  const photo=document.createElement("div");
+  photo.className="photo";
+  const fallback=document.createElement("div");
+  fallback.className="fallback";
+  fallback.textContent=p.name;
+  const img=document.createElement("img");
+  img.src=p.image;
+  img.alt=p.name;
+  img.loading="lazy";
+  img.onerror=function(){this.remove();photo.appendChild(fallback);};
+  photo.appendChild(img);
+
+  const heart=document.createElement("button");
+  heart.className="heart";
+  heart.setAttribute("aria-label","Toggle wishlist");
+  heart.textContent=wishlist.has(p.id)?"♥":"♡";
+  heart.onclick=()=>toggleWishlist(p.id);
+
+  const details=document.createElement("div");
+  details.className="details";
+  const title=document.createElement("h3");
+  title.textContent=p.name;
+  const desc=document.createElement("div");
+  desc.className="description";
+  desc.textContent=p.desc;
+  const price=document.createElement("div");
+  price.className="price";
+  price.textContent=money(p.price);
+  const actions=document.createElement("div");
+  actions.className="actions";
+  const add=document.createElement("button");
+  add.className="primary";
+  add.textContent="Add to bag";
+  add.onclick=()=>addToCart(p.id);
+  const order=document.createElement("button");
+  order.className="secondary";
+  order.textContent="Quick order";
+  order.onclick=()=>quickOrder(p.id);
+  actions.append(add,order);
+  details.append(title,desc,price,actions);
+  photo.appendChild(heart);
+  card.append(photo,details);
+  host.appendChild(card);
+ });
+}
+
+function toggleWishlist(id){
+ if(wishlist.has(id))wishlist.delete(id);else wishlist.add(id);
+ document.getElementById("wishCount").textContent=wishlist.size;
+ renderProducts();
+}
+
+function addToCart(id){
+ cart[id]=(cart[id]||0)+1;
+ updateBag();
+}
+
+function updateBag(){
+ const count=Object.values(cart).reduce((a,b)=>a+b,0);
+ document.getElementById("bagCount").textContent=count;
+ renderCart();
+}
+
+function renderCart(){
+ const host=document.getElementById("cartItems");
+ host.innerHTML="";
+ let total=0;
+ const ids=Object.keys(cart).filter(id=>cart[id]>0);
+ if(!ids.length)host.innerHTML='<div class="empty">Your bag is empty.<br>Find a gift to get started.</div>';
+ ids.forEach(id=>{
+  const p=products.find(x=>x.id===Number(id));
+  if(!p)return;
+  total+=p.price*cart[id];
+  const row=document.createElement("div");
+  row.className="cart-item";
+  const info=document.createElement("div");
+  const name=document.createElement("strong");
+  name.textContent=p.name;
+  const price=document.createElement("small");
+  price.textContent=money(p.price)+" each";
+  const qty=document.createElement("div");
+  qty.className="qty";
+  const minus=document.createElement("button");
+  minus.textContent="−";
+  minus.onclick=()=>changeQty(p.id,-1);
+  const number=document.createElement("span");
+  number.textContent=cart[id];
+  const plus=document.createElement("button");
+  plus.textContent="+";
+  plus.onclick=()=>changeQty(p.id,1);
+  qty.append(minus,number,plus);
+  info.append(name,price,qty);
+  const subtotal=document.createElement("strong");
+  subtotal.textContent=money(p.price*cart[id]);
+  row.append(info,subtotal);
+  host.appendChild(row);
+ });
+ document.getElementById("cartTotal").textContent=money(total);
+}
+
+function changeQty(id,amount){
+ cart[id]=(cart[id]||0)+amount;
+ if(cart[id]<=0)delete cart[id];
+ updateBag();
+}
+
+function showCart(){
+ document.getElementById("overlay").classList.add("open");
+ renderCart();
+}
+function closeCart(){document.getElementById("overlay").classList.remove("open");}
+
+function orderMessage(ids){
+ const lines=ids.map(id=>{
+  const p=products.find(x=>x.id===Number(id));
+  return p.name+" x "+(cart[id]||1)+" — "+money(p.price*(cart[id]||1));
+ });
+ const total=ids.reduce((sum,id)=>{
+  const p=products.find(x=>x.id===Number(id));
+  return sum+p.price*(cart[id]||1);
+ },0);
+ const name=document.getElementById("customerName").value.trim();
+ const city=document.getElementById("customerCity").value.trim();
+ const note=document.getElementById("customerNote").value.trim();
+ return "Hello SamArts! I'd like to place an order:\n\n"+lines.join("\n")+"\n\nTotal: "+money(total)+"\nName: "+(name||"Not provided")+"\nCity: "+(city||"Not provided")+"\nPersonalisation: "+(note||"None provided");
+}
+
+function checkoutWhatsApp(){
+ const ids=Object.keys(cart).filter(id=>cart[id]>0);
+ if(!ids.length){alert("Your bag is empty. Please add a gift first.");return;}
+ window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(orderMessage(ids)),"_blank");
+}
+
+function payUPI(){
+ const ids=Object.keys(cart).filter(id=>cart[id]>0);
+ if(!ids.length){alert("Your bag is empty. Please add a gift first.");return;}
+ const total=ids.reduce((sum,id)=>sum+products.find(p=>p.id===Number(id)).price*cart[id],0);
+ const url="upi://pay?pa="+encodeURIComponent(UPI_ID)+"&pn="+encodeURIComponent("SamArts")+"&am="+total.toFixed(2)+"&cu=INR&tn="+encodeURIComponent("SamArts gift order");
+ window.location.href=url;
+}
+
+function quickOrder(id){
+ cart[id]=(cart[id]||0)+1;
+ updateBag();
+ showCart();
+}
+
+function contactUs(){
+ window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hello SamArts! I'd like to know more about your gifts."),"_blank");
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+renderProducts();
+updateBag();
+</script>
+</body>
+</html>
