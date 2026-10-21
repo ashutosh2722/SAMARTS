@@ -3,362 +3,271 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SAMARTS — Digital Keepsakes</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5efe6">
+<title>Samarts — Keepsakes for Every Chapter</title>
 <style>
 :root{
-  --bg:#f7f0e7;
-  --paper:#fffaf4;
-  --ink:#49372c;
-  --accent:#b86e50;
-  --muted:#7d6b5f;
+  --ivory:#f7f3ec;--paper:#fffdf8;--ink:#28251f;--muted:#777066;
+  --wine:#653d3b;--gold:#b99a68;--line:#e6ded2;--sage:#dfe4d8;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--ink);
-  font-family:Georgia,serif
-}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 a{color:inherit;text-decoration:none}
-.top{
-  text-align:center;padding:10px;font:10px Arial;
-  letter-spacing:2px;border-bottom:1px solid #e7d7c8
+button{font:inherit}
+.announcement{padding:10px 16px;text-align:center;background:var(--wine);color:#fff9f0;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+header{max-width:1240px;margin:auto;padding:23px 5%;display:flex;justify-content:space-between;align-items:center;gap:22px}
+.brand{display:inline-flex;align-items:baseline;white-space:nowrap;letter-spacing:-1.8px;font-size:33px;color:var(--wine)}
+.brand .sam{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-style:italic;letter-spacing:-2.5px}
+.brand .arts{font-family:Arial,Helvetica,sans-serif;font-weight:300;letter-spacing:1.5px;font-size:.82em}
+nav{display:flex;gap:25px;font-size:12px;letter-spacing:.5px;color:#4d4942}
+nav a:hover{color:var(--wine)}
+.header-cta{border:1px solid var(--gold);padding:11px 16px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.hero{padding:62px 5% 70px;background:linear-gradient(120deg,#f5efe6,#e8ded0)}
+.hero-inner{max-width:1120px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px}
+.kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--wine)}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:clamp(43px,6vw,76px);line-height:1.04;letter-spacing:-2px;margin:20px 0}
+h1 em{font-weight:normal;color:var(--wine)}
+.hero-copy{max-width:490px;color:#6f685e;line-height:1.85;font-size:15px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.button{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;background:var(--wine);color:white;border:1px solid var(--wine);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;cursor:pointer;transition:.2s}
+.button:hover{background:#4c2d2c}
+.button.secondary{background:transparent;color:var(--wine)}
+.button.secondary:hover{background:#fff8ef}
+.hero-art{min-height:390px;display:flex;align-items:center;justify-content:center;position:relative}
+.art-frame{width:min(100%,390px);aspect-ratio:4/5;background:var(--paper);border:1px solid #d1b994;padding:12px;box-shadow:0 25px 60px #49372c12;transform:rotate(1deg)}
+.art-inner{height:100%;border:1px solid #e4d5be;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;background:radial-gradient(ellipse at center,#fffdf8 0%,#f8f0e4 100%)}
+.art-small{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.art-title{font:italic 48px/1.1 Georgia,serif;color:var(--wine);margin:20px 0 12px}
+.art-sub{font:italic 14px/1.8 Georgia,serif;color:#786d5e;max-width:230px}
+.art-flower{font-size:35px;color:var(--gold);margin:14px 0}
+.art-bottom{font-size:9px;letter-spacing:2px;color:#8c7c68;text-transform:uppercase;margin-top:20px}
+.floating-note{position:absolute;right:0;bottom:23px;background:var(--paper);padding:14px 18px;box-shadow:0 10px 30px #49372c12;font:italic 14px Georgia,serif;color:var(--wine)}
+.trust-row{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;padding:18px 5%;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#756d62}
+main section.content-section{padding:78px 5%}
+.container{max-width:1120px;margin:auto}
+.section-head{text-align:center;max-width:650px;margin:0 auto 38px}
+.section-head h2,.story h2,.contact h2{font:normal clamp(32px,4vw,46px)/1.15 Georgia,serif;letter-spacing:-.8px;margin:13px 0}
+.section-head p,.story p{color:var(--muted);font-size:14px;line-height:1.85}
+.audience{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.audience-card{padding:24px 18px;background:var(--paper);border:1px solid var(--line);min-height:165px}
+.audience-card .symbol{font:28px Georgia,serif;color:var(--gold);margin-bottom:18px}
+.audience-card h3{font:normal 20px Georgia,serif;margin-bottom:9px}
+.audience-card p{font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:0}
+.catalog{background:#eee7dc}
+.tier{margin:0 0 46px}
+.tier:last-child{margin-bottom:0}
+.tier-head{display:flex;justify-content:space-between;align-items:end;gap:20px;border-bottom:1px solid #d8cdbd;padding-bottom:16px;margin-bottom:20px}
+.tier-head h3{font:normal 28px Georgia,serif;margin:6px 0 0}
+.tier-head p{font-size:12px;color:var(--muted);margin:0;text-align:right}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.product{background:var(--paper);border:1px solid #e4d9ca;display:flex;flex-direction:column;min-width:0}
+.product-visual{height:170px;background:#e7d9c8;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden}
+.print{width:118px;height:135px;background:#fffaf2;border:1px solid #c5a77b;box-shadow:0 9px 20px #49372c18;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:12px;position:relative}
+.print:before{content:"";position:absolute;inset:5px;border:1px solid #e6d5ba;pointer-events:none}
+.print .print-kicker{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:#9c8057}
+.print strong{font:italic 23px/1.1 Georgia,serif;font-weight:normal;color:var(--wine);margin:10px 0}
+.print small{font:italic 10px/1.5 Georgia,serif;color:#776d60}
+.product-body{padding:18px;display:flex;flex-direction:column;flex:1}
+.product-tag{font-size:9px;letter-spacing:1.7px;text-transform:uppercase;color:#92774f;margin-bottom:8px}
+.product h4{font:normal 21px Georgia,serif;margin:0 0 8px}
+.product p{font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:14px;flex:1}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #eee6db;padding-top:13px}
+.price{font:22px Georgia,serif}
+.select-btn{border:1px solid var(--wine);background:transparent;color:var(--wine);padding:10px 12px;font-size:9px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer}
+.select-btn:hover,.select-btn.selected{background:var(--wine);color:white}
+.custom-card{border:1px dashed #b99a68;background:#f9f4eb}
+.custom-card .product-visual{background:#e2e3d9}
+.custom-card .print{border-radius:50%;width:125px;height:125px}
+.custom-card .print:before{border-radius:50%}
+.custom-card .print strong{font-size:25px}
+.order-panel{background:var(--paper);border:1px solid var(--line);padding:28px;margin-top:35px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.order-panel h3{font:normal 28px Georgia,serif;margin:10px 0}
+.order-panel p{font-size:13px;line-height:1.8;color:var(--muted)}
+.selected-summary{padding:16px;background:var(--ivory);margin:18px 0}
+.selected-summary strong{font:normal 18px Georgia,serif;display:block;margin-bottom:6px}
+.order-total{font:30px Georgia,serif;color:var(--wine)}
+.order-actions{display:flex;gap:10px;flex-wrap:wrap}
+.small-note{font-size:11px!important;line-height:1.7!important}
+.story-section{background:var(--paper)}
+.story{max-width:750px;margin:auto;text-align:center}
+.story-mark{font:38px Georgia,serif;color:var(--gold);margin-bottom:15px}
+.contact{background:#e8ded0;text-align:center}
+.contact-inner{max-width:690px;margin:auto}
+.contact p{color:#71695e;font-size:14px;line-height:1.8}
+.contact .button{margin:8px}
+footer{background:var(--wine);color:#f8efe4;padding:35px 5%;text-align:center}
+footer .brand{color:#fff8ef;justify-content:center}
+footer p{font-size:11px;line-height:1.8;color:#e2d2c2;margin:13px 0 0}
+@media(max-width:800px){
+  header{flex-wrap:wrap;padding:20px 5%}
+  nav{order:3;width:100%;justify-content:space-between;gap:10px;font-size:11px}
+  .header-cta{margin-left:auto}
+  .hero{padding:45px 5%}
+  .hero-inner{grid-template-columns:1fr;gap:30px}
+  .hero-art{min-height:330px}
+  .art-frame{max-width:300px}
+  .floating-note{right:2%;bottom:8px}
+  .audience{grid-template-columns:repeat(2,1fr)}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .order-panel{grid-template-columns:1fr;gap:12px}
 }
-header{
-  padding:20px 6%;display:flex;justify-content:space-between;
-  align-items:center;gap:16px
-}
-.logo{font-size:28px;letter-spacing:6px}
-nav{display:flex;gap:18px;font-size:14px}
-.hero{
-  display:grid;grid-template-columns:1fr 1fr;gap:30px;
-  align-items:center;padding:55px 7%;
-  background:linear-gradient(120deg,#f7eee4,#ead6c3)
-}
-.eyebrow{
-  font:10px Arial;letter-spacing:3px;text-transform:uppercase
-}
-h1{
-  font-size:clamp(40px,6vw,68px);font-weight:normal;
-  line-height:1.1;margin:18px 0
-}
-h2{font-size:34px;font-weight:normal;line-height:1.2}
-.intro{
-  font-size:18px;line-height:1.7;color:var(--muted);
-  max-width:430px
-}
-.btn{
-  display:inline-block;background:var(--accent);color:white;
-  padding:13px 22px;border-radius:30px;font:13px Arial;
-  border:0;cursor:pointer
-}
-.art{
-  background:var(--paper);border:8px solid #c2a07d;
-  padding:25px 18px;text-align:center;
-  box-shadow:0 15px 30px #49372c20;max-width:370px;margin:auto
-}
-.art h2{font-style:italic;margin:0}
-.art p{font-style:italic;color:var(--muted);font-size:13px}
-.letters{
-  display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;
-  text-align:left;font-size:11px
-}
-.letters div{border-bottom:1px solid #eee2d5;padding:3px 0}
-.heart{color:var(--accent);font-size:23px}
-section{padding:52px 6%}
-.heading{text-align:center;margin-bottom:28px}
-.heading p{color:var(--muted)}
-.products{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px
-}
-.card{background:var(--paper);padding:14px;border:1px solid #e5d6c8}
-.preview{
-  height:210px;background:#ead8c6;display:flex;
-  align-items:center;justify-content:center;padding:20px
-}
-.mini{
-  height:170px;width:135px;background:var(--paper);
-  border:5px solid #c2a07d;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;text-align:center;
-  padding:10px;box-shadow:0 8px 20px #49372c20
-}
-.mini strong{font-size:23px;font-weight:normal;font-style:italic}
-.mini small{margin-top:12px;font-style:italic}
-h3{font-size:21px;font-weight:normal;margin:16px 0 5px}
-.card p{
-  font-size:14px;line-height:1.6;color:var(--muted);min-height:45px
-}
-.price{font-size:22px;margin:14px 0}
-.outline{
-  display:inline-block;padding:10px 14px;
-  border:1px solid var(--accent);border-radius:25px;font-size:13px
-}
-.outline:hover{background:var(--accent);color:white}
-.benefits{
-  background:#efe2d5;display:grid;grid-template-columns:repeat(3,1fr);
-  gap:20px;text-align:center
-}
-.benefits p{font-size:14px;color:var(--muted)}
-.story{text-align:center;max-width:700px;margin:auto}
-.story p{line-height:1.8;color:var(--muted)}
-.payment{
-  margin-top:28px;padding:24px;background:var(--paper);
-  border:1px solid #e5d6c8
-}
-.payment .btn{margin:8px 5px}
-.payment-id{
-  font:14px Arial;background:#f7f0e7;padding:12px;
-  border-radius:8px;overflow-wrap:anywhere
-}
-footer{
-  text-align:center;background:var(--accent);color:white;padding:28px 15px
-}
-footer p{font-size:13px}
-.note{font:12px Arial;color:var(--muted);line-height:1.6}
-
-@media(max-width:700px){
-  header{flex-wrap:wrap;padding:17px 5%}
-  .logo{font-size:24px}
-  nav{
-    width:100%;justify-content:space-between;gap:8px;font-size:13px
-  }
-  .hero{grid-template-columns:1fr;padding:38px 6%}
-  .products,.benefits{grid-template-columns:1fr}
-  section{padding:40px 5%}
-  .preview{height:240px}
+@media(max-width:500px){
+  .brand{font-size:29px}
+  .header-cta{font-size:9px;padding:10px}
+  main section.content-section{padding:55px 5%}
+  .trust-row{gap:12px 20px;font-size:9px}
+  .audience{gap:9px}
+  .audience-card{padding:18px 13px;min-height:150px}
+  .product-grid{grid-template-columns:1fr}
+  .product-visual{height:190px}
+  .tier-head{align-items:start;flex-direction:column}
+  .tier-head p{text-align:left}
+  .order-panel{padding:20px}
+  .order-actions .button{width:100%}
 }
 </style>
 </head>
-
 <body>
-<div class="top">
-  DIGITAL KEEPSAKES FOR THE FEELINGS THAT MATTER ♡
-</div>
+<div class="announcement">Thoughtful keepsakes · Made for every chapter of life</div>
 
 <header>
-  <a class="logo" href="#home">SAMARTS</a>
+  <a class="brand" href="#home" aria-label="Samarts home"><span class="sam">Sam</span><span class="arts">arts</span></a>
   <nav>
     <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#story">Our Story</a>
+    <a href="#collections">Collections</a>
+    <a href="#our-story">Our philosophy</a>
     <a href="#contact">Contact</a>
   </nav>
+  <a class="header-cta" href="#collections">Find a keepsake ↗</a>
 </header>
 
 <main>
 <section class="hero" id="home">
-  <div>
-    <div class="eyebrow">Little things. Lasting meaning.</div>
-    <h1>More than words.<br>A feeling. <span class="heart">♡</span></h1>
-    <p class="intro">
-      Thoughtful digital art for love, connection and the little moments
-      you wish you could keep forever.
-    </p>
-    <a class="btn" href="#shop">EXPLORE OUR COLLECTION →</a>
-  </div>
-
-  <div class="art">
-    <h2>A–Z of Us ♡</h2>
-    <p>Twenty-six letters. Our own little universe.</p>
-    <div class="letters">
-      <div>A — Always choosing you</div><div>N — Never perfect, learning</div>
-      <div>B — Best friend, always</div><div>O — Our story, unfolding</div>
-      <div>C — Comfort in your presence</div><div>P — Partnership</div>
-      <div>D — Different, but right</div><div>Q — Quiet moments</div>
-      <div>E — Everyday little reasons</div><div>R — Respect</div>
-      <div>F — Favourite person</div><div>S — Safe place</div>
-      <div>G — Growing together</div><div>T — Team</div>
-      <div>H — Home is how you feel</div><div>U — Understood</div>
-      <div>I — Incredible moments</div><div>V — Vulnerability</div>
-      <div>J — Joy in the ordinary</div><div>W — Wonder</div>
-      <div>K — Kindness</div><div>X — X marks our story</div>
-      <div>L — Laughter</div><div>Y — You, always</div>
-      <div>M — Memories</div><div>Z — Zero pretending</div>
+  <div class="hero-inner">
+    <div>
+      <div class="kicker">Small things. Deep meaning.</div>
+      <h1>For every age.<br>For every <em>feeling.</em></h1>
+      <p class="hero-copy">A thoughtful little corner for keepsakes that say what matters. From a child’s first big dream to a family milestone, a friendship, a celebration or a love that has grown over time.</p>
+      <div class="actions">
+        <a class="button" href="#collections">Explore the collections</a>
+        <a class="button secondary" href="#our-story">Our philosophy</a>
+      </div>
     </div>
-    <p>In all the little ways, it's you. ♡</p>
-  </div>
-</section>
-
-<section id="shop">
-  <div class="heading">
-    <div class="eyebrow">The collection</div>
-    <h2>Thoughtful Keepsakes</h2>
-    <p>Choose a design, make it yours, keep it close.</p>
-  </div>
-
-  <div class="products">
-    <article class="card">
-      <div class="preview">
-        <div class="mini">
-          <strong>A–Z of Us ♡</strong>
-          <small>Twenty-six letters.<br>One story.</small>
-        </div>
-      </div>
-      <h3>A–Z of Us</h3>
-      <p>Twenty-six little reminders of what makes your relationship special.</p>
-      <div class="price">₹399</div>
-      <a class="outline" href="#contact"
-         onclick="choose('A–Z of Us',399)">Enquire to order →</a>
-    </article>
-
-    <article class="card">
-      <div class="preview">
-        <div class="mini">
-          <strong>Our Story ♡</strong>
-          <small>Your names.<br>Your date.<br>Your story.</small>
-        </div>
-      </div>
-      <h3>A–Z of Us — Personalised</h3>
-      <p>Add names, a special date and a heartfelt message.</p>
-      <div class="price">₹699</div>
-      <a class="outline" href="#contact"
-         onclick="choose('Personalised A–Z of Us',699)">Customise yours →</a>
-    </article>
-
-    <article class="card">
-      <div class="preview">
-        <div class="mini">
-          <strong>The Little<br>Things</strong>
-          <small>Three prints.<br>One collection.</small>
-        </div>
-      </div>
-      <h3>The Little Things Bundle</h3>
-      <p>Three coordinated keepsakes for one meaningful collection.</p>
-      <div class="price">₹899</div>
-      <a class="outline" href="#contact"
-         onclick="choose('The Little Things Bundle',899)">Enquire to order →</a>
-    </article>
-  </div>
-</section>
-
-<section class="benefits">
-  <div>
-    <div class="heart">♡</div>
-    <h3>100% Digital</h3>
-    <p>Created for digital sharing and home printing.</p>
-  </div>
-  <div>
-    <div class="heart">✧</div>
-    <h3>Thoughtfully Designed</h3>
-    <p>Warm, minimal art with a personal feeling.</p>
-  </div>
-  <div>
-    <div class="heart">♡</div>
-    <h3>Made for Gifting</h3>
-    <p>A meaningful surprise for your favourite people.</p>
-  </div>
-</section>
-
-<section id="story">
-  <div class="story">
-    <div class="eyebrow">Our story</div>
-    <h2>Because feelings deserve a place.</h2>
-    <p>
-      At SAMARTS, we believe the smallest words can hold the biggest feelings.
-      Our digital keepsakes celebrate love, friendship and the moments that
-      make life yours.
-    </p>
-    <p>
-      Choose a design or request a personal touch.
-      Let's turn a feeling into something you can keep.
-    </p>
-    <a class="btn" href="#contact">LET'S CREATE SOMETHING MEANINGFUL</a>
-  </div>
-</section>
-
-<section id="contact" style="background:#efe2d5">
-  <div class="story">
-    <div class="eyebrow">Your story starts here</div>
-    <h2>Let's make it personal.</h2>
-
-    <p id="selected">
-      Choose a product above, then contact us to enquire about an order.
-    </p>
-
-    <a class="btn" id="whatsapp"
-       href="https://wa.me/917382549588?text=Hi%20SAMARTS!%20I%27m%20interested%20in%20your%20digital%20keepsakes."
-       target="_blank" rel="noopener">
-      CONTACT SAMARTS ON WHATSAPP →
-    </a>
-
-    <div class="payment">
-      <div class="eyebrow">Direct UPI payment</div>
-      <h3>Pay for your keepsake</h3>
-
-      <p class="note">
-        Select a product above first. Check the amount and recipient in your
-        UPI app before confirming payment.
-      </p>
-
-      <p class="payment-id">
-        <strong>UPI ID:</strong> 7382549588@ybl
-      </p>
-
-      <button class="btn" id="payUpi" type="button"
-              onclick="payByUpi()">
-        PAY ₹399 BY UPI →
-      </button>
-
-      <p class="note">
-        After paying, return to WhatsApp and send your transaction reference.
-        Your order is confirmed only after we verify payment in our PhonePe
-        transaction history.
-      </p>
-
-      <a class="outline" id="confirmWhatsApp"
-         href="https://wa.me/917382549588?text=Hi%20SAMARTS!%20I%20would%20like%20to%20confirm%20my%20order."
-         target="_blank" rel="noopener">
-        CONFIRM ORDER ON WHATSAPP →
-      </a>
+    <div class="hero-art" aria-label="Decorative keepsake preview">
+      <div class="art-frame"><div class="art-inner">
+        <div class="art-small">A little piece of your story</div>
+        <div class="art-title">The things<br>we keep</div>
+        <div class="art-flower">✳</div>
+        <div class="art-sub">A memory, a feeling, a person — made into something you can hold close.</div>
+        <div class="art-bottom">Samarts · Digital keepsakes</div>
+      </div></div>
+      <div class="floating-note">Made with meaning ♡</div>
     </div>
   </div>
 </section>
-</main>
 
-<footer>
-  <div class="logo">SAMARTS ♡</div>
-  <p>Made for the little things that make life beautiful.</p>
-  <p>Digital products only · Personal-use licence · No physical item shipped</p>
-</footer>
+<div class="trust-row">
+  <span>✳ Thoughtfully designed</span><span>✳ Personalised options</span><span>✳ Digital delivery</span><span>✳ Made for gifting</span>
+</div>
 
-<script>
-let selectedProduct = {name:'', price:399};
+<section class="content-section" id="audiences">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">A keepsake for your kind of story</div>
+      <h2>Every chapter deserves<br>a little something special.</h2>
+      <p>For the little ones discovering the world, the young ones finding their way, and the grown-ups collecting memories along the way.</p>
+    </div>
+    <div class="audience">
+      <article class="audience-card"><div class="symbol">✳</div><h3>Little wonders</h3><p>Playful affirmations, name prints and gentle encouragement for ages 5–12.</p></article>
+      <article class="audience-card"><div class="symbol">♡</div><h3>Growing up</h3><p>Friendship, school memories, birthdays and first big milestones.</p></article>
+      <article class="audience-card"><div class="symbol">∞</div><h3>Love & belonging</h3><p>Couples, family, home, anniversaries and the people who feel like home.</p></article>
+      <article class="audience-card"><div class="symbol">❋</div><h3>A life well lived</h3><p>Meaningful milestones, thoughtful gifts and memories worth keeping at any age.</p></article>
+    </div>
+  </div>
+</section>
 
-function choose(product, price) {
-  selectedProduct = {name:product, price:price};
+<section class="content-section catalog" id="collections">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">The Samarts collections</div>
+      <h2>Find the feeling.<br>We’ll help with the rest.</h2>
+      <p>Choose a ready-made digital keepsake or make it personal. Select a product to see your order total and continue through UPI or WhatsApp.</p>
+    </div>
 
-  document.getElementById('selected').textContent =
-    'Selected: ' + product + ' — ₹' + price +
-    '. Pay using UPI below, then send us your transaction reference on WhatsApp.';
+    <div class="tier">
+      <div class="tier-head"><div><div class="kicker">01 · Little gestures</div><h3>Under ₹399</h3></div><p>Small, thoughtful gifts for everyday moments.</p></div>
+      <div class="product-grid">
+        <article class="product">
+          <div class="product-visual"><div class="print"><span class="print-kicker">A little reminder</span><strong>You are<br>magic.</strong><small>Keep being you</small></div></div>
+          <div class="product-body"><div class="product-tag">Kids · Encouragement</div><h4>Little Wonder Print</h4><p>A cheerful digital art print to celebrate a child’s curiosity, courage and imagination.</p><div class="product-bottom"><span class="price">₹199</span><button class="select-btn" onclick="chooseProduct('Little Wonder Print',199,this)">Choose</button></div></div>
+        </article>
+        <article class="product">
+          <div class="product-visual"><div class="print"><span class="print-kicker">A note to self</span><strong>Grow<br>gently.</strong><small>One day at a time</small></div></div>
+          <div class="product-body"><div class="product-tag">Teens · Adults</div><h4>Grow Gently Print</h4><p>A calm, minimal affirmation print for a bedroom, study corner or personal space.</p><div class="product-bottom"><span class="price">₹299</span><button class="select-btn" onclick="chooseProduct('Grow Gently Print',299,this)">Choose</button></div></div>
+        </article>
+        <article class="product custom-card">
+          <div class="product-visual"><div class="print"><span class="print-kicker">Made for you</span><strong>Your<br>name ♡</strong><small>A personal touch</small></div></div>
+          <div class="product-body"><div class="product-tag">Custom creation</div><h4>Your Little Keepsake</h4><p>Request a name, short message or simple personal detail in a ready-made style.</p><div class="product-bottom"><span class="price">₹399</span><button class="select-btn" onclick="chooseProduct('Your Little Keepsake — customised',399,this)">Customise</button></div></div>
+        </article>
+      </div>
+    </div>
 
-  document.getElementById('payUpi').textContent =
-    'PAY ₹' + price + ' BY UPI →';
+    <div class="tier">
+      <div class="tier-head"><div><div class="kicker">02 · Meaningful moments</div><h3>₹400–₹699</h3></div><p>For the people, places and memories you hold close.</p></div>
+      <div class="product-grid">
+        <article class="product">
+          <div class="product-visual"><div class="print"><span class="print-kicker">Our little world</span><strong>A–Z<br>of Us</strong><small>Twenty-six letters · one story</small></div></div>
+          <div class="product-body"><div class="product-tag">Couples · Friendship</div><h4>A–Z of Us</h4><p>Twenty-six thoughtful prompts celebrating a relationship, friendship or family bond.</p><div class="product-bottom"><span class="price">₹499</span><button class="select-btn" onclick="chooseProduct('A–Z of Us',499,this)">Choose</button></div></div>
+        </article>
+        <article class="product">
+          <div class="product-visual"><div class="print"><span class="print-kicker">A place to belong</span><strong>Our<br>Home</strong><small>Love lives here</small></div></div>
+          <div class="product-body"><div class="product-tag">Family · Home</div><h4>Our Home Print</h4><p>A timeless home-themed print to celebrate your family, space or new beginning.</p><div class="product-bottom"><span class="price">₹599</span><button class="select-btn" onclick="chooseProduct('Our Home Print',599,this)">Choose</button></div></div>
+        </article>
+        <article class="product custom-card">
+          <div class="product-visual"><div class="print"><span class="print-kicker">Your story</span><strong>Made<br>personal</strong><small>Names · date · words</small></div></div>
+          <div class="product-body"><div class="product-tag">Custom creation</div><h4>Personalised Keepsake</h4><p>Add names, a special date and a short message to a design from this collection.</p><div class="product-bottom"><span class="price">₹699</span><button class="select-btn" onclick="chooseProduct('Personalised Keepsake',699,this)">Customise</button></div></div>
+        </article>
+      </div>
+    </div>
 
-  const message = 'Hi SAMARTS! I would like to order ' +
-    product + ' for ₹' + price +
-    '. I will send my payment reference after paying.';
+    <div class="tier">
+      <div class="tier-head"><div><div class="kicker">03 · Signature keepsakes</div><h3>₹700–₹999</h3></div><p>A little more detail for a once-in-a-while feeling.</p></div>
+      <div class="product-grid">
+        <article class="product">
+          <div class="product-visual"><div class="print"><span class="print-kicker">The things that matter</span><strong>Little<br>Things</strong><small>Three prints · one collection</small></div></div>
+          <div class="product-body"><div class="product-tag">Gift set · Three prints</div><h4>The Little Things Bundle</h4><p>Three coordinated prints designed to sit beautifully together or be gifted separately.</p><div class="product-bottom"><span class="price">₹899</span><button class="select-btn" onclick="chooseProduct('The Little Things Bundle',899,this)">Choose</button></div></div>
+        </article>
+        <article class="product">
+          <div class="product-visual"><div class="print"><span class="print-kicker">A life in moments</span><strong>Your<br>Timeline</strong><small>Then · now · always</small></div></div>
+          <div class="product-body"><div class="product-tag">Milestones · Memories</div><h4>Our Story Timeline</h4><p>A polished milestone print for an anniversary, birthday, family or personal journey.</p><div class="product-bottom"><span class="price">₹799</span><button class="select-btn" onclick="chooseProduct('Our Story Timeline',799,this)">Choose</button></div></div>
+        </article>
+        <article class="product custom-card">
+          <div class="product-visual"><div class="print"><span class="print-kicker">One of a kind</span><strong>Your<br>Story ♡</strong><small>Designed together</small></div></div>
+          <div class="product-body"><div class="product-tag">Custom creation</div><h4>Signature Custom Set</h4><p>Discuss a coordinated set with your preferred names, message, occasion and visual style.</p><div class="product-bottom"><span class="price">₹999</span><button class="select-btn" onclick="chooseProduct('Signature Custom Set',999,this)">Customise</button></div></div>
+        </article>
+      </div>
+    </div>
 
-  const whatsappLink = 'https://wa.me/917382549588?text=' +
-    encodeURIComponent(message);
-
-  document.getElementById('confirmWhatsApp').href = whatsappLink;
-  document.getElementById('whatsapp').href = whatsappLink;
-}
-
-function payByUpi() {
-  const params = new URLSearchParams({
-    pa: '7382549588@ybl',
-    pn: 'SAMARTS',
-    am: selectedProduct.price.toFixed(2),
-    cu: 'INR',
-    tn: 'SAMARTS - ' +
-      (selectedProduct.name || 'Digital Keepsake')
-  });
-
-  window.location.href = 'upi://pay?' + params.toString();
-}
-</script>
-</body>
-</html>
+    <div class="order-panel" id="order">
+      <div>
+        <div class="kicker">Your order</div>
+        <h3>A keepsake, chosen by you.</h3>
+        <p>Select any design above. The chosen item and amount will appear here, ready for UPI payment or a WhatsApp conversation if you’d like to discuss custom details.</p>
+        <div class="selected-summary">
+          <strong id="selectedName">Nothing selected just yet</strong>
+          <span class="small-note" id="selectedDescription">Choose a product above to begin.</span>
+          <div class="order-total" id="selectedPrice">—</div>
+        </div>
+      </div>
+      <div>
+        <div class="kicker">Simple checkout</div>
+        <p><strong>UPI ID</strong><br><span id="upiText">7382549588@ybl</span></p>
+        <div class="order-actions">
+          <button class="button" id="payButton" type="button" onclick="payByUpi()">Pay by UPI</button>
+          <button class="button secondary" type="button" onclick="messageOnWhatsApp()">Ask / order on WhatsApp</button>
+        </div>
+        <p class="small-note">Your UPI app should open with the selected amount. Please check the recipient and amount before paying. Custom requests may need confirmation before payment.</p>
+        <p class="small-note">Digital delivery happens after payment is verified. A payment screenshot alone is not confirmation; we check 
