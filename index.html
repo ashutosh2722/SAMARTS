@@ -36,9 +36,7 @@
     }
 
     button, input, select { font: inherit; }
-
     button, a { -webkit-tap-highlight-color: transparent; }
-
     a { color: inherit; text-decoration: none; }
 
     .announcement {
@@ -149,9 +147,7 @@
       color: white;
     }
 
-    .primary-btn:hover {
-      background: var(--burgundy-dark);
-    }
+    .primary-btn:hover { background: var(--burgundy-dark); }
 
     .secondary-btn {
       background: transparent;
@@ -496,12 +492,18 @@
       align-items: center;
     }
 
+    /* Use the SAME SamArts wordmark throughout the site. */
     .story-mark {
-      font-family: "Cormorant Garamond", serif;
-      color: var(--burgundy);
-      font-size: 100px;
-      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      min-width: 0;
+    }
+
+    .story-mark .logo {
+      font-size: clamp(42px, 6vw, 68px);
+      letter-spacing: -2px;
     }
 
     .story-copy {
@@ -609,6 +611,8 @@
 
     footer .logo { color: #f6eee2; }
 
+    footer .logo span { color: var(--gold); }
+
     footer p {
       margin: 10px 0 0;
       color: #d8c8bc;
@@ -652,16 +656,43 @@
       .trust-strip strong { font-size: 10px; }
 
       section.catalog { padding: 55px 5%; }
-      .section-head { align-items: start; flex-direction: column; }
-      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px 13px; }
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px 13px;
+      }
+
       .product-art { padding: 12px; }
-      .art-card { width: 78%; height: 82%; border-width: 5px; padding: 8px; }
-      .art-card .art-title { font-size: clamp(23px, 6vw, 34px); }
-      .art-card .art-kicker { font-size: 6px; letter-spacing: 1px; }
+
+      .art-card {
+        width: 78%;
+        height: 82%;
+        border-width: 5px;
+        padding: 8px;
+      }
+
+      .art-card .art-title {
+        font-size: clamp(23px, 6vw, 34px);
+      }
+
+      .art-card .art-kicker {
+        font-size: 6px;
+        letter-spacing: 1px;
+      }
+
       .art-card .art-sub { font-size: 9px; }
       .product-title { font-size: 22px; }
       .product-description { font-size: 10px; }
-      .product-bottom { align-items: start; flex-direction: column; }
+
+      .product-bottom {
+        align-items: start;
+        flex-direction: column;
+      }
+
       .add-btn { width: 100%; }
 
       .story {
@@ -670,14 +701,20 @@
         gap: 10px;
       }
 
-      .story-mark { font-size: 70px; }
+      .story-mark .logo { font-size: 48px; }
       .checkout { margin: 50px auto; }
+
       .checkout-buttons { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 360px) {
       .product-grid { grid-template-columns: 1fr; }
-      .product-bottom { flex-direction: row; align-items: center; }
+
+      .product-bottom {
+        flex-direction: row;
+        align-items: center;
+      }
+
       .add-btn { width: auto; }
       nav { gap: 8px; }
     }
@@ -685,7 +722,9 @@
 </head>
 
 <body>
-  <div class="announcement">Thoughtfully made keepsakes · Made personal, made meaningful</div>
+  <div class="announcement">
+    Thoughtfully made keepsakes · Made personal, made meaningful
+  </div>
 
   <header>
     <a class="logo" href="#" aria-label="SamArts home">Sam<span>Arts</span></a>
@@ -709,7 +748,9 @@
           <a class="primary-btn" href="#collection">Explore the collection ↗</a>
           <a class="secondary-btn" href="#story">Discover SamArts</a>
         </div>
-        <div class="hero-note">PERSONALISED DETAILS · MEANINGFUL DESIGN · MADE FOR YOU</div>
+        <div class="hero-note">
+          PERSONALISED DETAILS · MEANINGFUL DESIGN · MADE FOR YOU
+        </div>
       </div>
 
       <div class="hero-art" aria-label="Illustration of a personalised keepsake">
@@ -726,9 +767,18 @@
     </section>
 
     <div class="trust-strip">
-      <div><strong>Made personal</strong> Your story, your details</div>
-      <div><strong>Thoughtfully designed</strong> A considered aesthetic</div>
-      <div><strong>Made to gift</strong> For your favourite people</div>
+      <div>
+        <strong>Made personal</strong>
+        Your story, your details
+      </div>
+      <div>
+        <strong>Thoughtfully designed</strong>
+        A considered aesthetic
+      </div>
+      <div>
+        <strong>Made to gift</strong>
+        For your favourite people
+      </div>
     </div>
 
     <section class="catalog" id="collection">
@@ -751,7 +801,10 @@
     </section>
 
     <section class="story" id="story">
-      <div class="story-mark">S<span style="color:#b69a65;font-style:italic">.</span>A</div>
+      <div class="story-mark">
+        <a class="logo" href="#" aria-label="SamArts home">Sam<span>Arts</span></a>
+      </div>
+
       <div>
         <div class="eyebrow">A little about us</div>
         <h2>Not just a gift.<br>A feeling, kept.</h2>
@@ -780,28 +833,20 @@
         <form id="orderForm">
           <div class="field">
             <label for="customerName">Your name *</label>
-            <input id="customerName" name="customerName" required maxlength="80" placeholder="Enter your full name">
+            <input id="customerName" name="customerName" required maxlength="80"
+              placeholder="Enter your full name">
           </div>
 
           <div class="field">
             <label for="customerPhone">WhatsApp number *</label>
-            <input id="customerPhone" name="customerPhone" required type="tel" inputmode="tel" maxlength="16" placeholder="Your contact number">
+            <input id="customerPhone" name="customerPhone" required type="tel"
+              inputmode="tel" maxlength="16" placeholder="Your contact number">
           </div>
 
           <div class="field">
             <label for="personalisation">Personalisation details *</label>
-            <input id="personalisation" name="personalisation" required maxlength="500" placeholder="Names, dates, memories or a short note">
+            <input id="personalisation" name="personalisation" required maxlength="500"
+              placeholder="Names, dates, memories or a short note">
           </div>
 
-          <div class="field">
-            <label for="giftNote">Gift message (optional)</label>
-            <input id="giftNote" name="giftNote" maxlength="300" placeholder="Add a little message">
-          </div>
-
-          <div class="order-box">
-            <div class="eyebrow">Your selection</div>
-            <div id="orderItems" style="margin-top:10px">
-              <div class="order-row"><span>No items selected yet</span><span>₹0</span></div>
-            </div>
-            <div class="order-row order-total">
-              <span>Tota
+          <div cl
