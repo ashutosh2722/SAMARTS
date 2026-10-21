@@ -10,7 +10,7 @@
 <style>
 :root{--cream:#f8f4ed;--paper:#fffdf9;--wine:#642e3b;--dark:#42202a;--gold:#b69a65;--ink:#292522;--muted:#77716b;--line:#e8dfd2}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
@@ -45,13 +45,11 @@ h1 em{color:var(--wine)}
 .filter{padding:10px 13px;border:1px solid var(--line);background:transparent;font-size:11px;cursor:pointer}
 .filter.active,.filter:hover{background:var(--wine);color:white}
 .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 18px}
-.product-art{aspect-ratio:4/4.5;display:grid;place-items:center;position:relative;overflow:hidden;padding:15px;background:var(--bg)}
-.art-card{width:72%;height:82%;background:var(--paper-art);border:7px solid var(--frame);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10px;color:var(--artink);box-shadow:0 12px 30px #3c2d201a;transform:rotate(-2deg);z-index:1}
-.badge{position:absolute;top:12px;left:12px;background:#fffdf0e8;color:var(--wine);padding:7px;font-size:8px;text-transform:uppercase;letter-spacing:1px}
-.kicker{font-size:7px;letter-spacing:2px;color:var(--frame);margin-bottom:14px}
-.art-title{font:500 clamp(24px,3vw,40px)/.98 "Cormorant Garamond",serif}
-.art-sub{font:italic 10px "Playfair Display",serif;margin-top:13px}
-.product-info{padding-top:15px}
+.product-art{aspect-ratio:4/3;position:relative;overflow:hidden;background:#e7d5c7}
+.product-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.product-card:hover .product-art img{transform:scale(1.035)}
+.badge{position:absolute;top:12px;left:12px;background:#fffdf0e8;color:var(--wine);padding:7px;font-size:8px;text-transform:uppercase;letter-spacing:1px;z-index:1}
+.product-info{padding-top:13px}
 .category{font-size:9px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}
 .product-title{font:600 25px "Cormorant Garamond",serif;margin:7px 0}
 .description{font-size:11px;color:var(--muted);line-height:1.6;min-height:35px}
@@ -80,18 +78,28 @@ footer .logo{color:#f6eee2}
 footer p{font-size:10px;color:#d8c8bc}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--dark);color:white;padding:13px 18px;display:none;z-index:5;font-size:12px}
 @media(max-width:760px){
-header{padding:15px 5%}.logo{font-size:30px}nav{gap:10px;font-size:10px}
-nav .optional{display:none}.hero{grid-template-columns:1fr;padding:42px 5%;gap:28px}
-.hero-art{min-height:330px}.trust{padding:17px 2%;font-size:8px}.trust strong{font-size:10px}
-.catalog{padding:48px 5%}.section-head{align-items:start;flex-direction:column}
+header{padding:15px 5%}
+.logo{font-size:30px}
+nav{gap:10px;font-size:10px}
+nav .optional{display:none}
+.hero{grid-template-columns:1fr;padding:42px 5%;gap:28px}
+.hero-art{min-height:330px}
+.trust{padding:17px 2%;font-size:8px}
+.trust strong{font-size:10px}
+.catalog{padding:48px 5%}
+.section-head{align-items:start;flex-direction:column}
 .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 12px}
-.art-card{width:78%;border-width:5px}.art-title{font-size:clamp(22px,6vw,32px)}
-.product-title{font-size:21px}.product-bottom{align-items:start;flex-direction:column}
-.add{width:100%}.story{grid-template-columns:1fr;padding:40px 7%;gap:8px}
-.story-mark .logo{font-size:48px}.checkout-buttons{grid-template-columns:1fr}
+.product-title{font-size:21px}
+.product-bottom{align-items:start;flex-direction:column}
+.add{width:100%}
+.story{grid-template-columns:1fr;padding:40px 7%;gap:8px}
+.story-mark .logo{font-size:48px}
+.checkout-buttons{grid-template-columns:1fr}
 }
 @media(max-width:360px){
-.product-grid{grid-template-columns:1fr}.product-bottom{flex-direction:row}.add{width:auto}
+.product-grid{grid-template-columns:1fr}
+.product-bottom{flex-direction:row}
+.add{width:auto}
 }
 </style>
 </head>
@@ -118,11 +126,7 @@ nav .optional{display:none}.hero{grid-template-columns:1fr;padding:42px 5%;gap:2
 <p class="fine">PERSONALISED DETAILS · MEANINGFUL DESIGN · MADE FOR YOU</p>
 </div>
 <div class="hero-art">
-<div class="frame"><div class="frame-inner">
-<small>OUR LITTLE UNIVERSE</small>
-<strong>A–Z<br>of Us</strong>
-<small>the story only we know</small>
-</div></div>
+<div class="frame"><div class="frame-inner"><small>OUR LITTLE UNIVERSE</small><strong>A–Z<br>of Us</strong><small>the story only we know</small></div></div>
 <div class="floating">A little piece of forever.</div>
 </div>
 </section>
@@ -136,7 +140,7 @@ nav .optional{display:none}.hero{grid-template-columns:1fr;padding:42px 5%;gap:2
 <div><div class="eyebrow">The SamArts collection</div><h2>Little things.<br>Lasting meaning.</h2></div>
 <p>Find the keepsake that feels like you.</p>
 </div>
-<div class="filters">
+<div class="filters" aria-label="Filter products">
 <button class="filter active" data-filter="all">All pieces</button>
 <button class="filter" data-filter="399">Under ₹399</button>
 <button class="filter" data-filter="699">₹400–₹699</button>
@@ -159,10 +163,22 @@ nav .optional{display:none}.hero{grid-template-columns:1fr;padding:42px 5%;gap:2
 <h2>Let's make it yours.</h2>
 <p class="intro">Select your keepsakes above, then share your details below. We'll confirm your personalisation and order on WhatsApp.</p>
 <form id="orderForm">
-<div class="field"><label for="customerName">Your name *</label><input id="customerName" required maxlength="80" placeholder="Enter your full name"></div>
-<div class="field"><label for="customerPhone">WhatsApp number *</label><input id="customerPhone" required type="tel" inputmode="tel" maxlength="16" placeholder="Your contact number"></div>
-<div class="field"><label for="personalisation">Personalisation details *</label><input id="personalisation" required maxlength="500" placeholder="Names, dates, memories or a short note"></div>
-<div class="field"><label for="giftNote">Gift note (optional)</label><input id="giftNote" maxlength="300" placeholder="A message for the recipient"></div>
+<div class="field">
+<label for="customerName">Your name *</label>
+<input id="customerName" required maxlength="80" placeholder="Enter your full name">
+</div>
+<div class="field">
+<label for="customerPhone">WhatsApp number *</label>
+<input id="customerPhone" required type="tel" inputmode="tel" maxlength="16" placeholder="Your contact number">
+</div>
+<div class="field">
+<label for="personalisation">Personalisation details *</label>
+<input id="personalisation" required maxlength="500" placeholder="Names, dates, memories or a short note">
+</div>
+<div class="field">
+<label for="giftNote">Gift note (optional)</label>
+<input id="giftNote" maxlength="300" placeholder="A message for the recipient">
+</div>
 <div class="order" id="orderSummary">
 <div class="row"><span>No pieces selected yet</span><span>₹0</span></div>
 <div class="row total"><span>Total</span><span>₹0</span></div>
@@ -183,16 +199,17 @@ nav .optional{display:none}.hero{grid-template-columns:1fr;padding:42px 5%;gap:2
 <div class="toast" id="toast" role="status"></div>
 <script>
 (function(){
+"use strict";
 const products=[
-{id:"note",name:"A Little Note",price:199,cat:"Personal keepsake",desc:"A small note for a feeling too big for words.",kick:"A NOTE FOR YOU",title:"Just<br>because",sub:"a little reminder",badge:"A thoughtful start",bg:"#e7d5c7",paper:"#fff9f0",frame:"#b69a65",ink:"#642e3b"},
-{id:"date",name:"Our Date",price:299,cat:"Love & milestones",desc:"Turn your special date into a timeless keepsake.",kick:"THE DAY IT BEGAN",title:"Our<br>day",sub:"written in the stars",badge:"Bestseller",bg:"#e9d9d6",paper:"#fff8f5",frame:"#b9897f",ink:"#642e3b"},
-{id:"reminder",name:"Tiny Reminder",price:399,cat:"Everyday love",desc:"A gentle reminder of the person who matters.",kick:"WHENEVER YOU NEED IT",title:"You are<br>loved",sub:"always, in all ways",badge:"Made for you",bg:"#d9dfd2",paper:"#fbfff7",frame:"#a9ad8b",ink:"#455342"},
-{id:"az",name:"A–Z of Us",price:399,cat:"Our story",desc:"The little things, from A to Z, that make you us.",kick:"OUR LITTLE UNIVERSE",title:"A–Z<br>of Us",sub:"the story only we know",badge:"Popular",bg:"#e8dcc5",paper:"#fff9ec",frame:"#b69a65",ink:"#642e3b"},
-{id:"personalaz",name:"Personalised A–Z of Us",price:699,cat:"Personalised art",desc:"A custom alphabet of your memories and inside jokes.",kick:"MADE JUST FOR YOU",title:"A–Z<br>of Us",sub:"your memories, your meaning",badge:"Personalised",bg:"#dfd1c5",paper:"#fff9f0",frame:"#b69a65",ink:"#642e3b"},
-{id:"things",name:"The Little Things",price:599,cat:"Memory keepsake",desc:"Celebrate the tiny details that mean everything.",kick:"IT WAS ALWAYS THE LITTLE THINGS",title:"Little<br>things",sub:"that mean everything",badge:"Meaningful",bg:"#d7dfe0",paper:"#f9ffff",frame:"#9eafb0",ink:"#42575a"},
-{id:"map",name:"Our Memory Map",price:799,cat:"Custom keepsake",desc:"A place, a journey, a memory you can hold on to.",kick:"HERE, WITH YOU",title:"Our<br>place",sub:"a map of us",badge:"Custom made",bg:"#e4d9c7",paper:"#fff9ef",frame:"#b69a65",ink:"#642e3b"},
-{id:"bundle",name:"The Little Things Bundle",price:899,cat:"Gift bundle",desc:"A thoughtful collection of little things, all together.",kick:"A LITTLE OF EVERYTHING",title:"The<br>little things",sub:"a keepsake bundle",badge:"Gift bundle",bg:"#e4d4d9",paper:"#fff7f8",frame:"#b58a98",ink:"#642e3b"},
-{id:"forever",name:"Forever, Us",price:999,cat:"Signature keepsake",desc:"A special keepsake for a story that keeps unfolding.",kick:"AND SO IT GOES",title:"Forever,<br>Us",sub:"our story continues",badge:"Signature",bg:"#d9c7b6",paper:"#fff9ef",frame:"#b69a65",ink:"#642e3b"}
+{id:"note",name:"A Little Note",price:199,cat:"Personal keepsake",desc:"A small note for a feeling too big for words.",img:"a-little-note.jpg",badge:"A thoughtful start"},
+{id:"date",name:"Our Date",price:299,cat:"Love & milestones",desc:"Turn your special date into a timeless keepsake.",img:"our-date.jpg",badge:"Bestseller"},
+{id:"reminder",name:"Tiny Reminder",price:399,cat:"Everyday love",desc:"A gentle reminder of the person who matters.",img:"tiny-reminder.jpg",badge:"Made for you"},
+{id:"az",name:"A–Z of Us",price:399,cat:"Our story",desc:"The little things, from A to Z, that make you us.",img:"a-z-of-us.jpg",badge:"Popular"},
+{id:"personalaz",name:"Personalised A–Z of Us",price:699,cat:"Personalised art",desc:"A custom alphabet of your memories and inside jokes.",img:"personalised-a-z-of-us.jpg",badge:"Personalised"},
+{id:"things",name:"The Little Things",price:599,cat:"Memory keepsake",desc:"Celebrate the tiny details that mean everything.",img:"the-little-things.jpg",badge:"Meaningful"},
+{id:"map",name:"Our Memory Map",price:799,cat:"Custom keepsake",desc:"A place, a journey, a memory you can hold on to.",img:"our-memory-map.jpg",badge:"Custom made"},
+{id:"bundle",name:"The Little Things Bundle",price:899,cat:"Gift bundle",desc:"A thoughtful collection of little things, all together.",img:"the-little-things-bundle.jpg",badge:"Gift bundle"},
+{id:"forever",name:"Forever, Us",price:999,cat:"Signature keepsake",desc:"A special keepsake for a story that keeps unfolding.",img:"forever-us.jpg",badge:"Signature"}
 ];
 const selected=new Set();
 const grid=document.getElementById("productGrid");
@@ -200,63 +217,97 @@ const summary=document.getElementById("orderSummary");
 const toast=document.getElementById("toast");
 const money=n=>"₹"+n.toLocaleString("en-IN");
 
-function notify(s){
-toast.textContent=s;
+function notify(message){
+toast.textContent=message;
 toast.style.display="block";
-clearTimeout(notify.t);
-notify.t=setTimeout(()=>toast.style.display="none",2600);
+clearTimeout(notify.timer);
+notify.timer=setTimeout(()=>toast.style.display="none",2600);
 }
+
 function render(filter="all"){
-const list=products.filter(p=>filter==="all"||(filter==="399"&&p.price<400)||(filter==="699"&&p.price>=400&&p.price<=699)||(filter==="999"&&p.price>=700&&p.price<=999));
+const list=products.filter(p=>
+filter==="all"||
+(filter==="399"&&p.price<400)||
+(filter==="699"&&p.price>=400&&p.price<=699)||
+(filter==="999"&&p.price>=700&&p.price<=999)
+);
 grid.innerHTML=list.map(p=>`
 <article class="product-card">
-<div class="product-art" style="--bg:${p.bg}">
+<div class="product-art">
 <span class="badge">${p.badge}</span>
-<div class="art-card" style="--paper-art:${p.paper};--frame:${p.frame};--artink:${p.ink}">
-<div class="kicker">${p.kick}</div><div class="art-title">${p.title}</div><div class="art-sub">${p.sub}</div>
-</div></div>
+<img src="${p.img}" alt="${p.name} keepsake concept photo" loading="lazy"
+onerror="this.style.display='none';this.parentElement.style.background='#e9dfd0';">
+</div>
 <div class="product-info">
 <div class="category">${p.cat}</div>
 <h3 class="product-title">${p.name}</h3>
 <p class="description">${p.desc}</p>
-<div class="product-bottom"><span class="price">${money(p.price)}</span>
+<div class="product-bottom">
+<span class="price">${money(p.price)}</span>
 <button class="add ${selected.has(p.id)?"selected":""}" data-id="${p.id}">${selected.has(p.id)?"✓ Added":"Add to order"}</button>
-</div></div></article>`).join("");
+</div>
+</div>
+</article>`).join("");
 }
+
 function update(){
 const chosen=products.filter(p=>selected.has(p.id));
-const sum=chosen.reduce((a,p)=>a+p.price,0);
-summary.innerHTML=(chosen.length?chosen.map(p=>`<div class="row"><span>${p.name}</span><span>${money(p.price)}</span></div>`).join(""):'<div class="row"><span>No pieces selected yet</span><span>₹0</span></div>')+`<div class="row total"><span>Total</span><span>${money(sum)}</span></div>`;
+const sum=chosen.reduce((total,p)=>total+p.price,0);
+summary.innerHTML=(chosen.length?
+chosen.map(p=>`<div class="row"><span>${p.name}</span><span>${money(p.price)}</span></div>`).join("") :
+'<div class="row"><span>No pieces selected yet</span><span>₹0</span></div>')+
+`<div class="row total"><span>Total</span><span>${money(sum)}</span></div>`;
 }
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
-document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));
-render(b.dataset.filter);
-}));
-grid.addEventListener("click",e=>{
-const b=e.target.closest("[data-id]");
-if(!b)return;
-selected.has(b.dataset.id)?selected.delete(b.dataset.id):selected.add(b.dataset.id);
+
+document.querySelectorAll(".filter").forEach(button=>{
+button.addEventListener("click",()=>{
+document.querySelectorAll(".filter").forEach(item=>item.classList.toggle("active",item===button));
+render(button.dataset.filter);
+});
+});
+
+grid.addEventListener("click",event=>{
+const button=event.target.closest("[data-id]");
+if(!button)return;
+selected.has(button.dataset.id)?selected.delete(button.dataset.id):selected.add(button.dataset.id);
 render(document.querySelector(".filter.active").dataset.filter);
 update();
 });
+
 document.getElementById("payButton").addEventListener("click",()=>{
 const chosen=products.filter(p=>selected.has(p.id));
 if(!chosen.length){notify("Please add at least one piece first.");return;}
-const amount=chosen.reduce((s,p)=>s+p.price,0);
+const amount=chosen.reduce((sum,p)=>sum+p.price,0);
 location.href="upi://pay?pa=7382549588@ybl&pn=SamArts&am="+amount+"&cu=INR&tn="+encodeURIComponent("SamArts order");
 });
-document.getElementById("orderForm").addEventListener("submit",e=>{
-e.preventDefault();
+
+document.getElementById("orderForm").addEventListener("submit",event=>{
+event.preventDefault();
 const chosen=products.filter(p=>selected.has(p.id));
-if(!chosen.length){notify("Please add at least one piece first.");document.getElementById("collection").scrollIntoView();return;}
+if(!chosen.length){
+notify("Please add at least one piece first.");
+document.getElementById("collection").scrollIntoView();
+return;
+}
 const name=document.getElementById("customerName").value.trim();
 const phone=document.getElementById("customerPhone").value.trim();
 const details=document.getElementById("personalisation").value.trim();
 const gift=document.getElementById("giftNote").value.trim();
-const amount=chosen.reduce((s,p)=>s+p.price,0);
-const msg=["Hello SamArts! I'd like to place an order.","","Name: "+name,"WhatsApp: "+phone,"Items:",...chosen.map(p=>"- "+p.name+" — "+money(p.price)),"","Total: "+money(amount),"Personalisation: "+details,"Gift note: "+(gift||"None")].join("\n");
-window.open("https://wa.me/917382549588?text="+encodeURIComponent(msg),"_blank","noopener");
+const amount=chosen.reduce((sum,p)=>sum+p.price,0);
+const message=[
+"Hello SamArts! I'd like to place an order.","",
+"Name: "+name,
+"WhatsApp: "+phone,
+"Items:",
+...chosen.map(p=>"- "+p.name+" — "+money(p.price)),
+"",
+"Total: "+money(amount),
+"Personalisation: "+details,
+"Gift note: "+(gift||"None")
+].join("\n");
+window.open("https://wa.me/917382549588?text="+encodeURIComponent(message),"_blank");
 });
+
 render();
 update();
 })();
