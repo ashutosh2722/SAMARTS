@@ -2,734 +2,702 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#faf7f2">
-  <title>SamArts — Thoughtful Gifts, Made Personal</title>
-  <meta name="description" content="Discover thoughtful, personalised gifts from SamArts. Little things, lasting memories.">
-
-  <style>
-    :root {
-      --ivory: #faf7f2;
-      --paper: #fffdf9;
-      --burgundy: #702b3a;
-      --burgundy-dark: #4b1b27;
-      --gold: #b99a62;
-      --ink: #292321;
-      --muted: #776d67;
-      --line: #e9dfd5;
-      --shadow: 0 12px 35px rgba(66, 39, 35, 0.08);
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
-
-    body {
-      margin: 0;
-      background: var(--ivory);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-    }
-
-    button, input, textarea, select { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    a { color: inherit; text-decoration: none; }
-
-    button { cursor: pointer; }
-
-    .announcement {
-      padding: 8px 16px;
-      text-align: center;
-      background: var(--burgundy-dark);
-      color: #fff8ed;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 14px 5%;
-      background: rgba(250, 247, 242, 0.97);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-    }
-
-    .brand {
-      display: flex;
-      align-items: baseline;
-      gap: 5px;
-      white-space: nowrap;
-      font-size: 27px;
-      letter-spacing: -1px;
-    }
-
-    .brand-sam {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: normal;
-      color: var(--burgundy);
-    }
-
-    .brand-arts {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 22px;
-      font-weight: 300;
-      letter-spacing: 2px;
-      color: var(--gold);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .icon-button {
-      min-width: 43px;
-      min-height: 43px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      border: 1px solid var(--line);
-      border-radius: 50px;
-      background: var(--paper);
-      color: var(--burgundy);
-      font-size: 21px;
-    }
-
-    .cart-count {
-      display: inline-flex;
-      min-width: 21px;
-      height: 21px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 5px;
-      border-radius: 20px;
-      background: var(--burgundy);
-      color: white;
-      font-size: 11px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 220px minmax(0, 1fr);
-      max-width: 1450px;
-      margin: auto;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 80px;
-      align-self: start;
-      min-height: calc(100vh - 80px);
-      padding: 30px 20px;
-      border-right: 1px solid var(--line);
-      background: var(--ivory);
-    }
-
-    .side-label {
-      margin: 0 0 12px;
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .nav-link {
-      display: block;
-      width: 100%;
-      margin: 3px 0;
-      padding: 11px 12px;
-      border: 0;
-      border-radius: 5px;
-      background: transparent;
-      color: var(--ink);
-      text-align: left;
-      font-size: 14px;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      background: #efe5dc;
-      color: var(--burgundy);
-    }
-
-    .sidebar-note {
-      margin-top: 35px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-family: Georgia, serif;
-      font-size: 14px;
-      font-style: italic;
-    }
-
-    main { min-width: 0; }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 74px 7% 78px;
-      background:
-        radial-gradient(ellipse at 90% 20%, rgba(185,154,98,.17), transparent 36%),
-        linear-gradient(135deg, #f9f2e9, #fffdf9);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      max-width: 700px;
-      margin: 18px 0;
-      color: var(--burgundy-dark);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(38px, 6vw, 70px);
-      font-weight: normal;
-      line-height: 1.1;
-    }
-
-    .hero p {
-      max-width: 540px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .primary-button, .secondary-button {
-      display: inline-flex;
-      min-height: 47px;
-      align-items: center;
-      justify-content: center;
-      margin-top: 18px;
-      padding: 12px 22px;
-      border: 1px solid var(--burgundy);
-      border-radius: 3px;
-      background: var(--burgundy);
-      color: white;
-      font-size: 13px;
-      letter-spacing: .5px;
-    }
-
-    .primary-button:hover { background: var(--burgundy-dark); }
-
-    .secondary-button {
-      background: transparent;
-      color: var(--burgundy);
-    }
-
-    .story {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-      padding: 48px 7%;
-      background: var(--paper);
-    }
-
-    .story h2, .section-heading {
-      margin: 8px 0 14px;
-      color: var(--burgundy-dark);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(28px, 4vw, 39px);
-      font-weight: normal;
-      line-height: 1.2;
-    }
-
-    .story p { color: var(--muted); }
-
-    .story-quote {
-      padding: 28px;
-      border-left: 2px solid var(--gold);
-      background: var(--ivory);
-      color: var(--burgundy);
-      font-family: Georgia, serif;
-      font-size: 22px;
-      font-style: italic;
-    }
-
-    .content-section { padding: 48px 5%; }
-
-    .section-top {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .section-top p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px 16px;
-    }
-
-    .product-card {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      background: var(--paper);
-      box-shadow: 0 3px 12px rgba(66,39,35,.025);
-    }
-
-    .product-image-wrap {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4 / 4.5;
-      background: #f0e8df;
-    }
-
-    .product-image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .35s ease;
-    }
-
-    .product-card:hover .product-image { transform: scale(1.035); }
-
-    .image-placeholder {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-      padding: 15px;
-      color: var(--burgundy);
-      font-family: Georgia, serif;
-      text-align: center;
-    }
-
-    .product-info { padding: 14px; }
-
-    .product-info h3 {
-      margin: 0 0 6px;
-      color: var(--burgundy-dark);
-      font-family: Georgia, serif;
-      font-size: 18px;
-      font-weight: normal;
-      line-height: 1.3;
-    }
-
-    .product-info p {
-      min-height: 42px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .product-bottom {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .price {
-      color: var(--burgundy);
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .add-button {
-      padding: 9px 11px;
-      border: 1px solid var(--burgundy);
-      border-radius: 3px;
-      background: transparent;
-      color: var(--burgundy);
-      font-size: 12px;
-    }
-
-    .add-button:hover {
-      background: var(--burgundy);
-      color: white;
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      padding: 30px 5%;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: #f2e9df;
-      text-align: center;
-    }
-
-    .benefits strong {
-      display: block;
-      color: var(--burgundy);
-      font-family: Georgia, serif;
-      font-size: 18px;
-      font-weight: normal;
-    }
-
-    .benefits span { color: var(--muted); font-size: 12px; }
-
-    .cart-section { padding: 48px 5%; }
-
-    .cart-panel {
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      background: var(--paper);
-    }
-
-    .empty-cart { color: var(--muted); font-size: 14px; }
-
-    .cart-item {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .cart-item-name { color: var(--burgundy-dark); font-size: 14px; }
-    .cart-item-price { font-size: 14px; font-weight: bold; }
-
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .quantity-controls button {
-      width: 29px;
-      height: 29px;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      background: white;
-      color: var(--burgundy);
-    }
-
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 20px;
-      color: var(--burgundy-dark);
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .checkout-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .checkout-form label {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .checkout-form input, .checkout-form textarea {
-      width: 100%;
-      min-height: 43px;
-      padding: 10px;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      background: white;
-      color: var(--ink);
-    }
-
-    .checkout-form textarea {
-      min-height: 75px;
-      resize: vertical;
-    }
-
-    .full-width { grid-column: 1 / -1; }
-
-    .checkout-note {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    footer {
-      padding: 38px 5%;
-      background: var(--burgundy-dark);
-      color: #fff8ed;
-      text-align: center;
-    }
-
-    footer .brand { justify-content: center; }
-    footer .brand-sam { color: #fff8ed; }
-    footer .brand-arts { color: #d9bd88; }
-    footer p { color: #e6d7d0; font-size: 13px; }
-
-    .mobile-nav {
-      display: none;
-      width: 100%;
-      padding: 10px 5%;
-      border-bottom: 1px solid var(--line);
-      background: var(--paper);
-    }
-
-    .mobile-nav select {
-      width: 100%;
-      min-height: 42px;
-      padding: 8px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      background: white;
-      color: var(--burgundy);
-    }
-
-    .toast {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 50;
-      max-width: calc(100vw - 36px);
-      padding: 12px 18px;
-      border-radius: 4px;
-      background: var(--burgundy-dark);
-      color: white;
-      box-shadow: var(--shadow);
-      font-size: 13px;
-    }
-
-    .hidden { display: none !important; }
-
-    @media (max-width: 850px) {
-      .layout { grid-template-columns: 180px minmax(0, 1fr); }
-      .sidebar { padding: 24px 12px; }
-      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero { padding: 55px 6%; }
-      .content-section, .cart-section { padding: 35px 4%; }
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 11px 4%; }
-      .brand { font-size: 24px; }
-      .brand-arts { font-size: 18px; }
-      .header-actions { gap: 6px; }
-      .icon-button { min-width: 40px; min-height: 40px; }
-      .layout { display: block; }
-      .sidebar { display: none; }
-      .sidebar.open {
-        position: fixed;
-        z-index: 40;
-        top: 65px;
-        right: 0;
-        left: 0;
-        display: block;
-        min-height: 0;
-        max-height: calc(100vh - 65px);
-        overflow-y: auto;
-        padding: 18px 5%;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-        box-shadow: var(--shadow);
-      }
-      .sidebar-note { margin-top: 15px; padding-top: 12px; }
-      .mobile-nav { display: block; }
-      .hero { padding: 47px 6%; }
-      .hero h1 { font-size: 43px; }
-      .story { grid-template-columns: 1fr; padding: 36px 6%; gap: 10px; }
-      .product-grid { gap: 14px 10px; }
-      .product-info { padding: 10px; }
-      .product-info h3 { font-size: 16px; }
-      .product-info p { min-height: 48px; font-size: 11px; }
-      .product-bottom { align-items: flex-start; flex-direction: column; gap: 8px; }
-      .add-button { width: 100%; }
-      .benefits { grid-template-columns: 1fr; gap: 20px; }
-      .checkout-form { grid-template-columns: 1fr; }
-      .full-width { grid-column: auto; }
-      .cart-panel { padding: 15px; }
-      .cart-item { grid-template-columns: 1fr auto; }
-      .quantity-controls { grid-column: 1 / -1; }
-      .section-top { align-items: flex-start; flex-direction: column; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#faf7f2">
+<title>SamArts | Thoughtful Gifts</title>
+
+<style>
+:root {
+  --cream:#faf7f2;
+  --white:#fffdf9;
+  --wine:#702b3a;
+  --dark:#4b1b27;
+  --gold:#b99a62;
+  --text:#302824;
+  --muted:#796f68;
+  --line:#e8ded4;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:85px; }
+body {
+  margin:0;
+  background:var(--cream);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
+}
+button,input,textarea { font:inherit; }
+button { cursor:pointer; }
+a { color:inherit; text-decoration:none; }
+
+.announcement {
+  background:var(--dark);
+  color:white;
+  padding:7px 12px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:2px;
+}
+header {
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 4%;
+  background:var(--cream);
+  border-bottom:1px solid var(--line);
+}
+.brand {
+  display:flex;
+  align-items:baseline;
+  gap:5px;
+  font-size:28px;
+  white-space:nowrap;
+}
+.brand-sam {
+  font-family:Georgia,serif;
+  color:var(--wine);
+}
+.brand-arts {
+  font-family:Arial,sans-serif;
+  font-size:21px;
+  font-weight:300;
+  letter-spacing:2px;
+  color:var(--gold);
+}
+.icon-button {
+  min-width:43px;
+  min-height:43px;
+  padding:7px 11px;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:var(--white);
+  color:var(--wine);
+  font-size:20px;
+}
+.cart-count {
+  display:inline-flex;
+  min-width:20px;
+  height:20px;
+  align-items:center;
+  justify-content:center;
+  border-radius:20px;
+  padding:0 4px;
+  background:var(--wine);
+  color:white;
+  font-size:11px;
+}
+.header-actions { display:flex; gap:8px; align-items:center; }
+
+.layout {
+  display:grid;
+  grid-template-columns:210px minmax(0,1fr);
+  max-width:1500px;
+  margin:auto;
+}
+.sidebar {
+  position:sticky;
+  top:69px;
+  align-self:start;
+  height:calc(100vh - 69px);
+  overflow:auto;
+  padding:25px 16px;
+  border-right:1px solid var(--line);
+  background:var(--cream);
+}
+.side-label {
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.nav-link {
+  display:block;
+  width:100%;
+  margin:4px 0;
+  padding:11px;
+  border:0;
+  border-radius:4px;
+  background:transparent;
+  color:var(--text);
+  text-align:left;
+  font-size:14px;
+}
+.nav-link:hover,.nav-link.active {
+  background:#eee3d9;
+  color:var(--wine);
+}
+.sidebar-note {
+  margin-top:25px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-family:Georgia,serif;
+  font-style:italic;
+}
+main { min-width:0; }
+
+.hero {
+  padding:70px 7%;
+  background:
+    radial-gradient(ellipse at 90% 20%,#eadcc7 0,transparent 40%),
+    linear-gradient(135deg,#f7eee4,#fffdf9);
+  border-bottom:1px solid var(--line);
+}
+.eyebrow {
+  color:var(--gold);
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.hero h1 {
+  margin:15px 0;
+  color:var(--dark);
+  font-family:Georgia,serif;
+  font-size:clamp(40px,6vw,70px);
+  font-weight:normal;
+  line-height:1.1;
+}
+.hero p { max-width:520px; color:var(--muted); }
+.primary,.secondary {
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 19px;
+  border:1px solid var(--wine);
+  border-radius:3px;
+  background:var(--wine);
+  color:white;
+  font-size:12px;
+  text-align:center;
+}
+.secondary { background:transparent; color:var(--wine); }
+
+.story {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:25px;
+  padding:42px 7%;
+  background:var(--white);
+}
+.story h2,.section-title {
+  margin:8px 0 12px;
+  color:var(--dark);
+  font-family:Georgia,serif;
+  font-size:clamp(28px,4vw,39px);
+  font-weight:normal;
+  line-height:1.2;
+}
+.story p { color:var(--muted); }
+.quote {
+  padding:26px;
+  border-left:2px solid var(--gold);
+  background:var(--cream);
+  color:var(--wine);
+  font-family:Georgia,serif;
+  font-size:22px;
+  font-style:italic;
+}
+.section { padding:42px 5%; }
+.section-head {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:22px;
+}
+.section-head p { margin:0; color:var(--muted); font-size:13px; }
+
+.product-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px 14px;
+}
+.product {
+  min-width:0;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:4px;
+  background:var(--white);
+}
+.product-image {
+  display:block;
+  width:100%;
+  aspect-ratio:4/4.5;
+  object-fit:cover;
+  background:#eee4d9;
+}
+.placeholder {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  aspect-ratio:4/4.5;
+  padding:12px;
+  background:#eee4d9;
+  color:var(--wine);
+  font-family:Georgia,serif;
+  text-align:center;
+}
+.product-info { padding:13px; }
+.product h3 {
+  margin:0 0 5px;
+  color:var(--dark);
+  font-family:Georgia,serif;
+  font-size:17px;
+  font-weight:normal;
+  line-height:1.3;
+}
+.product p { min-height:39px; margin:0; color:var(--muted); font-size:12px; }
+.product-bottom {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.price { color:var(--wine); font-weight:bold; }
+.add-button {
+  padding:8px 10px;
+  border:1px solid var(--wine);
+  border-radius:3px;
+  background:transparent;
+  color:var(--wine);
+  font-size:12px;
+}
+.add-button:active,.add-button:hover { background:var(--wine); color:white; }
+
+.benefits {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  padding:27px 5%;
+  background:#f0e6db;
+  text-align:center;
+}
+.benefits strong {
+  display:block;
+  color:var(--wine);
+  font-family:Georgia,serif;
+  font-size:17px;
+  font-weight:normal;
+}
+.benefits span { color:var(--muted); font-size:12px; }
+
+.cart-panel {
+  padding:20px;
+  border:1px solid var(--line);
+  background:var(--white);
+}
+.empty { color:var(--muted); font-size:14px; }
+.cart-item {
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid var(--line);
+}
+.cart-name { color:var(--dark); font-size:14px; }
+.cart-price { color:var(--wine); font-weight:bold; font-size:14px; }
+.qty { display:flex; align-items:center; gap:9px; }
+.qty button {
+  width:30px;
+  height:30px;
+  border:1px solid var(--line);
+  background:white;
+  color:var(--wine);
+}
+.total {
+  display:flex;
+  justify-content:space-between;
+  margin-top:18px;
+  color:var(--dark);
+  font-size:19px;
+  font-weight:bold;
+}
+.checkout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+  margin-top:22px;
+}
+.checkout label {
+  display:block;
+  margin-bottom:5px;
+  color:var(--muted);
+  font-size:12px;
+}
+.checkout input,.checkout textarea {
+  width:100%;
+  min-height:43px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  background:white;
+  color:var(--text);
+}
+.checkout textarea { min-height:75px; }
+.full { grid-column:1/-1; }
+.note { color:var(--muted); font-size:12px; }
+
+footer {
+  padding:35px 5%;
+  background:var(--dark);
+  color:#fff8ed;
+  text-align:center;
+}
+footer .brand { justify-content:center; }
+footer .brand-sam { color:white; }
+footer .brand-arts { color:#d9bd88; }
+footer p { color:#e6d7d0; font-size:13px; }
+
+.mobile-categories {
+  display:none;
+  padding:10px 4%;
+  border-bottom:1px solid var(--line);
+  background:var(--white);
+}
+.mobile-categories select {
+  width:100%;
+  min-height:42px;
+  padding:8px;
+  border:1px solid var(--line);
+  background:white;
+  color:var(--wine);
+}
+#message {
+  position:fixed;
+  z-index:99;
+  right:15px;
+  bottom:15px;
+  max-width:90%;
+  padding:12px 17px;
+  border-radius:4px;
+  background:var(--dark);
+  color:white;
+  box-shadow:0 5px 25px #0002;
+}
+#message:empty { display:none; }
+
+@media(max-width:850px) {
+  .layout { grid-template-columns:175px minmax(0,1fr); }
+  .sidebar { padding:20px 10px; }
+  .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .hero { padding:50px 6%; }
+}
+@media(max-width:600px) {
+  header { padding:10px 3%; }
+  .brand { font-size:24px; }
+  .brand-arts { font-size:18px; }
+  .header-actions { gap:5px; }
+  .icon-button { min-width:39px; min-height:39px; padding:6px 8px; }
+  .layout { display:block; }
+  .sidebar { display:none; }
+  .sidebar.open {
+    display:block;
+    position:fixed;
+    z-index:50;
+    top:61px;
+    left:0;
+    right:0;
+    width:100%;
+    height:auto;
+    max-height:calc(100vh - 61px);
+    overflow:auto;
+    padding:15px 5%;
+    border:1px solid var(--line);
+    box-shadow:0 10px 25px #0002;
+  }
+  .mobile-categories { display:block; }
+  .hero { padding:43px 6%; }
+  .hero h1 { font-size:43px; }
+  .story { grid-template-columns:1fr; padding:32px 6%; gap:8px; }
+  .section { padding:32px 4%; }
+  .product-grid { gap:13px 9px; }
+  .product-info { padding:9px; }
+  .product h3 { font-size:15px; }
+  .product p { min-height:52px; font-size:11px; }
+  .product-bottom { align-items:stretch; flex-direction:column; }
+  .add-button { width:100%; }
+  .benefits { grid-template-columns:1fr; gap:18px; }
+  .checkout { grid-template-columns:1fr; }
+  .full { grid-column:auto; }
+  .cart-panel { padding:13px; }
+  .cart-item { grid-template-columns:1fr auto; }
+  .qty { grid-column:1/-1; }
+}
+</style>
 </head>
 
 <body>
-  <div class="announcement">THOUGHTFUL GIFTS · LITTLE THINGS, LASTING MEMORIES</div>
+<div class="announcement">THOUGHTFUL GIFTS · LITTLE THINGS, LASTING MEMORIES</div>
 
-  <header>
-    <button class="icon-button" id="menuButton" type="button"
-      aria-label="Open navigation menu" aria-expanded="false">☰</button>
+<header>
+  <button class="icon-button" id="menuButton" type="button"
+    onclick="toggleMenu()" aria-label="Open menu">☰</button>
 
-    <a class="brand" href="#home" aria-label="SamArts home">
-      <span class="brand-sam">Sam</span><span class="brand-arts">Arts</span>
-    </a>
+  <a class="brand" href="#home">
+    <span class="brand-sam">Sam</span><span class="brand-arts">Arts</span>
+  </a>
 
-    <div class="header-actions">
-      <button class="icon-button" id="headerCart" type="button"
-        aria-label="Go to shopping cart">
-        🛒 <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
-  </header>
-
-  <div class="layout">
-    <aside class="sidebar" id="sidebar">
-      <p class="side-label">Explore SamArts</p>
-      <button class="nav-link active" data-target="home">Our Story</button>
-      <button class="nav-link" data-target="products">All Gifts</button>
-      <button class="nav-link" data-category="notes">Little Notes</button>
-      <button class="nav-link" data-category="personalised">Personalised Gifts</button>
-      <button class="nav-link" data-category="memories">Memories & Keepsakes</button>
-      <button class="nav-link" data-category="bundles">Gift Bundles</button>
-      <button class="nav-link" data-target="cart">Shopping Cart</button>
-
-      <div class="sidebar-note">
-        “The smallest things often hold the biggest feelings.”
-      </div>
-    </aside>
-
-    <main>
-      <div class="mobile-nav">
-        <select id="mobileCategory" aria-label="Browse gift categories">
-          <option value="all">Explore all gifts</option>
-          <option value="notes">Little Notes</option>
-          <option value="personalised">Personalised Gifts</option>
-          <option value="memories">Memories & Keepsakes</option>
-          <option value="bundles">Gift Bundles</option>
-        </select>
-      </div>
-
-      <section class="hero" id="home">
-        <div class="eyebrow">Made with meaning</div>
-        <h1>Little things.<br>Lasting feelings.</h1>
-        <p>
-          Thoughtful gifts for the people who make life special.
-          From tiny reminders to memories worth keeping, every SamArts
-          creation is made to say what words sometimes cannot.
-        </p>
-        <a class="primary-button" href="#products">DISCOVER OUR COLLECTION</a>
-      </section>
-
-      <section class="story" id="story">
-        <div>
-          <div class="eyebrow">The SamArts story</div>
-          <h2>Because the little things are never little.</h2>
-          <p>
-            Some feelings deserve more than an ordinary gift. SamArts is
-            about celebrating the details that make a relationship yours:
-            shared jokes, favourite memories, quiet gestures and words
-            you want someone to remember.
-          </p>
-          <p>
-            Whether it is a small surprise or a keepsake made just for
-            someone special, our aim is simple: make it personal, make it
-            thoughtful, and make it mean something.
-          </p>
-          <a class="secondary-button" href="#products">Explore the gifts</a>
-        </div>
-        <div class="story-quote">
-          For the moments you want to hold on to, and the people you never
-          want to take for granted.
-        </div>
-      </section>
-
-      <section class="content-section" id="products">
-        <div class="section-top">
-          <div>
-            <div class="eyebrow">The collection</div>
-            <h2 class="section-heading" id="collectionTitle">Gifts with a little more meaning</h2>
-            <p id="collectionSubtitle">Find something that feels like them.</p>
-          </div>
-          <button class="secondary-button" id="showAllButton" type="button">View all gifts</button>
-        </div>
-
-        <div class="product-grid" id="productGrid">
-          <p>Loading our collection…</p>
-        </div>
-      </section>
-
-      <section class="benefits" aria-label="Our values">
-        <div><strong>Thoughtful by design</strong><span>Gifts with a personal touch</span></div>
-        <div><strong>Made for your moments</strong><span>For milestones and everyday love</span></div>
-        <div><strong>Easy to order</strong><span>Order directly through WhatsApp</span></div>
-      </section>
-
-      <section class="cart-section" id="cart">
-        <div class="eyebrow">Your selection</div>
-        <h2 class="section-heading">Your shopping cart</h2>
-
-        <div class="cart-panel">
-          <div id="cartItems" aria-live="polite">
-            <p class="empty-cart">Your cart is waiting for something lovely.</p>
-          </div>
-
-          <div class="cart-total">
-            <span>Total</span><span id="cartTotal">₹0</span>
-          </div>
-
-          <form class="checkout-form" id="checkoutForm">
-            <div>
-              <label for="customerName">Your name *</label>
-              <input id="customerName" name="customerName" required
-                autocomplete="name" placeholder="Enter your name">
-            </div>
-
-            <div>
-              <label for="customerPhone">Phone number *</label>
-              <input id="customerPhone" name="customerPhone" required
-                inputmode="tel" autocomplete="tel" placeholder="Your phone number">
-            </div>
-
-            <div class="full-width">
-              <label for="customerAddress">Delivery address *</label>
-              <textarea id="customerAddress" name="customerAddress" required
-                autocomplete="street-address" placeholder="House number, street, city and PIN code"></textarea>
-            </div>
-
-            <div class="full-width">
-              <label for="orderNotes">Personalisation or order notes (optional)</label>
-              <textarea id="orderNotes" name="orderNotes"
-                placeholder="Names, dates, messages or any special requests"></textarea>
-            </div>
-
-            <div class="full-width">
-              <button class="primary-button" type="submit">PLACE ORDER ON WHATSAPP</button>
-              <p class="checkout-note">
-                Your order details will be sent to SamArts on WhatsApp.
-                Confirm availability, delivery charges and payment details
-                with us before paying. This website does not automatically
-                verify payments.
-              </p>
-            </div>
-          </form>
-        </div>
-      </section>
-    </main>
+  <div class="header-actions">
+    <button class="icon-button" type="button" onclick="goToCart()" aria-label="Shopping cart">
+      🛒 <span class="cart-count" id="cartCount">0</span>
+    </button>
   </div>
+</header>
 
-  <footer>
-    <a class="brand" href="#home">
-      <span class="brand-sam">Sam</span><span class="brand-arts">Arts</span>
-    </a>
-    <p>Little things, lasting memories.</p>
-    <p>Made with care. Ma
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <p class="side-label">Explore SamArts</p>
+    <button class="nav-link" onclick="showCategory('all')">Our Collection</button>
+    <button class="nav-link" onclick="goToStory()">Our Story</button>
+    <button class="nav-link" onclick="showCategory('notes')">Little Notes</button>
+    <button class="nav-link" onclick="showCategory('personalised')">Personalised Gifts</button>
+    <button class="nav-link" onclick="showCategory('memories')">Memories & Keepsakes</button>
+    <button class="nav-link" onclick="showCategory('bundles')">Gift Bundles</button>
+    <button class="nav-link" onclick="goToCart()">Shopping Cart</button>
+    <div class="sidebar-note">The smallest things often hold the biggest feelings.</div>
+  </aside>
+
+  <main>
+    <div class="mobile-categories">
+      <select id="mobileCategory" onchange="showCategory(this.value)">
+        <option value="all">Explore all gifts</option>
+        <option value="notes">Little Notes</option>
+        <option value="personalised">Personalised Gifts</option>
+        <option value="memories">Memories & Keepsakes</option>
+        <option value="bundles">Gift Bundles</option>
+      </select>
+    </div>
+
+    <section class="hero" id="home">
+      <div class="eyebrow">Made with meaning</div>
+      <h1>Little things.<br>Lasting feelings.</h1>
+      <p>Thoughtful gifts for the people who make life special. Celebrate shared jokes, favourite memories and the little details that make your story unique.</p>
+      <a class="primary" href="#products">DISCOVER OUR COLLECTION</a>
+    </section>
+
+    <section class="story" id="story">
+      <div>
+        <div class="eyebrow">The SamArts story</div>
+        <h2>Because the little things are never little.</h2>
+        <p>Some feelings deserve more than an ordinary gift. SamArts celebrates the details that make a relationship yours: shared jokes, favourite memories, quiet gestures and words you want someone to remember.</p>
+        <p>From small surprises to personal keepsakes, our aim is simple: make it thoughtful, make it personal, and make it mean something.</p>
+        <a class="secondary" href="#products">Explore the gifts</a>
+      </div>
+      <div class="quote">For the moments you want to hold on to, and the people you never want to take for granted.</div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">The collection</div>
+          <h2 class="section-title" id="collectionTitle">Gifts with a little more meaning</h2>
+          <p id="collectionSubtitle">Find something that feels like them.</p>
+        </div>
+        <button class="secondary" type="button" onclick="showCategory('all')">View all gifts</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="benefits">
+      <div><strong>Thoughtful by design</strong><span>Gifts with a personal touch</span></div>
+      <div><strong>Made for your moments</strong><span>For milestones and everyday love</span></div>
+      <div><strong>Easy to order</strong><span>Order directly through WhatsApp</span></div>
+    </section>
+
+    <section class="section" id="cart">
+      <div class="eyebrow">Your selection</div>
+      <h2 class="section-title">Your shopping cart</h2>
+
+      <div class="cart-panel">
+        <div id="cartItems"><p class="empty">Your cart is waiting for something lovely.</p></div>
+        <div class="total"><span>Total</span><span id="cartTotal">₹0</span></div>
+
+        <form class="checkout" id="checkoutForm" onsubmit="placeOrder(event)">
+          <div>
+            <label for="customerName">Your name *</label>
+            <input id="customerName" required autocomplete="name" placeholder="Your name">
+          </div>
+          <div>
+            <label for="customerPhone">Phone number *</label>
+            <input id="customerPhone" required inputmode="tel" autocomplete="tel" placeholder="Your phone number">
+          </div>
+          <div class="full">
+            <label for="customerAddress">Delivery address *</label>
+            <textarea id="customerAddress" required autocomplete="street-address" placeholder="House number, street, city and PIN code"></textarea>
+          </div>
+          <div class="full">
+            <label for="orderNotes">Personalisation or order notes (optional)</label>
+            <textarea id="orderNotes" placeholder="Names, dates, messages or special requests"></textarea>
+          </div>
+          <div class="full">
+            <button class="primary" type="submit">PLACE ORDER ON WHATSAPP</button>
+            <p class="note">WhatsApp will open with your order details. SamArts must confirm availability, delivery charges and payment. This website does not automatically verify payments.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <a class="brand" href="#home"><span class="brand-sam">Sam</span><span class="brand-arts">Arts</span></a>
+  <p>Little things, lasting memories.</p>
+  <p>Made with care. Made to mean something.</p>
+  <p>© <span id="year"></span> SamArts</p>
+</footer>
+
+<div id="message" role="status" aria-live="polite"></div>
+
+<script>
+/* SamArts product collection */
+var PRODUCTS = [
+  {id:"note",name:"A Little Note",price:199,image:"a-little-note.jpg",category:"notes",description:"A small note for a feeling that matters."},
+  {id:"date",name:"Our Date",price:299,image:"our-date.jpg",category:"memories",description:"Keep a special date close to your heart."},
+  {id:"reminder",name:"Tiny Reminder",price:399,image:"tiny-reminder.jpg",category:"notes",description:"A thoughtful reminder of how much they mean."},
+  {id:"alphabet",name:"A–Z of Us",price:399,image:"a-z-of-us.jpg",category:"memories",description:"Celebrate the little details that make you, you."},
+  {id:"personal-alphabet",name:"Personalised A–Z of Us",price:699,image:"personalised-a-z-of-us.jpg",category:"personalised",description:"Your own story, personalised from A to Z."},
+  {id:"little-things",name:"The Little Things",price:599,image:"the-little-things.jpg",category:"personalised",description:"A keepsake for all the details you adore."},
+  {id:"memory-map",name:"Our Memory Map",price:799,image:"our-memory-map.jpg",category:"memories",description:"Celebrate a place that means something to you."},
+  {id:"bundle",name:"The Little Things Bundle",price:899,image:"the-little-things-bundle.jpg",category:"bundles",description:"A collection of thoughtful little surprises."},
+  {id:"forever",name:"Forever, Us",price:999,image:"forever-us.jpg",category:"bundles",description:"A meaningful gift for a love worth celebrating."}
+];
+
+var CATEGORY_TITLES = {
+  all:"Gifts with a little more meaning",
+  notes:"Little Notes",
+  personalised:"Personalised Gifts",
+  memories:"Memories & Keepsakes",
+  bundles:"Gift Bundles"
+};
+
+var cart = {};
+var currentCategory = "all";
+
+function money(amount) {
+  return "₹" + Number(amount).toLocaleString("en-IN");
+}
+
+function notify(message) {
+  var box = document.getElementById("message");
+  box.textContent = message;
+  if (window.samArtsMessageTimer) {
+    clearTimeout(window.samArtsMessageTimer);
+  }
+  window.samArtsMessageTimer = setTimeout(function() {
+    box.textContent = "";
+  }, 2500);
+}
+
+function toggleMenu() {
+  var sidebar = document.getElementById("sidebar");
+  var button = document.getElementById("menuButton");
+  var opened = sidebar.classList.toggle("open");
+  button.setAttribute("aria-expanded", opened ? "true" : "false");
+}
+
+function closeMenu() {
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("menuButton").setAttribute("aria-expanded","false");
+}
+
+function goToCart() {
+  closeMenu();
+  document.getElementById("cart").scrollIntoView({behavior:"smooth"});
+}
+
+function goToStory() {
+  closeMenu();
+  document.getElementById("story").scrollIntoView({behavior:"smooth"});
+}
+
+function showCategory(category) {
+  currentCategory = CATEGORY_TITLES[category] ? category : "all";
+  var select = document.getElementById("mobileCategory");
+  if (select) select.value = currentCategory;
+
+  document.getElementById("collectionTitle").textContent = CATEGORY_TITLES[currentCategory];
+  document.getElementById("collectionSubtitle").textContent =
+    currentCategory === "all"
+      ? "Find something that feels like them."
+      : "Thoughtful gifts, chosen for this collection.";
+
+  closeMenu();
+  renderProducts();
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+function addToCart(id) {
+  cart[id] = (Number(cart[id]) || 0) + 1;
+  saveCart();
+  renderCart();
+  notify("Added to your cart ♡");
+}
+
+function changeQuantity(id, amount) {
+  var next = (Number(cart[id]) || 0) + amount;
+  if (next <= 0) {
+    delete cart[id];
+  } else {
+    cart[id] = next;
+  }
+  saveCart();
+  renderCart();
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem("samarts-cart", JSON.stringify(cart));
+  } catch (error) {
+    /* The cart continues to work for this visit. */
+  }
+}
+
+function loadCart() {
+  try {
+    var saved = localStorage.getItem("samarts-cart");
+    if (saved) {
+      var parsed = JSON.parse(saved);
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+        cart = parsed;
+      }
+    }
+  } catch (error) {
+    cart = {};
+  }
+}
+
+function renderProducts() {
+  var grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+
+  var list = PRODUCTS.filter(function(product) {
+    return currentCategory === "all" || product.category === currentCategory;
+  });
+
+  list.forEach(function(product) {
+    var card = document.createElement("article");
+    card.className = "product";
+
+    var image = document.createElement("img");
+    image.className = "product-image";
+    image.src = product.image;
+    image.alt = product.name;
+    image.loading = "lazy";
+    image.onerror = function() {
+      var placeholder = document.createElement("div");
+      placeholder.className = "placeholder";
+      placeholder.textContent = product.name;
+      image.replaceWith(placeholder);
+    };
+
+    var i
