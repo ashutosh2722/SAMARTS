@@ -1,190 +1,141 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SamArts | Thoughtful Gifts</title>
+<title>SamArts | Little things. Lasting feelings.</title>
 <style>
-:root{--wine:#641f35;--gold:#b99a62;--bg:#fbf7ef;--ink:#292326}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Arial}
-header{background:#fffaf3;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eadfce;position:sticky;top:0;z-index:5}
-.logo{font: bold 30px Georgia;color:var(--wine);text-decoration:none}.tag{font-size:11px;color:#756b6d}
-button,a{cursor:pointer}button{font:inherit}
-.btn{border:0;border-radius:7px;padding:10px 13px;background:var(--wine);color:white;font-weight:bold}
-.alt{background:#eadcc8;color:var(--wine)}
-.carttop{background:var(--wine);color:white;border:0;border-radius:25px;padding:10px 14px}
-main{max-width:1200px;margin:auto;padding:20px 14px}
-.hero{text-align:center;padding:42px 18px;background:#f1e6d9;border-radius:12px}
-.hero h1{font:36px Georgia;color:var(--wine);margin:0 0 10px}
-.hero p{max-width:570px;margin:8px auto}
-h2{font:27px Georgia;color:var(--wine)}
-.about{padding:12px 8px 24px;text-align:center;max-width:750px;margin:auto}
-.layout{display:grid;grid-template-columns:175px 1fr;gap:22px}
-aside{align-self:start;position:sticky;top:90px;background:#fffaf3;border:1px solid #eadfce;padding:14px;border-radius:10px}
-aside h3{font:20px Georgia;color:var(--wine);margin:0 0 12px}
-.cat{display:block;width:100%;text-align:left;padding:10px;border:0;background:transparent;border-radius:6px;color:var(--ink)}
-.cat.active,.cat:hover{background:#eadcc8;color:var(--wine);font-weight:bold}
-.tools{display:flex;gap:8px;margin-bottom:14px}
-.tools input,.tools select{min-width:0;flex:1;padding:10px;border:1px solid #d9c9b9;border-radius:7px;background:white}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.card{background:white;border:1px solid #eee3d8;border-radius:10px;overflow:hidden}
-.photo{position:relative}
-.photo img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee}
-.imagebtn{display:block;padding:0;border:0;background:none;width:100%}
-.heart{position:absolute;right:7px;top:7px;border:0;border-radius:50%;padding:7px;background:white}
-.info{padding:10px}.info h3{font:18px Georgia;margin:0 0 4px}
-.price{color:var(--wine);font-weight:bold}
-.info .btn{width:100%;margin-top:7px}
-.hide{display:none!important}
-.detail{display:grid;grid-template-columns:1fr 1fr;gap:22px;background:white;padding:16px;border-radius:10px;margin-top:15px}
-.detail img{width:100%;max-height:520px;object-fit:contain;background:#f7efe6}
-.detail h2{margin:6px 0}
-.qty{display:flex;gap:12px;align-items:center;margin:15px 0}
-.qty button{padding:5px 12px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
-.cartbox{scroll-margin-top:85px;background:#fffaf3;border:1px solid #e7d7c5;border-radius:10px;padding:15px;margin-top:25px}
-.cartrow{display:flex;justify-content:space-between;gap:10px;margin:7px 0}
-.small{font-size:12px;color:#756b6d}
-footer{text-align:center;padding:28px;color:#756b6d}
+:root{--bg:#faf7f1;--wine:#6e2638;--gold:#b18a54;--ink:#332725;--muted:#7d6c66;--line:#e7dcd0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Arial,sans-serif}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:15px 5%;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.logo{font:30px Georgia,serif}.logo span{font:17px Arial;color:var(--wine);letter-spacing:3px}
+button,input,select,textarea{font:inherit;padding:10px;border:1px solid var(--line);background:#fffdf9;color:var(--ink)}
+button{cursor:pointer}.btn{background:var(--wine);color:white;border-color:var(--wine)}
+.wrap{max-width:1200px;margin:auto;padding:25px 4%}
+.hero{background:#efe4d7;padding:clamp(25px,6vw,70px);display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center}
+h1,h2,h3{font-family:Georgia,serif;font-weight:normal}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.05;margin:15px 0}
+.hero p,.muted{color:var(--muted);line-height:1.7}.hero img{width:100%;max-height:320px;object-fit:cover}
+.kicker{color:var(--wine);text-transform:uppercase;letter-spacing:3px;font-size:10px}
+.about{display:grid;grid-template-columns:1fr 2fr;gap:30px;padding:45px 0;border-bottom:1px solid var(--line)}
+.shop{padding:35px 0}.layout{display:grid;grid-template-columns:165px 1fr;gap:25px}
+.categories{display:grid;gap:5px}.categories button{text-align:left}
+.categories .active{background:var(--wine);color:white}
+.controls{display:flex;gap:8px;margin-bottom:15px}.controls input{flex:1;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 14px}
+.card{min-width:0}.photo{position:relative;background:#eee4da;aspect-ratio:4/4.7}
+.photo img{width:100%;height:100%;object-fit:cover;cursor:pointer}
+.heart{position:absolute;top:8px;right:8px;border:0;border-radius:50%;padding:8px;background:#fffdf0}
+.name{font:18px Georgia,serif;margin-top:10px}.price{color:var(--wine);font-weight:bold}
+.card p{color:var(--muted);font-size:12px;line-height:1.5}
+.view{display:none}.view.active{display:block}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:30px}.detail img{width:100%}
+.detail textarea{width:100%;margin:8px 0}
+.cartrow{display:flex;gap:15px;padding:15px 0;border-bottom:1px solid var(--line);align-items:center}
+.cartrow img{width:70px;height:85px;object-fit:cover}.cartrow div{flex:1}
+footer{background:#4c1727;color:#f9eee3;padding:30px 5%;margin-top:30px}
+footer a{color:#f9eee3;margin-right:15px}
 @media(max-width:700px){
- header{padding:12px}.logo{font-size:25px}.tag{display:none}
- .layout{grid-template-columns:1fr;gap:12px}
- aside{position:static;padding:10px}
- .catlist{display:flex;overflow-x:auto;gap:5px}
- .cat{white-space:nowrap;width:auto;flex-shrink:0}
- .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
- .detail{grid-template-columns:1fr}
- .hero{padding:30px 14px}.hero h1{font-size:30px}
+ header{padding:12px 4%}.logo{font-size:25px}.hero{grid-template-columns:1fr;padding:25px}
+ .hero img{max-height:230px}.about{grid-template-columns:1fr;gap:5px}
+ .layout{grid-template-columns:1fr}.categories{display:flex;overflow:auto}
+ .categories button{white-space:nowrap}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 10px}
+ .controls select{max-width:115px}.detail{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <header>
- <a class="logo" href="#" onclick="goHome();return false">SamArts</a>
- <div class="tag">Little things. Lasting feelings.</div>
- <button class="carttop" onclick="openCart()">♧ Bag <span id="count">0</span></button>
+ <a class="logo" href="#" onclick="home()">Sam<span>ARTS</span></a>
+ <div><button onclick="wishlistPage()">♡ <b id="wc">0</b></button>
+ <button onclick="cartPage()">Bag <b id="cc">0</b></button></div>
 </header>
 
-<main>
-<section id="home">
- <div class="hero">
-  <h1>Thoughtful gifts. Meaningful stories.</h1>
-  <p>Welcome to SamArts — a collection of little keepsakes designed to celebrate your people, your memories and your moments.</p>
-  <button class="btn" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore the collection</button>
- </div>
- <section class="about">
-  <h2>About SamArts</h2>
-  <p>We believe the smallest things can hold the biggest feelings. SamArts creates thoughtful, personal gifts that turn memories, milestones and everyday moments into something worth keeping.</p>
-  <p>Made for the people who mean the most.</p>
- </section>
- <h2 id="shop">Discover the collection</h2>
+<main id="home" class="view active">
+<div class="wrap">
+<section class="hero">
+ <div><div class="kicker">Small details. Big feelings.</div>
+ <h1>Make the ordinary <i>unforgettable.</i></h1>
+ <p>Personalised keepsakes and thoughtful gifts for the people who mean the most.</p>
+ <button class="btn" onclick="document.getElementById('shop').scrollIntoView()">Explore collection ↗</button></div>
+ <img src="a-little-note.jpg" alt="SamArts keepsake">
+</section>
+<section class="about">
+ <div><div class="kicker">Our story</div><h2>Because the little things are never little.</h2></div>
+ <p class="muted">SamArts celebrates shared jokes, favourite memories, and the little details that make every relationship unique. Thoughtful keepsakes for anniversaries, surprises, and everyday reminders that someone is loved.</p>
+</section>
+<section class="shop" id="shop">
+ <div class="kicker">The collection</div><h2>Little things to treasure.</h2>
  <div class="layout">
-  <aside><h3>Categories</h3><div class="catlist" id="cats"></div></aside>
-  <section>
-   <div class="tools">
-    <input id="search" placeholder="Search gifts">
-    <select id="sort"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select>
-   </div>
-   <div id="products" class="grid"></div>
-  </section>
+  <aside><h3>Categories</h3><div id="cats" class="categories"></div></aside>
+  <div><div class="controls"><input id="search" placeholder="Search gifts…" oninput="render()">
+  <select id="sort" onchange="render()"><option value="featured">Featured</option><option value="low">Price ↑</option><option value="high">Price ↓</option></select></div>
+  <div id="products" class="grid"></div></div>
  </div>
 </section>
+</div></main>
 
-<section id="productPage" class="hide">
- <button class="btn alt" onclick="goHome()">← Back to collection</button>
- <div id="detail" class="detail"></div>
- <h2>You may also love</h2><div id="related" class="grid"></div>
-</section>
+<section id="detail" class="view wrap"></section>
+<section id="cart" class="view wrap"></section>
+<section id="wish" class="view wrap"></section>
 
-<section id="cartbox" class="cartbox">
- <h2>Your shopping bag</h2>
- <div id="items" class="small">Your bag is empty.</div>
- <div class="cartrow"><strong>Total</strong><strong id="total">₹0</strong></div>
- <div class="actions">
-  <button class="btn" onclick="checkout()">Order on WhatsApp</button>
-  <button class="btn alt" onclick="pay()">Pay via UPI</button>
-  <button class="btn alt" onclick="clearBag()">Clear bag</button>
- </div>
- <p class="small">UPI payment is not automatically verified. Please share your payment confirmation on WhatsApp.</p>
-</section>
-</main>
-<footer>SamArts · Thoughtful gifts, made personal<br>WhatsApp: 7382549588</footer>
+<footer><h2>SamArts</h2><p>Little things. Lasting feelings.</p>
+<a href="https://wa.me/917382549588">WhatsApp us</a></footer>
 
 <script>
-const UPI="7382549588@ybl",PHONE="917382549588";
+const UPI="7382549588@ybl",WA="917382549588";
 const P=[
-["note","A Little Note",199,"a-little-note.jpg","notes","A thoughtful note to make someone feel remembered."],
-["date","Our Date",299,"our-date.jpg","couple","Celebrate a date that means the world to you."],
-["reminder","Tiny Reminder",399,"tiny-reminder.jpg","notes","A little reminder of love."],
-["az","A–Z of Us",399,"a-z-of-us.jpg","couple","An A-to-Z celebration of your story."],
-["paz","Personalised A–Z of Us",699,"personalised-a-z-of-us.jpg","personal","A personalised A-to-Z of your relationship."],
-["things","The Little Things",599,"the-little-things.jpg","couple","A keepsake of the small things that mean everything."],
-["map","Our Memory Map",799,"our-memory-map.jpg","personal","Turn a meaningful place into a memory."],
-["bundle","The Little Things Bundle",899,"the-little-things-bundle.jpg","bundle","A thoughtful bundle made for remembering."],
-["forever","Forever, Us",999,"forever-us.jpg","couple","A keepsake for your story and future."]
-].map(([id,name,price,image,cat,desc])=>({id,name,price,image,cat,desc}));
-const categories=[["","All gifts"],["notes","Notes & reminders"],["couple","For couples"],["personal","Personalised"],["bundle","Bundles"]];
-let bag={},likes=new Set(),chosen=null,q=1,activeCat="";
-const cash=n=>"₹"+n,pic=p=>"/SAMARTS/"+p.image;
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function renderCats(){
- cats.innerHTML=categories.map(([id,name])=>`<button class="cat ${id===activeCat?'active':''}" onclick="setCat('${id}')">${name}</button>`).join("")
+["note","A Little Note",199,"a-little-note.jpg","Little Gestures","A small note with a whole lot of feeling."],
+["date","Our Date",299,"our-date.jpg","Our Story","Celebrate the date that means everything."],
+["reminder","Tiny Reminder",399,"tiny-reminder.jpg","Little Gestures","A gentle reminder that someone is loved."],
+["az","A–Z of Us",399,"a-z-of-us.jpg","Our Story","The little details that make you, you."],
+["paz","Personalised A–Z of Us",699,"personalised-a-z-of-us.jpg","Personalised","Your own story, written in little details."],
+["things","The Little Things",599,"the-little-things.jpg","Our Story","Everyday details worth remembering."],
+["map","Our Memory Map",799,"our-memory-map.jpg","Personalised","A place, a moment, a memory."],
+["bundle","The Little Things Bundle",899,"the-little-things-bundle.jpg","Bundles","More little details in one thoughtful gift."],
+["forever","Forever, Us",999,"forever-us.jpg","Bundles","A keepsake for a story still being written."]
+].map(x=>({id:x[0],name:x[1],price:x[2],img:x[3],cat:x[4],desc:x[5]}));
+let cat="All",cart=[],wish=[],current=null,qty=1;
+try{cart=JSON.parse(localStorage.samcart||"[]");wish=JSON.parse(localStorage.samwish||"[]")}catch(e){}
+const $=id=>document.getElementById(id),money=n=>"₹"+n;
+function persist(){try{localStorage.samcart=JSON.stringify(cart);localStorage.samwish=JSON.stringify(wish)}catch(e){}counts()}
+function counts(){$("cc").textContent=cart.reduce((s,x)=>s+x.qty,0);$("wc").textContent=wish.length}
+function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));$(id).classList.add("active");window.scrollTo(0,0)}
+function home(){show("home")}
+function categories(){
+ const cats=["All",...new Set(P.map(p=>p.cat))];
+ $("cats").innerHTML=cats.map(c=>`<button class="${cat===c?"active":""}" onclick="cat='${c}';categories();render()">${c}</button>`).join("");
 }
-function setCat(id){activeCat=id;renderCats();render()}
-function card(p){return `<article class="card"><div class="photo">
- <button class="imagebtn" onclick="showProduct('${p.id}')"><img src="${pic(p)}" alt="${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='${p.image}'"></button>
- <button class="heart" onclick="like('${p.id}')">${likes.has(p.id)?"♥":"♡"}</button>
- </div><div class="info"><h3>${esc(p.name)}</h3><div class="price">${cash(p.price)}</div>
- <button class="btn" onclick="showProduct('${p.id}')">View details</button>
- <button class="btn alt" style="width:100%;margin-top:6px" onclick="add('${p.id}')">Add to bag</button>
- </div></article>`}
 function render(){
- let a=P.filter(p=>(!activeCat||p.cat===activeCat)&&p.name.toLowerCase().includes(search.value.toLowerCase()));
- if(sort.value==="low")a.sort((x,y)=>x.price-y.price);
- if(sort.value==="high")a.sort((x,y)=>y.price-x.price);
- products.innerHTML=a.map(card).join("")||"<p>No gifts found.</p>"
+ let a=P.filter(p=>(cat==="All"||p.cat===cat)&&(p.name+" "+p.desc).toLowerCase().includes($("search").value.toLowerCase()));
+ if($("sort").value==="low")a.sort((x,y)=>x.price-y.price);
+ if($("sort").value==="high")a.sort((x,y)=>y.price-x.price);
+ $("products").innerHTML=a.map(p=>`<article class="card"><div class="photo"><img src="${p.img}" alt="${p.name}" onclick="product('${p.id}')"><button class="heart" onclick="toggleWish('${p.id}')">${wish.includes(p.id)?"♥":"♡"}</button></div><div class="name">${p.name}</div><div class="price">${money(p.price)}</div><p>${p.desc}</p><button onclick="product('${p.id}')">View details →</button></article>`).join("");
 }
-function like(id){likes.has(id)?likes.delete(id):likes.add(id);render();if(chosen)showProduct(chosen)}
-function showProduct(id){
- chosen=id;q=1;let p=P.find(x=>x.id===id);
- home.classList.add("hide");productPage.classList.remove("hide");
- detail.innerHTML=`<img src="${pic(p)}" alt="${esc(p.name)}" onerror="this.onerror=null;this.src='${p.image}'">
- <div><p class="small">SAMARTS COLLECTION</p><h2>${esc(p.name)}</h2><div class="price">${cash(p.price)}</div>
- <p>${esc(p.desc)}</p><p>Thoughtfully designed to make a memory feel special.</p>
- <div class="qty">Quantity <button onclick="changeQty(-1)">−</button><b id="q">1</b><button onclick="changeQty(1)">+</button></div>
- <div class="actions"><button class="btn" onclick="add('${id}',q)">Add to bag</button>
- <button class="btn alt" onclick="orderOne('${id}')">Order this gift</button>
- <button class="btn alt" onclick="like('${id}')">${likes.has(id)?"♥ Wishlisted":"♡ Wishlist"}</button></div></div>`;
- related.innerHTML=P.filter(x=>x.id!==id).slice(0,3).map(card).join("");
- window.scrollTo(0,0)
+function product(id){
+ current=P.find(p=>p.id===id);qty=1;show("detail");
+ $("detail").innerHTML=`<button onclick="home()">← Back to collection</button><div class="detail"><div><img src="${current.img}" alt="${current.name}"></div><div><div class="kicker">${current.cat}</div><h1>${current.name}</h1><h3>${money(current.price)}</h3><p>${current.desc}</p><p class="muted">A thoughtful keepsake for the people and moments you treasure.</p><label>Personalisation / message</label><textarea id="note" placeholder="Names, date or message"></textarea><p>Quantity: <button onclick="qty=Math.max(1,qty-1);$('q').textContent=qty">−</button> <b id="q">1</b> <button onclick="qty=Math.min(20,qty+1);$('q').textContent=qty">+</button></p><button class="btn" onclick="add('${id}')">Add to bag</button> <button onclick="add('${id}');cartPage()">Order now</button><p class="muted">Delivery charges and timelines confirmed on WhatsApp.</p></div></div>`;
 }
-function goHome(){chosen=null;productPage.classList.add("hide");home.classList.remove("hide");window.scrollTo(0,0)}
-function changeQty(n){q=Math.max(1,q+n);document.getElementById("q").textContent=q}
-function add(id,n=1){bag[id]=Math.max(0,(bag[id]||0)+n);if(!bag[id])delete bag[id];renderBag()}
-function renderBag(){
- let total=0,count=0;
- items.innerHTML=Object.entries(bag).map(([id,n])=>{let p=P.find(x=>x.id===id);total+=p.price*n;count+=n;
- return `<div class="cartrow"><span>${esc(p.name)} × ${n}</span><span>${cash(p.price*n)} <button onclick="add('${id}',-1)">−</button></span></div>`}).join("")||"Your bag is empty.";
- document.getElementById("total").textContent=cash(total);
- document.getElementById("count").textContent=count
+function add(id){let p=P.find(x=>x.id===id),note=$("note")?.value||"",x=cart.find(x=>x.id===id&&x.note===note);if(x)x.qty+=qty;else cart.push({id,qty,note});persist()}
+function toggleWish(id){wish=wish.includes(id)?wish.filter(x=>x!==id):[...wish,id];persist();render();if($("wish").classList.contains("active"))wishlistPage()}
+function wishlistPage(){show("wish");let a=P.filter(p=>wish.includes(p.id));$("wish").innerHTML="<h1>Your saved gifts</h1>"+(a.length?a.map(p=>`<p><button onclick="product('${p.id}')">${p.name} — ${money(p.price)}</button> <button onclick="toggleWish('${p.id}')">Remove</button></p>`).join(""):"<p>Your wishlist is empty.</p>")}
+function cartPage(){
+ show("cart");let total=cart.reduce((s,x)=>s+P.find(p=>p.id===x.id).price*x.qty,0);
+ $("cart").innerHTML="<h1>Your shopping bag</h1>"+(cart.length?cart.map((x,i)=>{let p=P.find(p=>p.id===x.id);return `<div class="cartrow"><img src="${p.img}" alt=""><div><b>${p.name}</b><p>${money(p.price)} × ${x.qty}</p>${x.note||""}<p><button onclick="cart[${i}].qty=Math.max(1,cart[${i}].qty-1);persist();cartPage()">−</button> <button onclick="cart[${i}].qty++;persist();cartPage()">+</button> <button onclick="cart.splice(${i},1);persist();cartPage()">Remove</button></p></div></div>`}).join(""):`<p>Your bag is empty.</p>`)+`<h2>Total: ${money(total)}</h2><p>Delivery charges confirmed separately.</p><button class="btn" onclick="checkout()">Order on WhatsApp</button> <button onclick="upi()">Pay via UPI app</button>`;
 }
-function openCart(){document.getElementById("cartbox").scrollIntoView({behavior:"smooth"})}
-function clearBag(){bag={};renderBag()}
-function message(){
- let rows=Object.entries(bag).map(([id,n])=>{let p=P.find(x=>x.id===id);return `${p.name} x ${n} — ${cash(p.price*n)}`});
- let total=Object.entries(bag).reduce((s,[id,n])=>s+P.find(p=>p.id===id).price*n,0);
- return `Hello SamArts! I'd like to order:\n${rows.join("\n")}\nTotal: ${cash(total)}\nPlease share the next steps.`
+function checkout(){
+ if(!cart.length)return alert("Your bag is empty.");
+ let name=prompt("Your name:"),phone=prompt("Your phone number:"),address=prompt("Delivery address:");
+ if(!name||!phone||!address)return;
+ let total=cart.reduce((s,x)=>s+P.find(p=>p.id===x.id).price*x.qty,0);
+ let msg=`SamArts order\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\n${cart.map(x=>{let p=P.find(p=>p.id===x.id);return `${p.name} x ${x.qty} — ${money(p.price*x.qty)}${x.note?"\nPersonalisation: "+x.note:""}`}).join("\n")}\n\nSubtotal: ${money(total)}\nPlease confirm delivery charges and payment details.`;
+ window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank");
 }
-function checkout(){if(!Object.keys(bag).length)return alert("Add a gift to your bag first.");window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(message()),"_blank")}
-function pay(){
- let total=Object.entries(bag).reduce((s,[id,n])=>s+P.find(p=>p.id===id).price*n,0);
- if(!total)return alert("Add a gift to your bag first.");
- location.href="upi://pay?pa="+encodeURIComponent(UPI)+"&pn=SamArts&am="+total+"&cu=INR&tn=SamArts%20order"
+function upi(){
+ if(!cart.length)return alert("Your bag is empty.");
+ let total=cart.reduce((s,x)=>s+P.find(p=>p.id===x.id).price*x.qty,0);
+ location.href=`upi://pay?pa=${encodeURIComponent(UPI)}&pn=SamArts&am=${total}&cu=INR&tn=SamArts%20order`;
 }
-function orderOne(id){add(id,q);checkout()}
-["search","sort"].forEach(id=>document.getElementById(id).addEventListener(id==="search"?"input":"change",render));
-renderCats();render();renderBag();
+categories();render();counts();
 </script>
 </body>
 </html>
