@@ -6,75 +6,111 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SamArts | Thoughtful Gifts</title>
 <style>
-:root{--wine:#641f35;--gold:#b99a62;--bg:#fbf7ef}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#292326;font:15px/1.5 Arial}
-header,footer{text-align:center;padding:20px}
-header{background:#fffaf3}
-h1,h2,h3{font-family:Georgia,serif}
-h1{font-size:36px;color:var(--wine);margin:0}
-main{max-width:1000px;margin:auto;padding:15px}
-.hero{text-align:center;background:#f1e6d9;padding:24px;border-radius:12px}
-.hero h2{color:var(--wine);margin:0;font-size:28px}
-.tools,.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.tools input,.tools select{flex:1;min-width:110px;padding:10px;border:1px solid #d9c9b9;border-radius:7px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+:root{--wine:#641f35;--gold:#b99a62;--bg:#fbf7ef;--ink:#292326}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Arial}
+header{background:#fffaf3;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eadfce;position:sticky;top:0;z-index:5}
+.logo{font: bold 30px Georgia;color:var(--wine);text-decoration:none}.tag{font-size:11px;color:#756b6d}
+button,a{cursor:pointer}button{font:inherit}
+.btn{border:0;border-radius:7px;padding:10px 13px;background:var(--wine);color:white;font-weight:bold}
+.alt{background:#eadcc8;color:var(--wine)}
+.carttop{background:var(--wine);color:white;border:0;border-radius:25px;padding:10px 14px}
+main{max-width:1200px;margin:auto;padding:20px 14px}
+.hero{text-align:center;padding:42px 18px;background:#f1e6d9;border-radius:12px}
+.hero h1{font:36px Georgia;color:var(--wine);margin:0 0 10px}
+.hero p{max-width:570px;margin:8px auto}
+h2{font:27px Georgia;color:var(--wine)}
+.about{padding:12px 8px 24px;text-align:center;max-width:750px;margin:auto}
+.layout{display:grid;grid-template-columns:175px 1fr;gap:22px}
+aside{align-self:start;position:sticky;top:90px;background:#fffaf3;border:1px solid #eadfce;padding:14px;border-radius:10px}
+aside h3{font:20px Georgia;color:var(--wine);margin:0 0 12px}
+.cat{display:block;width:100%;text-align:left;padding:10px;border:0;background:transparent;border-radius:6px;color:var(--ink)}
+.cat.active,.cat:hover{background:#eadcc8;color:var(--wine);font-weight:bold}
+.tools{display:flex;gap:8px;margin-bottom:14px}
+.tools input,.tools select{min-width:0;flex:1;padding:10px;border:1px solid #d9c9b9;border-radius:7px;background:white}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
 .card{background:white;border:1px solid #eee3d8;border-radius:10px;overflow:hidden}
 .photo{position:relative}
 .photo img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee}
+.imagebtn{display:block;padding:0;border:0;background:none;width:100%}
 .heart{position:absolute;right:7px;top:7px;border:0;border-radius:50%;padding:7px;background:white}
-.info{padding:10px}.info h3{margin:0;font-size:18px}
+.info{padding:10px}.info h3{font:18px Georgia;margin:0 0 4px}
 .price{color:var(--wine);font-weight:bold}
-.btn{border:0;border-radius:7px;padding:10px 12px;background:var(--wine);color:white;cursor:pointer;font-weight:bold}
-.alt{background:#eadcc8;color:var(--wine)}
 .info .btn{width:100%;margin-top:7px}
 .hide{display:none!important}
-.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;background:white;padding:14px;border-radius:10px;margin-top:14px}
-.detail img{width:100%;max-height:450px;object-fit:contain;background:#f7efe6}
-.detail h2{color:var(--wine);font-size:30px;margin:6px 0}
-.qty{display:flex;gap:12px;align-items:center;margin:12px 0}
-.cart{position:sticky;bottom:5px;background:#fffaf3;border:1px solid #e7d7c5;border-radius:10px;padding:12px;margin-top:20px;box-shadow:0 2px 12px #0001}
-.cartrow{display:flex;justify-content:space-between;gap:10px;margin:5px 0}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:22px;background:white;padding:16px;border-radius:10px;margin-top:15px}
+.detail img{width:100%;max-height:520px;object-fit:contain;background:#f7efe6}
+.detail h2{margin:6px 0}
+.qty{display:flex;gap:12px;align-items:center;margin:15px 0}
+.qty button{padding:5px 12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.cartbox{scroll-margin-top:85px;background:#fffaf3;border:1px solid #e7d7c5;border-radius:10px;padding:15px;margin-top:25px}
+.cartrow{display:flex;justify-content:space-between;gap:10px;margin:7px 0}
 .small{font-size:12px;color:#756b6d}
-footer{color:#756b6d}
+footer{text-align:center;padding:28px;color:#756b6d}
+@media(max-width:700px){
+ header{padding:12px}.logo{font-size:25px}.tag{display:none}
+ .layout{grid-template-columns:1fr;gap:12px}
+ aside{position:static;padding:10px}
+ .catlist{display:flex;overflow-x:auto;gap:5px}
+ .cat{white-space:nowrap;width:auto;flex-shrink:0}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .detail{grid-template-columns:1fr}
+ .hero{padding:30px 14px}.hero h1{font-size:30px}
+}
 </style>
 </head>
 <body>
-<header><h1>SamArts</h1><div>Little things. Lasting feelings.</div></header>
+<header>
+ <a class="logo" href="#" onclick="goHome();return false">SamArts</a>
+ <div class="tag">Little things. Lasting feelings.</div>
+ <button class="carttop" onclick="openCart()">♧ Bag <span id="count">0</span></button>
+</header>
+
 <main>
 <section id="home">
-<div class="hero"><h2>Make the ordinary unforgettable.</h2>
-<p>Thoughtful keepsakes for your favourite people and moments.</p></div>
-<h2>Shop the collection</h2>
-<div class="tools">
-<input id="search" placeholder="Search gifts">
-<select id="cat">
-<option value="">All gifts</option><option value="notes">Notes</option>
-<option value="couple">For couples</option><option value="personal">Personalised</option>
-<option value="bundle">Bundles</option>
-</select>
-<select id="sort"><option value="featured">Featured</option>
-<option value="low">Price: low to high</option><option value="high">Price: high to low</option></select>
-</div>
-<div id="products" class="grid"></div>
+ <div class="hero">
+  <h1>Thoughtful gifts. Meaningful stories.</h1>
+  <p>Welcome to SamArts — a collection of little keepsakes designed to celebrate your people, your memories and your moments.</p>
+  <button class="btn" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore the collection</button>
+ </div>
+ <section class="about">
+  <h2>About SamArts</h2>
+  <p>We believe the smallest things can hold the biggest feelings. SamArts creates thoughtful, personal gifts that turn memories, milestones and everyday moments into something worth keeping.</p>
+  <p>Made for the people who mean the most.</p>
+ </section>
+ <h2 id="shop">Discover the collection</h2>
+ <div class="layout">
+  <aside><h3>Categories</h3><div class="catlist" id="cats"></div></aside>
+  <section>
+   <div class="tools">
+    <input id="search" placeholder="Search gifts">
+    <select id="sort"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select>
+   </div>
+   <div id="products" class="grid"></div>
+  </section>
+ </div>
 </section>
-<section id="page" class="hide">
-<button class="btn alt" onclick="goHome()">← Back to collection</button>
-<div id="detail" class="detail"></div>
-<h2>You may also love</h2><div id="related" class="grid"></div>
+
+<section id="productPage" class="hide">
+ <button class="btn alt" onclick="goHome()">← Back to collection</button>
+ <div id="detail" class="detail"></div>
+ <h2>You may also love</h2><div id="related" class="grid"></div>
 </section>
-<section class="cart">
-<div class="cartrow"><b>Your bag</b><b id="total">₹0</b></div>
-<div id="items" class="small">Your bag is empty.</div>
-<div class="actions">
-<button class="btn" onclick="checkout()">Order on WhatsApp</button>
-<button class="btn alt" onclick="pay()">Pay via UPI</button>
-<button class="btn alt" onclick="clearBag()">Clear bag</button>
-</div>
-<p class="small">UPI payment is not automatically verified. Share payment confirmation on WhatsApp.</p>
+
+<section id="cartbox" class="cartbox">
+ <h2>Your shopping bag</h2>
+ <div id="items" class="small">Your bag is empty.</div>
+ <div class="cartrow"><strong>Total</strong><strong id="total">₹0</strong></div>
+ <div class="actions">
+  <button class="btn" onclick="checkout()">Order on WhatsApp</button>
+  <button class="btn alt" onclick="pay()">Pay via UPI</button>
+  <button class="btn alt" onclick="clearBag()">Clear bag</button>
+ </div>
+ <p class="small">UPI payment is not automatically verified. Please share your payment confirmation on WhatsApp.</p>
 </section>
 </main>
-<footer>SamArts · WhatsApp 7382549588</footer>
+<footer>SamArts · Thoughtful gifts, made personal<br>WhatsApp: 7382549588</footer>
+
 <script>
 const UPI="7382549588@ybl",PHONE="917382549588";
 const P=[
@@ -88,64 +124,67 @@ const P=[
 ["bundle","The Little Things Bundle",899,"the-little-things-bundle.jpg","bundle","A thoughtful bundle made for remembering."],
 ["forever","Forever, Us",999,"forever-us.jpg","couple","A keepsake for your story and future."]
 ].map(([id,name,price,image,cat,desc])=>({id,name,price,image,cat,desc}));
-let bag={},likes=new Set(),chosen=null,q=1;
+const categories=[["","All gifts"],["notes","Notes & reminders"],["couple","For couples"],["personal","Personalised"],["bundle","Bundles"]];
+let bag={},likes=new Set(),chosen=null,q=1,activeCat="";
 const cash=n=>"₹"+n,pic=p=>"/SAMARTS/"+p.image;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function renderCats(){
+ cats.innerHTML=categories.map(([id,name])=>`<button class="cat ${id===activeCat?'active':''}" onclick="setCat('${id}')">${name}</button>`).join("")
+}
+function setCat(id){activeCat=id;renderCats();render()}
 function card(p){return `<article class="card"><div class="photo">
-<img src="${pic(p)}" alt="${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='${p.image}'">
-<button class="heart" onclick="like('${p.id}')">${likes.has(p.id)?"♥":"♡"}</button>
-</div><div class="info"><h3>${esc(p.name)}</h3><div class="price">${cash(p.price)}</div>
-<button class="btn" onclick="showProduct('${p.id}')">View details</button>
-<button class="btn alt" style="width:100%;margin-top:6px" onclick="add('${p.id}')">Add to bag</button>
-</div></article>`}
+ <button class="imagebtn" onclick="showProduct('${p.id}')"><img src="${pic(p)}" alt="${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='${p.image}'"></button>
+ <button class="heart" onclick="like('${p.id}')">${likes.has(p.id)?"♥":"♡"}</button>
+ </div><div class="info"><h3>${esc(p.name)}</h3><div class="price">${cash(p.price)}</div>
+ <button class="btn" onclick="showProduct('${p.id}')">View details</button>
+ <button class="btn alt" style="width:100%;margin-top:6px" onclick="add('${p.id}')">Add to bag</button>
+ </div></article>`}
 function render(){
-let a=P.filter(p=>(!cat.value||p.cat===cat.value)&&p.name.toLowerCase().includes(search.value.toLowerCase()));
-if(sort.value==="low")a.sort((x,y)=>x.price-y.price);
-if(sort.value==="high")a.sort((x,y)=>y.price-x.price);
-products.innerHTML=a.map(card).join("")||"<p>No gifts found.</p>"
+ let a=P.filter(p=>(!activeCat||p.cat===activeCat)&&p.name.toLowerCase().includes(search.value.toLowerCase()));
+ if(sort.value==="low")a.sort((x,y)=>x.price-y.price);
+ if(sort.value==="high")a.sort((x,y)=>y.price-x.price);
+ products.innerHTML=a.map(card).join("")||"<p>No gifts found.</p>"
 }
 function like(id){likes.has(id)?likes.delete(id):likes.add(id);render();if(chosen)showProduct(chosen)}
 function showProduct(id){
-chosen=id;q=1;let p=P.find(x=>x.id===id);
-home.classList.add("hide");page.classList.remove("hide");
-detail.innerHTML=`<img src="${pic(p)}" alt="${esc(p.name)}" onerror="this.onerror=null;this.src='${p.image}'">
-<div><p class="small">SAMARTS COLLECTION</p><h2>${esc(p.name)}</h2>
-<div class="price">${cash(p.price)}</div><p>${esc(p.desc)}</p>
-<div class="qty">Quantity <button onclick="changeQty(-1)">−</button>
-<b id="q">1</b><button onclick="changeQty(1)">+</button></div>
-<div class="actions"><button class="btn" onclick="add('${id}',q)">Add to bag</button>
-<button class="btn alt" onclick="orderOne('${id}')">Order this gift</button>
-<button class="btn alt" onclick="like('${id}')">${likes.has(id)?"♥ Wishlisted":"♡ Wishlist"}</button></div></div>`;
-related.innerHTML=P.filter(x=>x.id!==id).slice(0,3).map(card).join("");
-window.scrollTo(0,0)
+ chosen=id;q=1;let p=P.find(x=>x.id===id);
+ home.classList.add("hide");productPage.classList.remove("hide");
+ detail.innerHTML=`<img src="${pic(p)}" alt="${esc(p.name)}" onerror="this.onerror=null;this.src='${p.image}'">
+ <div><p class="small">SAMARTS COLLECTION</p><h2>${esc(p.name)}</h2><div class="price">${cash(p.price)}</div>
+ <p>${esc(p.desc)}</p><p>Thoughtfully designed to make a memory feel special.</p>
+ <div class="qty">Quantity <button onclick="changeQty(-1)">−</button><b id="q">1</b><button onclick="changeQty(1)">+</button></div>
+ <div class="actions"><button class="btn" onclick="add('${id}',q)">Add to bag</button>
+ <button class="btn alt" onclick="orderOne('${id}')">Order this gift</button>
+ <button class="btn alt" onclick="like('${id}')">${likes.has(id)?"♥ Wishlisted":"♡ Wishlist"}</button></div></div>`;
+ related.innerHTML=P.filter(x=>x.id!==id).slice(0,3).map(card).join("");
+ window.scrollTo(0,0)
 }
-function goHome(){chosen=null;page.classList.add("hide");home.classList.remove("hide");window.scrollTo(0,0)}
+function goHome(){chosen=null;productPage.classList.add("hide");home.classList.remove("hide");window.scrollTo(0,0)}
 function changeQty(n){q=Math.max(1,q+n);document.getElementById("q").textContent=q}
 function add(id,n=1){bag[id]=Math.max(0,(bag[id]||0)+n);if(!bag[id])delete bag[id];renderBag()}
 function renderBag(){
-let total=0;
-items.innerHTML=Object.entries(bag).map(([id,n])=>{let p=P.find(x=>x.id===id);total+=p.price*n;
-return `<div class="cartrow"><span>${esc(p.name)} × ${n}</span><span>${cash(p.price*n)} <button onclick="add('${id}',-1)">−</button></span></div>`}).join("")||"Your bag is empty.";
-document.getElementById("total").textContent=cash(total)
+ let total=0,count=0;
+ items.innerHTML=Object.entries(bag).map(([id,n])=>{let p=P.find(x=>x.id===id);total+=p.price*n;count+=n;
+ return `<div class="cartrow"><span>${esc(p.name)} × ${n}</span><span>${cash(p.price*n)} <button onclick="add('${id}',-1)">−</button></span></div>`}).join("")||"Your bag is empty.";
+ document.getElementById("total").textContent=cash(total);
+ document.getElementById("count").textContent=count
 }
+function openCart(){document.getElementById("cartbox").scrollIntoView({behavior:"smooth"})}
 function clearBag(){bag={};renderBag()}
 function message(){
-let rows=Object.entries(bag).map(([id,n])=>{let p=P.find(x=>x.id===id);return `${p.name} x ${n} — ${cash(p.price*n)}`});
-let total=Object.entries(bag).reduce((s,[id,n])=>s+P.find(p=>p.id===id).price*n,0);
-return `Hello SamArts! I'd like to order:\n${rows.join("\n")}\nTotal: ${cash(total)}\nPlease share the next steps.`
+ let rows=Object.entries(bag).map(([id,n])=>{let p=P.find(x=>x.id===id);return `${p.name} x ${n} — ${cash(p.price*n)}`});
+ let total=Object.entries(bag).reduce((s,[id,n])=>s+P.find(p=>p.id===id).price*n,0);
+ return `Hello SamArts! I'd like to order:\n${rows.join("\n")}\nTotal: ${cash(total)}\nPlease share the next steps.`
 }
-function checkout(){
-if(!Object.keys(bag).length)return alert("Add a gift to your bag first.");
-window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(message()),"_blank")
-}
+function checkout(){if(!Object.keys(bag).length)return alert("Add a gift to your bag first.");window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(message()),"_blank")}
 function pay(){
-let total=Object.entries(bag).reduce((s,[id,n])=>s+P.find(p=>p.id===id).price*n,0);
-if(!total)return alert("Add a gift to your bag first.");
-location.href="upi://pay?pa="+encodeURIComponent(UPI)+"&pn=SamArts&am="+total+"&cu=INR&tn=SamArts%20order"
+ let total=Object.entries(bag).reduce((s,[id,n])=>s+P.find(p=>p.id===id).price*n,0);
+ if(!total)return alert("Add a gift to your bag first.");
+ location.href="upi://pay?pa="+encodeURIComponent(UPI)+"&pn=SamArts&am="+total+"&cu=INR&tn=SamArts%20order"
 }
 function orderOne(id){add(id,q);checkout()}
-["search","cat","sort"].forEach(id=>document.getElementById(id).addEventListener(id==="search"?"input":"change",render));
-render();renderBag();
+["search","sort"].forEach(id=>document.getElementById(id).addEventListener(id==="search"?"input":"change",render));
+renderCats();render();renderBag();
 </script>
 </body>
 </html>
